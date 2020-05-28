@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Smart-Cargo-Web"
+    }
+  },
+  "defaultProject": "Smart-Cargo-Web",
+  "cli": {
+    "analytics": false
+  }
 }
