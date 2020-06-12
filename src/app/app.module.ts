@@ -12,6 +12,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DriverManagementComponent } from './pages/main-content/admin/driver-management/driver-management.component';
 import { AdminComponent } from './pages/main-content/admin/admin.component';
 
+//import ng-bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,7 @@ import { AdminComponent } from './pages/main-content/admin/admin.component';
     DriverManagementComponent,
     AdminComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [],
   bootstrap: [AppComponent],
 })
