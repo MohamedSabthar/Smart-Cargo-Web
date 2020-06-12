@@ -1,0 +1,32 @@
+
+.sing-in {
+  height: 90vh;
+}
+
+.card {
+  background-color: #efefef;
+  border-radius: 5px;
+  border-color: transparent;
+  /* #4D5C84 50% => #4d5c8450 */
+  -moz-box-shadow: 4px 4px 8px #4d5c8450;
+  -webkit-box-shadow: 4px 4px 8px #4d5c8450;
+  box-shadow: 4px 4px 8px #4d5c8450;
+  min-height: 250px;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.form-group {
+  width: 80%;
+}
+
+
+.form-control {
+  border-color: transparent;
+  background-color: #f3f3f3;
+  -moz-box-shadow: 4px 4px 8px #4d5c8450;
+  -webkit-box-shadow: 4px 4px 8px #4d5c8450;
+  box-shadow: 4px 4px 8px #4d5c8450;
+}

@@ -1,2 +1,9 @@
 /* importing bootstrap stylesheet */
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+/* custom styles */
+
+label {
+  color:var(--primary);
+  margin-bottom: 1px;
+}
