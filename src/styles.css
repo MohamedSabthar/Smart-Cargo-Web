@@ -7,3 +7,9 @@ label {
   color:var(--primary);
   margin-bottom: 1px;
 }
+
+.card{
+-moz-box-shadow: 4px 4px 8px var(--primary-lite);
+-webkit-box-shadow: 4px 4px 8px var(--primary-lite);
+box-shadow: 4px 4px 8px var(--primary-lite);
+}
