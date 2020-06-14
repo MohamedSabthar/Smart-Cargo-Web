@@ -1,3 +1,6 @@
+import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
+import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
+import { AdminGaurdService } from './services/admin-gaurd.service';
 import { GaurdService } from './services/gaurd.service';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { AdminComponent } from './pages/main-content/admin/admin.component';
@@ -16,12 +19,17 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate : [GaurdService],
+    canActivate : [GaurdService,AdminGaurdService],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'driver-management', component: DriverManagementComponent },
     ],
+  },
+  {
+    path: 'store-keeper',
+    component: StoreKeeperComponent,
+    canActivate : [GaurdService,StoreKeeperGaurdService],
   },
 
   { path: '**', component: NotFoundPageComponent },

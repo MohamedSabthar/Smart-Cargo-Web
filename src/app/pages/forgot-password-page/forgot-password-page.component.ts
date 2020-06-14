@@ -13,10 +13,11 @@ export class ForgotPasswordPageComponent implements OnInit {
 
   ngOnInit(): void {
      //if user already logged-in redirect to specific to specific dashboard (admin/store-keeper)
-     if (this._authService.isLoggedIn()) {
+    if (this._authService.isLoggedIn()) {
+      const role = this._authService.getRole();
       //if user is admin then navigate to admin dashboard
-      if (this._authService.getRole() == 'admin')
-        this._router.navigate(['/admin']);
+      if (role == 'admin') this._router.navigate(['/admin']);
+      else if (role == 'store-keeper') this._router.navigate(['/store-keeper']);
     }
   }
 

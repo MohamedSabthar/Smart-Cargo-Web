@@ -1,3 +1,5 @@
+import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
+import { AdminGaurdService } from './services/admin-gaurd.service';
 import { GaurdService } from './services/gaurd.service';
 import { AuthService } from './services/auth.service';
 import { AdminDashboardComponent } from './pages/main-content/admin/admin-dashboard/admin-dashboard.component';
@@ -20,6 +22,7 @@ import { AdminComponent } from './pages/main-content/admin/admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -38,6 +41,7 @@ export function tokenGetter() {
     DriverManagementComponent,
     AdminComponent,
     ForgotPasswordPageComponent,
+    StoreKeeperComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,7 @@ export function tokenGetter() {
       },
     }),
   ],
-  providers: [AuthService,GaurdService],
+  providers: [AuthService,GaurdService,AdminGaurdService,StoreKeeperGaurdService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
