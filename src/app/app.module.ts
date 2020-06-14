@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
+import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -42,6 +43,7 @@ export function tokenGetter() {
     AdminComponent,
     ForgotPasswordPageComponent,
     StoreKeeperComponent,
+    StoreKeeperDashboardComponent,
   ],
   imports: [
     BrowserModule,

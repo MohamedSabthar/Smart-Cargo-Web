@@ -1,3 +1,4 @@
+import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -30,6 +31,10 @@ const routes: Routes = [
     path: 'store-keeper',
     component: StoreKeeperComponent,
     canActivate : [GaurdService,StoreKeeperGaurdService],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: StoreKeeperDashboardComponent },
+    ]
   },
 
   { path: '**', component: NotFoundPageComponent },

@@ -1,0 +1,9 @@
+.page-not-found {
+  height: 90vh !important;
+}
+
+.display-1 {
+  font-size: 5rem;
+  font-weight: 400 !important;
+  color: var(--primary) !important;
+}
