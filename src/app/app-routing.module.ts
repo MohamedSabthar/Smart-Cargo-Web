@@ -6,6 +6,7 @@ import { ServerErrorPageComponent } from './pages/server-error-page/server-error
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TrackVehiclesComponent } from './pages/main-content/admin/track-vehicles/track-vehicles.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'driver-management', component: DriverManagementComponent },
+      {path:'track-vehicle',component:TrackVehiclesComponent},
     ],
   },
 
