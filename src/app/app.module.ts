@@ -17,13 +17,14 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DriverManagementComponent } from './pages/main-content/admin/driver-management/driver-management.component';
 import { AdminComponent } from './pages/main-content/admin/admin.component';
-
-//import ng-bootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
 import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
+import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
+
+//import ng-bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
 import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
@@ -49,6 +50,7 @@ export function tokenGetter() {
     StoreKeeperDashboardComponent,
     VehicleManagementComponent,
     DepotManagementComponent,
+    ScheduleOrdersComponent,
   ],
   imports: [
     BrowserModule,

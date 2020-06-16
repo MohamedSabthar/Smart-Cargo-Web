@@ -1,0 +1,36 @@
+.sidebar-sticky {
+  background-color: #4d5c84;
+  min-height: 100vh;
+  min-width: 16vw;
+}
+
+.nav-link {
+  color: #f3f3f3;
+}
+
+.bg-white-half {
+  width: 60%;
+  border-top: 1px solid #f3f3f3;
+}
+
+.profile-text {
+  color: #f3f3f3;
+}
+
+.profile-text > h5 {
+  padding-bottom: 0;
+  margin-bottom: 2px;
+  color: #f3f3f3;
+}
+
+.nav-link {
+  font-weight: 300;
+}
+
+.active {
+  font-weight: 700;
+}
+
+.nav-link:hover {
+  font-weight: 700;
+}

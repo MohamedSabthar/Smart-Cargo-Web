@@ -1,1 +1,83 @@
-fkdajfa; fjakd;fa kfjd a adkfja;fk jd;afja UI
+<div class="container-fluid">
+  <div class="row">
+    <app-side-bar></app-side-bar>
+
+    <!-- Content of Admin Dashboard -->
+    <div class="col main-content">
+      <!-- status cards -->
+      <div class="row justify-content-center">
+        <!-- Status Cards -->
+        <!-- Drivers Online -->
+        <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="status-text align-middle mr-2">Drivers</span>
+              <div class="status-divider align-middle"></div>
+              <span class="ml-4 align-middle status-description">Online</span>
+              <span class="m-2 align-middle status-number">17</span>
+              <div class="status-divider status-divider-min align-middle"></div>
+              <span class="ml-2 align-middle status-description">Offline</span>
+              <span class="mx-2 align-middle status-number">4</span>
+            </div>
+          </div>
+        </div>
+        <!-- End drivers online -->
+
+        <!-- Orders -->
+        <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="status-text align-middle mr-2">Orders</span>
+              <div class="status-divider align-middle"></div>
+              <span class="ml-2 align-middle status-description">Pending</span>
+              <span class="m-2 align-middle status-number">171</span>
+              <div class="status-divider status-divider-min align-middle"></div>
+              <span class="ml-2 align-middle status-description"
+                >Delivered</span
+              >
+              <span class="mx-2 align-middle status-number">1</span>
+            </div>
+          </div>
+        </div>
+        <!-- End orders -->
+
+        <!-- Routes -->
+        <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="status-text align-middle mr-2">Routes</span>
+              <div class="status-divider align-middle"></div>
+              <span class="ml-2 align-middle status-description"
+                >Scheduled</span
+              >
+              <span class="m-2 align-middle status-number">17</span>
+              <div class="status-divider status-divider-min align-middle"></div>
+              <span class="ml-2 align-middle status-description"
+                >Delivered</span
+              >
+              <span class="mx-2 align-middle status-number">4</span>
+            </div>
+          </div>
+        </div>
+        <!-- end of routes -->
+      </div>
+      <!-- End of status cards -->
+
+      <div class="col-md-4 col-12">
+        <div class="card">
+          <div class="card-body">
+            <h3>Drivers online</h3>
+            <div class="row">
+              <input
+                type="text"
+                class="form-control m-2"
+                placeholder="Search a driver"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End content of Admin Dashboard -->
+  </div>
+</div>
