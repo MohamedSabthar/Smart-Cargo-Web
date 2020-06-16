@@ -25,6 +25,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
 import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
+import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -45,6 +47,8 @@ export function tokenGetter() {
     ForgotPasswordPageComponent,
     StoreKeeperComponent,
     StoreKeeperDashboardComponent,
+    VehicleManagementComponent,
+    DepotManagementComponent,
   ],
   imports: [
     BrowserModule,
