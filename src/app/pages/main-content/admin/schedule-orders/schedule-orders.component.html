@@ -1,0 +1,120 @@
+<div class="container-fluid">
+  <div class="row">
+    <app-side-bar></app-side-bar>
+    <div class="col main-content">
+      <!-- Status Cards -->
+      <div class="row">
+        <!-- Ready -->
+        <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="status-text align-middle mr-5">Ready</span>
+              <div class="status-divider align-middle"></div>
+              <span class="mx-5 align-middle status-number">4</span>
+            </div>
+          </div>
+        </div>
+        <!-- End of Ready -->
+
+        <!-- Pending -->
+        <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="status-text align-middle mr-2">Orders</span>
+              <div class="status-divider align-middle"></div>
+              <div class="row">
+                <span class="ml-2 align-middle status-description">High</span>
+                <span class="m-2 align-middle status-number">4</span>
+              </div>
+              <div class="status-divider status-divider-min align-middle"></div>
+              <span class="ml-2 align-middle status-description">Medium</span>
+              <span class="mx-2 align-middle status-number">1</span>
+              <div class="status-divider status-divider-min align-middle"></div>
+              <span class="ml-2 align-middle status-description">Low</span>
+              <span class="mx-2 align-middle status-number">3</span>
+            </div>
+          </div>
+        </div>
+        <!-- End of Pending -->
+
+        <!-- Delivered -->
+        <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+          <div class="card">
+            <div class="card-body text-center">
+              <span class="status-text align-middle mr-5">Delivered</span>
+              <div class="status-divider align-middle"></div>
+              <span class="mx-5 align-middle status-number">4</span>
+            </div>
+          </div>
+        </div>
+        <!-- End of delivered -->
+      </div>
+      <!-- End of status cards -->
+
+      <!-- Last schedule -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card bg-primary mt-5">
+            <div class="card-body text-center">
+              <span class="text-white status-text"
+                >Last schedule on - 2020/04/03 @ 10.30 am</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of last schedule -->
+
+      <!-- Schedule table -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card mt-5">
+            <div class="d-flex flex-row-reverse">
+              <button type="button" class="btn btn-primary w-25 my-4 mr-4">
+                Run Schedule
+              </button>
+            </div>
+
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Route</th>
+                  <th scope="col">Vehicle type</th>
+                  <th scope="col">Assigned Vehicle ID</th>
+                  <th scope="col">Assigned Driver ID</th>
+                  <th scope="col">Current Status</th>
+                  <th scope="col">More</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#79341</td>
+                  <td>Lorry</td>
+                  <td>DAC-2244</td>
+                  <td>#2564879</td>
+                  <td>In-progress</td>
+                </tr>
+                <tr>
+                  <td>#79342</td>
+                  <td>Van</td>
+                  <td>PH-9991</td>
+                  <td>#2565479</td>
+                  <td>Not started</td>
+                </tr>
+                <tr>
+                  <td>#79343</td>
+                  <td>Bike</td>
+                  <td>BAD-6245</td>
+                  <td>#2564458</td>
+                  <td>Finished</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- End of schedule table -->
+    </div>
+  </div>
+</div>
