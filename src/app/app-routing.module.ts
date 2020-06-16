@@ -1,3 +1,4 @@
+import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
 import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
@@ -10,31 +11,32 @@ import { AdminDashboardComponent } from './pages/main-content/admin/admin-dashbo
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { ServerErrorPageComponent } from './pages/server-error-page/server-error-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
-  {path: 'forgot-password' , component:ForgotPasswordPageComponent},
+  { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'server-error', component: ServerErrorPageComponent },
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate : [GaurdService,AdminGaurdService],
+    canActivate: [GaurdService, AdminGaurdService],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'driver-management', component: DriverManagementComponent },
+      { path: 'schedule-orders', component: ScheduleOrdersComponent },
     ],
   },
   {
     path: 'store-keeper',
     component: StoreKeeperComponent,
-    canActivate : [GaurdService,StoreKeeperGaurdService],
+    canActivate: [GaurdService, StoreKeeperGaurdService],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: StoreKeeperDashboardComponent },
-    ]
+    ],
   },
 
   { path: '**', component: NotFoundPageComponent },

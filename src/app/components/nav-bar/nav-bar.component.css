@@ -1,0 +1,11 @@
+.navbar {
+  padding-left: 20px;
+  background-color: #f3f3f3 !important;
+  -moz-box-shadow: 4px 4px 8px #4d5c8450;
+  -webkit-box-shadow: 4px 4px 8px #4d5c8450;
+  box-shadow: 4px 4px 8px #4d5c8450;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
