@@ -5,7 +5,7 @@ import { AuthService } from './services/auth.service';
 import { AdminDashboardComponent } from './pages/main-content/admin/admin-dashboard/admin-dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,7 @@ import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot
 import { JwtModule } from '@auth0/angular-jwt';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
 import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -58,7 +59,13 @@ export function tokenGetter() {
       },
     }),
   ],
-  providers: [AuthService,GaurdService,AdminGaurdService,StoreKeeperGaurdService],
+  providers: [
+    AuthService,
+    GaurdService,
+    AdminGaurdService,
+    StoreKeeperGaurdService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
