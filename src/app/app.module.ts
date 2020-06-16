@@ -5,7 +5,7 @@ import { AuthService } from './services/auth.service';
 import { AdminDashboardComponent } from './pages/main-content/admin/admin-dashboard/admin-dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,7 @@ import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-ord
 
 //import ng-bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -65,6 +66,7 @@ export function tokenGetter() {
     GaurdService,
     AdminGaurdService,
     StoreKeeperGaurdService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
