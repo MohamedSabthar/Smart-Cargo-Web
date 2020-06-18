@@ -1,1 +1,87 @@
-<p>side-bar works!</p>
+<div class="d-none d-md-block sidebar-sticky pt-3">
+  <div class="row justify-content-center py-3">
+    <div class="col-3">
+      <img src="assets/img/SmartCargoLogo.png" alt="" width="80" height="80" />
+    </div>
+    <div class="mx-3 col-6 align-self-center profile-text">
+      <h5>C.Ronaldo</h5>
+      <span>Admin</span>
+    </div>
+  </div>
+
+  <hr class="bg-white-half" />
+
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [routerLink]="['/admin/driver-management']"
+        [routerLinkActive]="'active'"
+      >
+        <i class="mr-2" data-feather="user"></i> Driver Management
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [routerLink]="['/admin/store-keeper-management']"
+        [routerLinkActive]="'active'"
+      >
+        <i class="mr-2" data-feather="package"></i> Store-keeper Managment
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [routerLink]="['/admin/vehicle-management']"
+        [routerLinkActive]="'active'"
+      >
+        <i class="mr-2" data-feather="inbox"></i> Vehicle Management
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [routerLink]="['/admin/depot-management']"
+        [routerLinkActive]="'active'"
+      >
+        <i class="mr-2" data-feather="map-pin"></i> Depot Management
+      </a>
+    </li>
+  </ul>
+
+  <hr class="bg-white-half" />
+
+  <ul class="nav flex-column mb-2">
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="mr-2" data-feather="clock"></i> Schedule Orders
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="mr-2" data-feather="plus-square"></i> Add Order Dimensions
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="mr-2" data-feather="navigation"></i> Track Delivery Vehicles
+      </a>
+    </li>
+  </ul>
+
+  <hr class="bg-white-half" />
+
+  <ul class="nav flex-column mb-2">
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="mr-2" data-feather="clock"></i> settings
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="logout()">
+        <i class="mr-2" data-feather="log-out"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>

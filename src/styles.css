@@ -1,2 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css"
+
+/* importing bootstrap stylesheet */
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+/* custom styles */
+
+label {
+  color: var(--primary);
+  margin-bottom: 1px;
+}
+
+.card {
+  -moz-box-shadow: 4px 4px 8px var(--primary-lite);
+  -webkit-box-shadow: 4px 4px 8px var(--primary-lite);
+  box-shadow: 4px 4px 8px var(--primary-lite);
+}
+
+.main-content {
+  padding: 30px;
+}

@@ -21,6 +21,12 @@
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
     "bootstrap": "^4.5.0",
+    "@angular/localize": "^9.1.11",
+    
+    "@auth0/angular-jwt": "^4.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+   
+    "feather-icons": "^4.28.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
