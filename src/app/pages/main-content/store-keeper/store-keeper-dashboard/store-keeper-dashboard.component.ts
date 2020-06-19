@@ -1,3 +1,4 @@
+import { AdminService } from './../../../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreKeeperDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _adminService:AdminService) { }
 
   ngOnInit(): void {
+    //Manual testing for ErrorInterceptor can remove this
+   // this._adminService.test().subscribe((res)=>console.log(res), (err)=>console.log(err));
   }
 
 }

@@ -11,6 +11,7 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private _adminService:AdminService) { }
 
   ngOnInit(): void {
+    //added for Jwt testing can remove this
     this._adminService.test().subscribe((res)=>console.log(res), (err)=>console.log(err));
   }
 
