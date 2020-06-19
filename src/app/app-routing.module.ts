@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
-=======
 import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
->>>>>>> 456656331e62e4e536544cdecc8de50d1f264a3b
 import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
