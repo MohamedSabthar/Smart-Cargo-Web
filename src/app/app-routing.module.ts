@@ -1,4 +1,5 @@
 import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
+import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
 import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'server-error', component: ServerErrorPageComponent },
+  { path: 'forbidden', component: ForbiddenPageComponent },
   {
     path: 'admin',
     component: AdminComponent,
