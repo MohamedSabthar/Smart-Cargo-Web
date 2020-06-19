@@ -1,3 +1,4 @@
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
 import { GaurdService } from './services/gaurd.service';
@@ -26,6 +27,7 @@ import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-ord
 //import ng-bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -47,6 +49,7 @@ export function tokenGetter() {
     StoreKeeperComponent,
     StoreKeeperDashboardComponent,
     ScheduleOrdersComponent,
+    ForbiddenPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ export function tokenGetter() {
     AdminGaurdService,
     StoreKeeperGaurdService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
