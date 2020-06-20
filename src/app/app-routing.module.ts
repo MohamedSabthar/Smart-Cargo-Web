@@ -14,6 +14,7 @@ import { ServerErrorPageComponent } from './pages/server-error-page/server-error
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'driver-management', component: DriverManagementComponent },
+      { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
     ],
   },

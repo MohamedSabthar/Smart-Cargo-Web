@@ -27,6 +27,7 @@ import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-ord
 //import ng-bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 
 //function to get jwt-token from the localstorage
@@ -48,6 +49,7 @@ export function tokenGetter() {
     ForgotPasswordPageComponent,
     StoreKeeperComponent,
     StoreKeeperDashboardComponent,
+    StoreKeeperManagementComponent,
     ScheduleOrdersComponent,
     ForbiddenPageComponent,
   ],
