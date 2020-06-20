@@ -26,6 +26,8 @@ import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-ord
 //import ng-bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
+import { TimeLineComponent } from './components/time-line/time-line.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -47,6 +49,8 @@ export function tokenGetter() {
     StoreKeeperComponent,
     StoreKeeperDashboardComponent,
     ScheduleOrdersComponent,
+    TrackOrderComponent,
+    TimeLineComponent,
   ],
   imports: [
     BrowserModule,
