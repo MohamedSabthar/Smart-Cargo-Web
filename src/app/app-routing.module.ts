@@ -15,11 +15,8 @@ import { ServerErrorPageComponent } from './pages/server-error-page/server-error
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-<<<<<<< HEAD
 import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
-=======
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
->>>>>>> 23a3001f1aa605694bb685dfed0c3c837f1a6e00
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
@@ -34,12 +31,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'driver-management', component: DriverManagementComponent },
-<<<<<<< HEAD
       { path: 'vehicle-management', component:  VehicleManagementComponent },
       { path: 'depot-management', component: DepotManagementComponent },
-=======
       { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
->>>>>>> 23a3001f1aa605694bb685dfed0c3c837f1a6e00
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
     ],
   },
