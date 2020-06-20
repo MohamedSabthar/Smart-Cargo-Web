@@ -1,3 +1,4 @@
+import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
 import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
@@ -14,6 +15,7 @@ import { ServerErrorPageComponent } from './pages/server-error-page/server-error
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'driver-management', component: DriverManagementComponent },
+      { path: 'vehicle-management', component:  VehicleManagementComponent },
+      { path: 'depot-management', component: DepotManagementComponent },
       { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
     ],
@@ -43,7 +47,7 @@ const routes: Routes = [
     ],
   },
 
-  { path: '**', component: NotFoundPageComponent },
+  { path: '**', component: NotFoundPageComponent }
 ];
 
 @NgModule({
