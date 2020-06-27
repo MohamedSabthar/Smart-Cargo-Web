@@ -31,6 +31,7 @@ import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-m
 import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
+import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -56,6 +57,7 @@ export function tokenGetter() {
     StoreKeeperManagementComponent,
     ScheduleOrdersComponent,
     ForbiddenPageComponent,
+    RestPasswordPageComponent,
   ],
   imports: [
     BrowserModule,

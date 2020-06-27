@@ -1,3 +1,4 @@
+import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
 import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
@@ -46,7 +47,7 @@ const routes: Routes = [
       { path: 'dashboard', component: StoreKeeperDashboardComponent },
     ],
   },
-
+  {path:'reset-password/:token',component:RestPasswordPageComponent},
   { path: '**', component: NotFoundPageComponent }
 ];
 
