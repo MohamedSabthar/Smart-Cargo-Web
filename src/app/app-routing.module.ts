@@ -1,3 +1,6 @@
+import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
+import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
+import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
 import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper/store-keeper-dashboard/store-keeper-dashboard.component';
 import { StoreKeeperComponent } from './pages/main-content/store-keeper/store-keeper.component';
@@ -14,11 +17,14 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
+import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
+import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
   { path: 'server-error', component: ServerErrorPageComponent },
+  { path: 'forbidden', component: ForbiddenPageComponent },
   {
     path: 'admin',
     component: AdminComponent,
@@ -27,6 +33,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'driver-management', component: DriverManagementComponent },
+      { path: 'vehicle-management', component:  VehicleManagementComponent },
+      { path: 'depot-management', component: DepotManagementComponent },
+      { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
       { path: 'track-order', component:TrackOrderComponent},
     ],
@@ -40,8 +49,8 @@ const routes: Routes = [
       { path: 'dashboard', component: StoreKeeperDashboardComponent },
     ],
   },
-
-  { path: '**', component: NotFoundPageComponent },
+  {path:'reset-password/:token',component:RestPasswordPageComponent},
+  { path: '**', component: NotFoundPageComponent }
 ];
 
 @NgModule({

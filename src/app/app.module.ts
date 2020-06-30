@@ -1,3 +1,4 @@
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
 import { GaurdService } from './services/gaurd.service';
@@ -28,6 +29,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
 import { TimeLineComponent } from './components/time-line/time-line.component';
+import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
+import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
+import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
+import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
+import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -48,9 +54,14 @@ export function tokenGetter() {
     ForgotPasswordPageComponent,
     StoreKeeperComponent,
     StoreKeeperDashboardComponent,
+    VehicleManagementComponent,
+    DepotManagementComponent,
+    StoreKeeperManagementComponent,
     ScheduleOrdersComponent,
     TrackOrderComponent,
     TimeLineComponent,
+    ForbiddenPageComponent,
+    RestPasswordPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +82,7 @@ export function tokenGetter() {
     AdminGaurdService,
     StoreKeeperGaurdService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

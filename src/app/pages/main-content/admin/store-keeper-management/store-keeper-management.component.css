@@ -1,4 +1,4 @@
-.dtext {
+.stext {
     display: inline;
     color: #4d5c84;
     font-weight: 400;
@@ -41,32 +41,37 @@
     margin-left: 20px;
   }
 
-  .button {
-    width: 80px;
-  }
-
-  .scrollbar
-  {
-    margin-left: 350px;
-    float: left;
-    height: 300px;
-    width: 60px;
-    background: #F5F5F5;
+.anyClass {
+    height:5px;
     overflow-y: scroll;
-    margin-top: 5px;
-  }
-  
-  .force-overflow
-  {
-    min-height: 450px;
   }
 
-  th {
-    text-align: center;
+.scrollbar
+{
+	margin-left: 350px;
+	float: left;
+	height: 300px;
+	width: 60px;
+	background: #F5F5F5;
+	overflow-y: scroll;
+	margin-top: 5px;
+}
 
-  }
+.button {
+  width: 80px;
+}
 
-  td {
-    text-align: center;
-    font-size: 13px;
-  }
+.force-overflow
+{
+	min-height: 450px;
+}
+
+th {
+  text-align: center;
+
+}
+
+td {
+  text-align: center;
+  font-size: 13px;
+}
