@@ -27,6 +27,8 @@ import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-ord
 //import ng-bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
+import { TimeLineComponent } from './components/time-line/time-line.component';
 import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
 import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
@@ -56,6 +58,8 @@ export function tokenGetter() {
     DepotManagementComponent,
     StoreKeeperManagementComponent,
     ScheduleOrdersComponent,
+    TrackOrderComponent,
+    TimeLineComponent,
     ForbiddenPageComponent,
     RestPasswordPageComponent,
   ],

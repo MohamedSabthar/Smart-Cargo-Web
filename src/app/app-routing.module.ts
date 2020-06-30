@@ -16,6 +16,7 @@ import { ServerErrorPageComponent } from './pages/server-error-page/server-error
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
 import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: 'depot-management', component: DepotManagementComponent },
       { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
+      { path: 'track-order', component:TrackOrderComponent},
     ],
   },
   {
