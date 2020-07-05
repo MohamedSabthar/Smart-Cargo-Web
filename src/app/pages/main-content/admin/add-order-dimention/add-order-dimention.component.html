@@ -1,0 +1,146 @@
+<div class="container-fluid">
+    <div class="row">
+      <app-side-bar></app-side-bar>
+  
+      <!-- Content of Admin Dashboard -->
+      <div class="col main-content">
+        <!-- status cards -->
+        <div class="row justify-content-center">
+          <!-- Status Cards -->
+          <!-- Drivers Online -->
+          <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+            <div class="card">
+              <div class="card-body text-center">
+                <span class="status-text align-middle mx-2">Ready</span>
+                <div class="status-divider align-middle mx-2"></div>
+                <span class="mx-2 align-middle status-number">17</span>
+              </div>
+            </div>
+          </div>
+          <!-- End drivers online -->
+  
+          <!-- Orders -->
+          <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+            <div class="card">
+              <div class="card-body text-center">
+                <span class="status-text align-middle mx-2">Pending</span>
+                <div class="status-divider align-middle mx-2"></div>
+                <span class="mx-2 align-middle status-number">71</span>
+                <div class="status-divider status-divider-min align-middle mx-2"></div>
+                <span class="mx-2 align-middle status-number">51</span>
+                <div class="status-divider status-divider-min align-middle mx-2"></div>
+                <span class="mx-2 align-middle status-number">17</span>
+              </div>
+            </div>
+          </div>
+          <!-- End orders -->
+  
+          <!-- Routes -->
+          <div class="col-12 col-lg-12 col-xl-4 mt-md-1">
+            <div class="card">
+              <div class="card-body text-center">
+                <span class="status-text align-middle mx-2">Delivered</span>
+                <div class="status-divider align-middle mx-2"></div>
+                <span class="mx-2 align-middle status-number">17</span>
+              </div>
+            </div>
+          </div>
+          <!-- end of routes -->
+        </div>
+        <!-- End of status cards -->
+
+        <hr>
+        <div class="card tabled">
+            <div class="table-responsive"> 
+                <table class="table">
+                  <thead class="thead table-header">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Order ID</th>
+                      <th scope="col"> Details </th>
+                      <th scope="col">Date</th>
+                      <th scope="col"></th>
+               
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>1102</td>
+                      <td>Lorry</td>
+                      <td>{{date}}</td>
+                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal">ADD DIMENTION</button></td>
+                      
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>1102</td>
+                      <td>Lorry</td>
+                      <td>{{date}}</td>
+                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal">ADD DIMENTION</button></td>
+                      
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>1102</td>
+                      <td>Lorry</td>
+                      <td>{{date}}</td>
+                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal">ADD DIMENTION</button></td>
+                      
+                    </tr>
+                    <tr>
+                      <th scope="row">4</th>
+                      <td>1102</td>
+                      <td>Lorry</td>
+                      <td>{{date}}</td>
+                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal">ADD DIMENTION</button></td>
+                      
+                    </tr>
+                    <tr>
+                      <th scope="row">5</th>
+                      <td>1102</td>
+                      <td>Lorry</td>
+                      <td>{{date}}</td>
+                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal">ADD DIMENTION</button></td>
+                      
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+  
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">ADD DIMENTION</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Weight</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter weigth in kg">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Volume</label>
+                          <input type="text" class="form-control" id="examplesInputPassword1" placeholder="Enter volume in m3">
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary track-button">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+  
+      </div>
+      <!-- End content of Admin Dashboard -->
+    </div>
+  </div>
+  

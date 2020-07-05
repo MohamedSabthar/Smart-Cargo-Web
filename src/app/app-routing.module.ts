@@ -1,3 +1,4 @@
+import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order-dimention/add-order-dimention.component';
 import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
 import { DepotManagementComponent } from './pages/main-content/admin/depot-management/depot-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
@@ -28,7 +29,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [GaurdService, AdminGaurdService],
+    //canActivate: [GaurdService, AdminGaurdService],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
       { path: 'track-order', component:TrackOrderComponent},
+      { path: 'add-order-dimention', component:AddOrderDimentionComponent}
     ],
   },
   {
