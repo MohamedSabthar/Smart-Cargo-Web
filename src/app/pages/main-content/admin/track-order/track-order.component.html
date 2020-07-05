@@ -1,16 +1,17 @@
 
+
 <div class="container-fluid">
   <div class="row">
     <app-side-bar></app-side-bar>
     <div class="col main-content">
-           
+      <div class="card card-padd">          
 <form>
   <div class="form-group">
       <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3 ">
               <input type="text" class="form-control search-input" id="exampleInputEmail1" placeholder="Search for vehicle">
           </div>
-          <div class="col-md-9">
+          <div class="col-md-9 " >
               <button type="submit" class="btn btn-primary mb-2 button-search">Search</button>
           </div>
   
@@ -19,67 +20,81 @@
    
   </div>
   </form>
-
+<div class="table-responsive"> 
   <table class="table">
     <thead class="thead table-header">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Vechile-ID</th>
+        <th scope="col">License No</th>
+        <th scope="col"> Vehilce-Type </th>
         <th scope="col">Driver-ID</th>
-        <th scope="col">Contact-No</th>
-        <th scope="col">Order-Dispatch-Time</th>
+        <th scope="col">Driver-Name</th>
+        <th scope="col">Driver-Phone-No</th>
+        <th scope="col">Last delivery time</th>
         <th scope="col"></th>
-  
+ 
       </tr>
     </thead>
     <tbody>
       <tr>
         <th scope="row">1</th>
         <td>1102</td>
+        <td>Lorry</td>
         <td>12</td>
         <td>0774246767</td>
+        <td>Sugan</td>
         <td>{{currentDate}}</td>
         <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
         
       </tr>
       <tr>
         <th scope="row">2</th>
-        <td>1182</td>
-        <td>42</td>
-        <td>0771246767</td>
+        <td>1118</td>
+        <td>Lorry</td>
+        <td>08</td>
+        <td>07778246757</td>
+        <td>Sabthr</td>
         <td>{{currentDate}}</td>
         <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
         
       </tr>
       <tr>
         <th scope="row">3</th>
-        <td>1012</td>
-        <td>34</td>
-        <td>0774267890</td>
+        <td>1122</td>
+        <td>Lorry</td>
+        <td>22</td>
+        <td>0714246767</td>
+        <td>Faiz</td>
         <td>{{currentDate}}</td>
         <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
         
       </tr>
       <tr>
         <th scope="row">4</th>
-        <td>1172</td>
-        <td>121</td>
-        <td>0774246756</td>
+        <td>1002</td>
+        <td>Lorry</td>
+        <td>43</td>
+        <td>0774246700</td>
+        <td>Akshar</td>
         <td>{{currentDate}}</td>
         <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
         
       </tr>
       <tr>
         <th scope="row">5</th>
-        <td>1100</td>
-        <td>134</td>
-        <td>0774246765</td>
+        <td>1002</td>
+        <td>Lorry</td>
+        <td>51</td>
+        <td>0776646767</td>
+        <td>Diva</td>
         <td>{{currentDate}}</td>
         <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
         
       </tr>
     </tbody>
   </table>
+</div>
+  </div>
 <hr>
   <div class="card">
     <section>
