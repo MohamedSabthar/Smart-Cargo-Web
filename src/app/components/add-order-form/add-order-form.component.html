@@ -1,1 +1,29 @@
-<p>add-order-form works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">Add Order Dimention</h4>
+    <button type="button" class="closeModel" aria-label="Close"
+     (click)="activeModal.dismiss('Cross click')">x
+    </button>
+  </div>
+  <form>
+  <div class="modal-body">
+      <h6>Order : ER12WrCdcdf123</h6>
+    
+        <div class="form-group">
+          <label for="exampleInputEmail1">Weight</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter weigth in kg">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Volume</label>
+          <input type="text" class="form-control" id="examplesInputPassword1" placeholder="Enter volume in m3">
+        </div>
+     
+  </div>
+  <div class="modal-footer">
+    
+    <button type="submit" class="btn btn-small submit" >+ Add</button>
+    <button (click)="activeModal.dismiss('Close clicked')" class="btn btn-small cancelModel">
+        Cancel
+      </button>
+    
+  </div>
+</form>

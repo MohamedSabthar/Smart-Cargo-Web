@@ -1,0 +1,15 @@
+.closeModel{
+    width:30px;
+    height: 30px;
+}
+
+.closeModel:hover{
+    background-color: #4D5C84;
+    color: #ffffff;
+}
+
+.cancelModel,.submit{
+    background-color: #4D5C84;
+    color: #ffffff;
+}
+

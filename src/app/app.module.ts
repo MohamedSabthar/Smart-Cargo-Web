@@ -89,5 +89,8 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [
+    AddOrderDimentionComponent
+  ]
 })
 export class AppModule {}
