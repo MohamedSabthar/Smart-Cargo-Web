@@ -37,6 +37,7 @@ import { RestPasswordPageComponent } from './pages/rest-password-page/rest-passw
 import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order-dimention/add-order-dimention.component';
 import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
 import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -68,6 +69,7 @@ export function tokenGetter() {
     AddOrderDimentionComponent,
     AddOrderFormComponent,
     AddOrderDetailsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
