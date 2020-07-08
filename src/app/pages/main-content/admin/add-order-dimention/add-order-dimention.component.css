@@ -47,3 +47,10 @@
      padding:15px;
  }
   
+table{
+  cursor: pointer;
+}
+
+tr:hover{
+  background-color: rgba(77, 92, 132,0.1);
+}

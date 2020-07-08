@@ -92,7 +92,8 @@ export function tokenGetter() {
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    AddOrderDimentionComponent
+    AddOrderFormComponent,
+    AddOrderDetailsComponent
   ]
 })
 export class AppModule {}

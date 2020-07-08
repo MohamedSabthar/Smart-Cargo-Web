@@ -1,3 +1,4 @@
+import { AddOrderDetailsComponent } from './../../../../components/add-order-details/add-order-details.component';
 import { AddOrderFormComponent } from './../../../../components/add-order-form/add-order-form.component';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +16,16 @@ export class AddOrderDimentionComponent implements OnInit {
 
   openFormModal() {
     const modalRef = this.modalService.open(AddOrderFormComponent);
+    
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  openDetailsModel() {
+    const modalRef = this.modalService.open(AddOrderDetailsComponent);
     
     modalRef.result.then((result) => {
       console.log(result);
