@@ -14,6 +14,7 @@ export class AddOrderDimentionComponent implements OnInit {
   date;
   constructor(private modalService: NgbModal) { }
 
+  // Order dimention form
   openFormModal() {
     const modalRef = this.modalService.open(AddOrderFormComponent);
     
@@ -24,6 +25,7 @@ export class AddOrderDimentionComponent implements OnInit {
     });
   }
 
+  //customer details model
   openDetailsModel() {
     const modalRef = this.modalService.open(AddOrderDetailsComponent);
     
@@ -35,6 +37,7 @@ export class AddOrderDimentionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //initializing a date
     this.date = new Date();
   }
 

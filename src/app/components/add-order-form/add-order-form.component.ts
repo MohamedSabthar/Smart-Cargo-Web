@@ -12,12 +12,14 @@ export class AddOrderFormComponent implements OnInit {
   DimentionForm: FormGroup;
   constructor(public activeModal: NgbActiveModal ,private fb: FormBuilder) { }
 
+  //function for closing model
   closeModal() {
     this.activeModal.close('Modal Closed');
   }
 
   ngOnInit(): void {
 
+    //validation for add order dimention form
     this.DimentionForm = this.fb.group({
       Weight:  ['', [
         Validators.required,
@@ -31,7 +33,7 @@ export class AddOrderFormComponent implements OnInit {
 
   }
 
-
+//getters for form validations
   get Weight() {
     return this.DimentionForm.get('Weight')
   }

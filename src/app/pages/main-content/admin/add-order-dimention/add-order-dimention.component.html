@@ -71,9 +71,12 @@
                     <tr>
                       <th scope="row">1</th>
                       <td>1102</td>
+                      <!-- Calling the customer details model -->
                       <td (click)="openDetailsModel()">Lorry</td>
                       <td>{{date}}</td>
-                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal" (click)="openFormModal()">ADD DIMENTION</button></td>
+                      <td>
+                        <!-- Calling the add order dimention form -->
+                        <button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal" (click)="openFormModal()">ADD DIMENTION</button></td>
                       
                     </tr>
                     <tr>
