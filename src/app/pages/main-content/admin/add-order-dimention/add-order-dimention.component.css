@@ -1,0 +1,56 @@
+.status-text {
+    display: inline;
+    color: #4d5c84;
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+  
+  .status-number {
+    display: inline;
+    font-weight: 100;
+    color: #4d5c84;
+    font-size: 2.3rem;
+  }
+  
+  .status-divider {
+    display: inline-block;
+    height: 50px;
+    width: 1px;
+    background-color: #4d5c84;
+  }
+  
+  .status-divider-min {
+    height: 20px !important;
+  }
+  
+  .status-description {
+    font-weight: 300;
+    font-size: 1rem;
+  }
+
+  .tabled{
+      padding: 15px;
+  }
+
+  .button-search{
+    background-color:#4D5C84;
+ }
+ .table-header{
+     background-color:#4D5C84;
+     color:#ffffff;
+ }
+ .track-button{
+     background-color:#4D5C84;
+     color:#ffffff;
+ }
+ .card-padd{
+     padding:15px;
+ }
+  
+table{
+  cursor: pointer;
+}
+
+tr:hover{
+  background-color: rgba(77, 92, 132,0.1);
+}
