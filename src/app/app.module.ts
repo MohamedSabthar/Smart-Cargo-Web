@@ -39,6 +39,7 @@ import { AddOrderFormComponent } from './components/add-order-form/add-order-for
 import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TrackVehileMapComponent } from './components/track-vehile-map/track-vehile-map.component';
 
 
 //function to get jwt-token from the localstorage
@@ -72,6 +73,7 @@ export function tokenGetter() {
     AddOrderFormComponent,
     AddOrderDetailsComponent,
     ProfileComponent,
+    TrackVehileMapComponent,
    
     
   ],
