@@ -34,6 +34,10 @@ import { DepotManagementComponent } from './pages/main-content/admin/depot-manag
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
+import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order-dimention/add-order-dimention.component';
+import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
+import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -62,6 +66,10 @@ export function tokenGetter() {
     TimeLineComponent,
     ForbiddenPageComponent,
     RestPasswordPageComponent,
+    AddOrderDimentionComponent,
+    AddOrderFormComponent,
+    AddOrderDetailsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,5 +93,9 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [
+    AddOrderFormComponent,
+    AddOrderDetailsComponent
+  ]
 })
 export class AppModule {}
