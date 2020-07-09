@@ -17,3 +17,6 @@ label {
 .main-content {
   padding: 30px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -38,6 +38,8 @@ import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order
 import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
 import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -70,6 +72,8 @@ export function tokenGetter() {
     AddOrderFormComponent,
     AddOrderDetailsComponent,
     ProfileComponent,
+   
+    
   ],
   imports: [
     BrowserModule,
@@ -83,6 +87,7 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
       },
     }),
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService,

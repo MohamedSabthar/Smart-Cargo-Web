@@ -21,6 +21,8 @@ import { TrackOrderComponent } from './pages/main-content/admin/track-order/trac
 import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 
+
+
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
@@ -39,6 +41,7 @@ const routes: Routes = [
       { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
       { path: 'track-vehicle', component:TrackOrderComponent},
+      
       
       { path: 'add-order-dimention', component:AddOrderDimentionComponent}
     ],
