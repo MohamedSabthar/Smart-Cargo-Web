@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [GaurdService, AdminGaurdService],
+    //canActivate: [GaurdService, AdminGaurdService],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
@@ -37,7 +37,7 @@ const routes: Routes = [
       { path: 'depot-management', component: DepotManagementComponent },
       { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
-      { path: 'track-order', component:TrackOrderComponent},
+      { path: 'track-vehicle', component:TrackOrderComponent},
     ],
   },
   {
