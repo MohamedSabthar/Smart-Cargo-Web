@@ -35,6 +35,7 @@
         <th scope="col">Last delivery time</th>
         <th scope="col"></th>
         <th scope="col"></th>
+        <th scope="col"></th>
  
       </tr>
     </thead>
@@ -46,8 +47,10 @@
         <td>12</td>
         
         <td>{{currentDate}}</td>
-        <td><button class="btn btn-small track-button"  (click)=" openDetailsModal()">Driver-Details</button></td>
-        <td><button class="btn btn-small track-button"  (click)="openMapModal()">Track-Vehicle</button></td>
+        <td><button class="btn btn-small track-button"  (click)=" openDetailsModal()">Details</button></td>
+        <td><button class="btn btn-small track-button btn-outline"  (click)=" openStatusModal()">Status</button></td>
+        <td><button class="btn btn-small track-button"  (click)="openMapModal()">Track</button></td>
+
         
       </tr>
       <tr>
@@ -57,9 +60,10 @@
         <td>08</td>
         
         <td>{{currentDate}}</td>
-        <td><button class="btn btn-small track-button">Driver-Details</button></td>
-        <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
-        
+        <td><button class="btn btn-small track-button"  (click)=" openDetailsModal()">Details</button></td>
+        <td><button class="btn btn-small track-button btn-outline"  (click)=" openStatusModal()">Status</button></td>
+        <td><button class="btn btn-small track-button"  (click)="openMapModal()">Track</button></td>
+
       </tr>
       <tr>
         <th scope="row">3</th>
@@ -68,9 +72,10 @@
         <td>22</td>
        
         <td>{{currentDate}}</td>
-        <td><button class="btn btn-small track-button">Driver-Details</button></td>
-        <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
-        
+        <td><button class="btn btn-small track-button"  (click)=" openDetailsModal()">Details</button></td>
+        <td><button class="btn btn-small track-button btn-outline"  (click)=" openStatusModal()">Status</button></td>
+        <td><button class="btn btn-small track-button"  (click)="openMapModal()">Track</button></td>
+
       </tr>
       <tr>
         <th scope="row">4</th>
@@ -79,8 +84,10 @@
         <td>43</td>
         
         <td>{{currentDate}}</td>
-        <td><button class="btn btn-small track-button">Driver-Details</button></td>
-        <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
+        <td><button class="btn btn-small track-button"  (click)=" openDetailsModal()">Details</button></td>
+        <td><button class="btn btn-small track-button btn-outline"  (click)=" openStatusModal()">Status</button></td>
+        <td><button class="btn btn-small track-button"  (click)="openMapModal()">Track</button></td>
+
         
       </tr>
       <tr>
@@ -90,9 +97,10 @@
         <td>51</td>
         
         <td>{{currentDate}}</td>
-        <td><button class="btn btn-small track-button">Driver-Details</button></td>
-        <td><button class="btn btn-small track-button">Track-Vehicle</button></td>
-        
+        <td><button class="btn btn-small track-button"  (click)=" openDetailsModal()">Details</button></td>
+        <td><button class="btn btn-small track-button btn-outline"  (click)=" openStatusModal()">Status</button></td>
+        <td><button class="btn btn-small track-button"  (click)="openMapModal()">Track</button></td>
+
       </tr>
     </tbody>
   </table>
