@@ -8,7 +8,7 @@
         <div class="col-5">
           <div class="card">
             <div class="card-body ">
-              <h4 class="card-title dtext">Drivers</h4><br><br>
+              <h4 class="card-title dtext">Drivers </h4><br><br>
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search a driver" name="search" width="50px">
                 <div class="input-group-btn">
@@ -17,50 +17,11 @@
               </div>
               <br>
 
-              <ul class="nav flex-column text">
-
-
+              <ul class="nav flex-column text" *ngFor="let driver of drivers">
                 <li class="nav-item">
                   <div class="row">
                     <div class="col-0.5 circle "></div>
-                    <div class="col-7">Sugan</div>
-                    <div class="col-2">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit"> <i class="mr-2 trash-icon"
-                            data-feather="trash-2"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <div class="row">
-
-                    <div class="col-0.5 circle "></div>
-                    <div class="col-7">Sugan</div>
-                    <div class="col-2">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit"> <i class="mr-2 trash-icon"
-                            data-feather="trash-2"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <div class="row">
-                    <div class="col-0.5 circle "></div>
-                    <div class="col-7">Sugan</div>
-                    <div class="col-2">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit"> <i class="mr-2 trash-icon"
-                            data-feather="trash-2"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <div class="row">
-                    <div class="col-0.5 circle "></div>
-                    <div class="col-7">Sugan</div>
+                    <div class="col-7">{{driver.name.first}} {{driver.name.middle}} {{driver.name.last}}</div>
                     <div class="col-2">
                       <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"> <i class="mr-2 trash-icon"
@@ -87,7 +48,7 @@
               <form>
               <div class="row">
                 <div class="col-8">
-                  
+
                     <div class="form-group">
 
                       <label for="name">Name</label>
@@ -119,7 +80,7 @@
                       <input type="text" class="form-control" id="vehicle" placeholder="Vehicle type">
 
                     </div>
- 
+
                 </div>
                 <div class="col-3">
                   <div class="profile-circle"></div>
@@ -137,7 +98,7 @@
             <form>
               <div class="row">
                 <div class="col-8">
-                  
+
                     <div class="form-group">
 
                       <label for="name">Name</label>
@@ -169,7 +130,7 @@
                       <input type="text" class="form-control" id="vehicle" placeholder="Vehicle type">
 
                     </div>
- 
+
                 </div>
                 <div class="col-3">
                   <div class="profile-circle"></div>
@@ -182,7 +143,7 @@
           </ng-template>
         </li>
       </ul>
-      
+
       <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
             </div>
@@ -267,7 +228,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Special title 1</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
+
                   </div>
                 </div>
               </div>
@@ -278,21 +239,21 @@
                   <div class="card-body">
                     <h5 class="card-title">Special title 2</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
               </div>
               <div class="p-2">
-                  
+
               </div>
-              
+
 
           </div>
-      
-          
-          
+
+
+
           <!-- </div> -->
           </div>
           </div>

@@ -1,5 +1,8 @@
+import { DriverDetails } from './../../../../models/driverDetails';
+import { StoreKeeperService } from './../../../../services/store-keeper.service';
 import { Component, OnInit } from '@angular/core';
 import * as Feather from 'feather-icons';
+
 
 @Component({
   selector: 'app-driver-management',
@@ -8,9 +11,17 @@ import * as Feather from 'feather-icons';
 })
 export class DriverManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _storekeeperService:StoreKeeperService) { }
+  drivers:DriverDetails[]
 
   ngOnInit(): void {
+    this._storekeeperService.getListOfDrivers().subscribe((response)=>{
+      this.drivers= response.drivers;
+    }, (error)=>{console.log(error)})
+  }
+
+  ngAfterViewInit(): void {
+    Feather.replace();
   }
 
 }
