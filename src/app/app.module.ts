@@ -7,9 +7,12 @@ import { AuthService } from './services/auth.service';
 import { AdminDashboardComponent } from './pages/main-content/admin/admin-dashboard/admin-dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +30,7 @@ import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper
 import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
 
 //import ng-bootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
 import { TimeLineComponent } from './components/time-line/time-line.component';
@@ -37,6 +40,13 @@ import { StoreKeeperManagementComponent } from './pages/main-content/admin/store
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
 import { OrdersChartComponent } from './components/orders-chart/orders-chart.component';
+import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order-dimention/add-order-dimention.component';
+import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
+import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ScheduleOrderAssignDriverComponent } from './components/schedule-order-assign-driver/schedule-order-assign-driver.component';
+import { ScheduleOrderAssignVehicleComponent } from './components/schedule-order-assign-vehicle/schedule-order-assign-vehicle.component';
+import { ScheduleOrderOrderListComponent } from './components/schedule-order-order-list/schedule-order-order-list.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -65,12 +75,24 @@ export function tokenGetter() {
     TimeLineComponent,
     ForbiddenPageComponent,
     RestPasswordPageComponent,
+<<<<<<< HEAD
     OrdersChartComponent,
+=======
+    AddOrderDimentionComponent,
+    AddOrderFormComponent,
+    AddOrderDetailsComponent,
+    ProfileComponent,
+    ScheduleOrderAssignDriverComponent,
+    ScheduleOrderAssignVehicleComponent,
+    ScheduleOrderOrderListComponent,
+>>>>>>> 916deb5ab41bb9f37ba86e4f5f5f5f7bb4f765ba
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -91,5 +113,9 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [
+    AddOrderFormComponent,
+    AddOrderDetailsComponent
+  ]
 })
 export class AppModule {}
