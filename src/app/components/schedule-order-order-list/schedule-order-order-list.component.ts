@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-schedule-order-order-list',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScheduleOrderOrderListComponent implements OnInit {
 
-  constructor() { }
+  constructor(public activeModal: NgbActiveModal) { }
+
+  closeModal() {
+    this.activeModal.close('Modal Closed');
+  }
 
   ngOnInit(): void {
   }
