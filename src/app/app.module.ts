@@ -1,3 +1,4 @@
+import { CommonService } from './services/common.service';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -8,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +36,7 @@ import { DepotManagementComponent } from './pages/main-content/admin/depot-manag
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
+import { OrdersChartComponent } from './components/orders-chart/orders-chart.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -62,6 +65,7 @@ export function tokenGetter() {
     TimeLineComponent,
     ForbiddenPageComponent,
     RestPasswordPageComponent,
+    OrdersChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +74,7 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -81,6 +86,7 @@ export function tokenGetter() {
     GaurdService,
     AdminGaurdService,
     StoreKeeperGaurdService,
+    CommonService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
