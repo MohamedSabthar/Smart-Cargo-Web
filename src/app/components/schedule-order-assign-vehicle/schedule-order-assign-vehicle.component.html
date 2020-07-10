@@ -6,21 +6,34 @@
   <div class="modal-body">
     <p>Assinged vehicle to route #79434</p>
     <hr>
-    <form>
+    <form [formGroup]="VehicleForm">
         <div class="form-group">
           <label for="exampleFormControlSelect1">Select Vehicle Type</label>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select class="form-control" formControlName="Type" id="exampleFormControlSelect1"
+          [ngClass]="{ 'is-invalid': (Type.touched && Type.invalid)}"
+          >
             <option>Three wheel</option>
             <option>Lorry</option>
           </select>
+
+          <div *ngIf="!Type.value" class="invalid-feedback">
+            Vehicle Type is required
+           </div>
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect2">Select Vehicle Id</label>
-          <select class="form-control" id="exampleFormControlSelect2">
+          <select class="form-control" formControlName="Id" id="exampleFormControlSelect2"
+          [ngClass]="{ 'is-invalid': (Id.touched && Id.invalid)}"
+          >
             <option>1sdc3e44</option>
             <option>2cdsfv3</option>
             <option>3ferfe</option>
           </select>
+
+          <div *ngIf="!Id.value" class="invalid-feedback">
+            Vehicle Id is required
+           </div>
+          
         </div>
 
         <button type="submit" class="btn btn-small submit">Save Changes</button>
