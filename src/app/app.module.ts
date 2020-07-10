@@ -1,3 +1,4 @@
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -100,6 +101,7 @@ export function tokenGetter() {
     GaurdService,
     AdminGaurdService,
     StoreKeeperGaurdService,
+    BsModalService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
