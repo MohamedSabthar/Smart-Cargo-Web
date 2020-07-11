@@ -1,3 +1,4 @@
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -6,8 +7,11 @@ import { AuthService } from './services/auth.service';
 import { AdminDashboardComponent } from './pages/main-content/admin/admin-dashboard/admin-dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +29,7 @@ import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper
 import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
 
 //import ng-bootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
 import { TimeLineComponent } from './components/time-line/time-line.component';
@@ -38,10 +42,12 @@ import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order
 import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
 import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TrackVehileMapComponent } from './components/track-vehile-map/track-vehile-map.component';
 import { TrackVehileDetailsComponent } from './components/track-vehile-details/track-vehile-details.component';
 
+import { ScheduleOrderAssignDriverComponent } from './components/schedule-order-assign-driver/schedule-order-assign-driver.component';
+import { ScheduleOrderAssignVehicleComponent } from './components/schedule-order-assign-vehicle/schedule-order-assign-vehicle.component';
+import { ScheduleOrderOrderListComponent } from './components/schedule-order-order-list/schedule-order-order-list.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -76,13 +82,16 @@ export function tokenGetter() {
     ProfileComponent,
     TrackVehileMapComponent,
     TrackVehileDetailsComponent,
-   
-    
+    ScheduleOrderAssignDriverComponent,
+    ScheduleOrderAssignVehicleComponent,
+    ScheduleOrderOrderListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -98,6 +107,7 @@ export function tokenGetter() {
     GaurdService,
     AdminGaurdService,
     StoreKeeperGaurdService,
+    BsModalService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
