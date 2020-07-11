@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    //canActivate: [GaurdService, AdminGaurdService],
+    canActivate: [GaurdService, AdminGaurdService],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
