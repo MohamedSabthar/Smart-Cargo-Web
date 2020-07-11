@@ -1,18 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
-import { Observable,throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { API } from '../api.constants';
+import { Storekeepers } from '../models/storekeeper.response';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
-
-  constructor(private _httpClient:HttpClient) { }
+  constructor(private _httpClient: HttpClient) {}
 
   //manual testing to check JwtIntercepter can remove this
-  test():Observable<any> {
-    return this._httpClient.get<any>('http://localhost:3000/admin').pipe(catchError((error)=>{return throwError(error);}));
+  test(): Observable<any> {
+    return this._httpClient.get<any>('http://localhost:3000/admin').pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  getListOfStorekeepers(): Observable<Storekeepers> {
+    return this._httpClient.get<Storekeepers>(API.getListOfStorekeepers()).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 
 }
