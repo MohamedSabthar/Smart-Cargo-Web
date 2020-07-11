@@ -42,6 +42,9 @@ import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order
 import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
 import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { TrackVehileMapComponent } from './components/track-vehile-map/track-vehile-map.component';
+import { TrackVehileDetailsComponent } from './components/track-vehile-details/track-vehile-details.component';
+
 import { ScheduleOrderAssignDriverComponent } from './components/schedule-order-assign-driver/schedule-order-assign-driver.component';
 import { ScheduleOrderAssignVehicleComponent } from './components/schedule-order-assign-vehicle/schedule-order-assign-vehicle.component';
 import { ScheduleOrderOrderListComponent } from './components/schedule-order-order-list/schedule-order-order-list.component';
@@ -77,6 +80,8 @@ export function tokenGetter() {
     AddOrderFormComponent,
     AddOrderDetailsComponent,
     ProfileComponent,
+    TrackVehileMapComponent,
+    TrackVehileDetailsComponent,
     ScheduleOrderAssignDriverComponent,
     ScheduleOrderAssignVehicleComponent,
     ScheduleOrderOrderListComponent,
@@ -95,6 +100,7 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
       },
     }),
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService,
