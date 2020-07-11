@@ -93,7 +93,19 @@
                   <td>DAC-2244</td>
                   <td>#2564879</td>
                   <td>In-progress</td>
-                  <td>Finished</td>
+                  <td>
+                    <div class="btn-group" dropdown>
+                      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle"><span class="caret"></span>
+                      </button>
+                      <ul *dropdownMenu class="dropdown-menu" role="menu">
+                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignDriverModal()">Assign Driver</a></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignVehicleModal()">Assign Vehicle</a></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="openOrderListModal()">View Order List</a></li>
+                      </ul>
+                    </div>
+
+                  </td>
+                    
                 </tr>
                 <tr>
                   <td>#79342</td>
@@ -101,7 +113,18 @@
                   <td>PH-9991</td>
                   <td>#2565479</td>
                   <td>Not started</td>
-                  <td>Finished</td>
+                  <td>
+                    <div class="btn-group" dropdown>
+                      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle"><span class="caret"></span>
+                      </button>
+                      <ul *dropdownMenu class="dropdown-menu" role="menu">
+                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignDriverModal()">Assign Driver</a></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignVehicleModal()">Assign Vehicle</a></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="openOrderListModal()">View Order List</a></li>
+                      </ul>
+                    </div>
+
+                  </td>
                 </tr>
                 <tr>
                   <td>#79343</td>
@@ -109,7 +132,18 @@
                   <td>BAD-6245</td>
                   <td>#2564458</td>
                   <td>Finished</td>
-                  <td>Finished</td>
+                  <td>
+                    <div class="btn-group" dropdown>
+                      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle"><span class="caret"></span>
+                      </button>
+                      <ul *dropdownMenu class="dropdown-menu" role="menu">
+                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignDriverModal()">Assign Driver</a></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignVehicleModal()">Assign Vehicle</a></li>
+                        <li role="menuitem"><a class="dropdown-item" (click)="openOrderListModal()">View Order List</a></li>
+                      </ul>
+                    </div>
+
+                  </td>
                 </tr>
               </tbody>
             </table>

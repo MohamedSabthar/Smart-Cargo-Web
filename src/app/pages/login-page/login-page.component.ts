@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import * as Feather from 'feather-icons';
 
 @Component({
   selector: 'app-login-page',
@@ -22,9 +21,6 @@ export class LoginPageComponent implements OnInit {
     private _router: Router
   ) {}
 
-  ngAfterViewInit(): void {
-    Feather.replace();
-  }
 
   get email() {
     return this.loginForm.get('email');

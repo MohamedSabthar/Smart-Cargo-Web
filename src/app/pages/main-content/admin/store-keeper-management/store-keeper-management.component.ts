@@ -3,7 +3,6 @@ import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from './../../../../services/admin.service';
 import { Storekeepers } from './../../../../models/storekeeper.response';
 import { StorekeeperDetails } from './../../../../models/storekeeperDetails';
-import * as Feather from 'feather-icons';
 import { FormBuilder, Validators } from '@angular/forms';
 
 
@@ -49,9 +48,7 @@ export class StoreKeeperManagementComponent implements OnInit {
     },(error)=>{console.log(error)})
   }
 
-  ngAfterViewInit(): void {
-    Feather.replace();
-  }
+  
 
   onStorekeeperSelected(storekeeper : StorekeeperDetails){
     this.selectedStorekeeper=storekeeper;

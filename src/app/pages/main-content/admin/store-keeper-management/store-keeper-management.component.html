@@ -4,7 +4,7 @@
         <app-side-bar></app-side-bar>
         <div class="col main-content">
             <!-- Start your code here -->
-           
+
             <div class="row">
                  <!--store keeper list card-->
                 <div class="col-lg-5 col-12">
@@ -15,7 +15,8 @@
                                 <input type="text" class="form-control" placeholder="Search a store keeper" >
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-primary search-bar "type="button">
-                                        <i class="mr-2" data-feather="search"></i>
+                                      <i-feather class="mr-2"
+                                      name="search"></i-feather>
                                     </button>
                                 </div>
                             </div>
@@ -28,11 +29,13 @@
                                         <div class="col-7">{{storekeeper.name.first}} {{storekeeper.name.middle}} {{storekeeper.name.last}}</div>
                                         <div class="col-3">
                                             <button class="btn btn-default" type="submit"> 
-                                                <i  data-feather="trash-2"> delete </i>
+                                              <i-feather class="mr-2 text-danger"
+                                              name="trash-2"></i-feather>
                                             </button>
                                         </div>
                                     </div>
                                 </li>
+
                             </ul>
                         </div>
                     </div>
@@ -103,22 +106,22 @@
                                                         <label for="name">Name</label>
                                                         <input type="text" class="form-control" id="ad_firstname" placeholder="First name">
                                                         <input type="text" class="form-control" id="ad_middlename" placeholder="Middle name">
-                                                        <input type="text" class="form-control" id="ad_lastname" placeholder="Last name">             
+                                                        <input type="text" class="form-control" id="ad_lastname" placeholder="Last name">
                                               </div>
                                               <div class="form-group">
-                                                
+
                                                 <label for="address">Address</label>
                                                 <input type="text" class="form-control" id="ad_Door" placeholder="Door number">
                                                 <input type="text" class="form-control" id="ad_street" placeholder="Street">
                                                 <input type="text" class="form-control" id="ad_city" placeholder="City">
-                                              
+
                                               </div>
                                               <div class="form-group">
-                                                
+
                                               <label for="contact">Contact</label>
                                               <input type="email" class="form-control" id="ad_email" placeholder="email">
                                               <input type="text" class="form-control" id="ad_phone" placeholder="Mobile">
-                                            
+
                                               </div>
                                             </div>
                                             <div class="col-3">
@@ -132,9 +135,9 @@
                                   </ng-template>
                                 </li>
                               </ul>
-                              
+
                               <div [ngbNavOutlet]="nav" class="mt-2"></div>
-                            
+
                         </div>
                     </div>
 
@@ -155,15 +158,15 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search" name="search" width="50px">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i class="mr-2"
-                                        data-feather="search"></i></button>
+                                    <button class="btn btn-default" type="submit"><i-feather class="mr-2"
+                                        name="search"></i-feather></button>
                                 </div>
                             </div>
                         </div>
                         </div>
 
                         <table class="table table-hover">
-  
+
                             <thead>
                               <tr>
                                 <th>Date and time</th>
@@ -192,7 +195,7 @@
                         </div>
                         </div>
                     </div>
-                
+
                 <!-- schedule list -->
                 <div class="col-lg-5 col-12  mt-sm-3 mt-lg-0">
                     <div class="card">
@@ -202,8 +205,8 @@
                               <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search" name="search" width="10px" >
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i class="mr-2"
-                                        data-feather="search"></i></button>
+                                    <button class="btn btn-default" type="submit"><i-feather class="mr-2"
+                                        name="search"></i-feather></button>
                                 </div>
                             </div>
                         </div>
@@ -218,7 +221,7 @@
                             <div class="card-body">
                               <h5 class="card-title">Special title 1</h5>
                               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              
+
                             </div>
                           </div>
                         </div>
@@ -229,21 +232,21 @@
                             <div class="card-body">
                               <h5 class="card-title">Special title 2</h5>
                               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              
+
                             </div>
                           </div>
                         </div>
                       </div>
                         </div>
                         <div class="p-2">
-                            
+
                         </div>
-                        
+
 
                     </div>
-                
-                    
-                    
+
+
+
                     <!-- </div> -->
                     </div>
                     </div>

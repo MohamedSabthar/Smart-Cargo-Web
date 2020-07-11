@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import  * as Feather from 'feather-icons';
 
 
 @Component({
@@ -39,9 +38,6 @@ export class RestPasswordPageComponent implements OnInit {
     console.log(this.token);
   }
 
-  ngAfterViewInit(): void {
-    Feather.replace();
-  }
 
   get password() {
     return this.passwordResetForm.get('password');

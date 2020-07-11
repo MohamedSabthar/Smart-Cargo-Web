@@ -26,11 +26,10 @@
 }
 
 .circle {
-    height: 25px;
-    width: 25px;
-    background-color:#4d5c84;
+    max-height: 25px;
+    max-width: 25px;
+    background-color: var(--primary);
     border-radius: 50%;
-    margin-left: 20px;
   }
 
   .profile-circle {
@@ -55,7 +54,7 @@
     overflow-y: scroll;
     margin-top: 5px;
   }
-  
+
   .force-overflow
   {
     min-height: 450px;
@@ -70,3 +69,16 @@
     text-align: center;
     font-size: 13px;
   }
+
+  .driver-details:hover{
+    border: solid 1px;
+    border-color: var(--primary-lite);
+    border-radius: 0.25rem;
+  }
+
+  .trash-icon{
+    color: red;
+    width: 18px;
+    height: 18px;
+}
+
