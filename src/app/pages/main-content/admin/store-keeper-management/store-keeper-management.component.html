@@ -7,90 +7,38 @@
            
             <div class="row">
                  <!--store keeper list card-->
-                <div class="col-5">
+                <div class="col-lg-5 col-12">
                     <div class="card">
                         <div class="card-body ">
                             <h4 class="card-title stext">Stock keeper</h4><br><br>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search a store keeper" name="search" width="50px">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"> <i class="mr-2"
-                                            data-feather="search"></i></button>
+                            <div class="input-group mb-4">
+                                <input type="text" class="form-control" placeholder="Search a store keeper" >
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary search-bar "type="button">
+                                        <i class="mr-2" data-feather="search"></i>
+                                    </button>
                                 </div>
                             </div>
-                            <br>
                             <!-- <div class="row "> -->
-                            
                             <!-- <div class="col-12"> -->
-                            <ul class="nav flex-column text ">
-
-
-                                <li class="nav-item">
-                                    <div class="row ">
-                                        <div class="col-1.5 circle "></div>
-                                        <div class="col-7">Sugan</div>
-                                        <div class="col-2">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-default" type="submit"> <i class="mr-2 trash-icon"
-                                                        data-feather="trash-2"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <div class="row">
-                                        <div class="col-0.5 circle"></div>
-                                        <div class="col-7">Diva</div>
-                                        <div class="col-2">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-default" type="submit"> <i class="mr-2 trash-icon"
-                                                        data-feather="trash-2"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <div class="row">
-                                        <div class="col-0.5 circle "></div>
-                                        <div class="col-7">Sugan</div>
-                                        <div class="col-2">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-default" type="submit"> <i class="mr-2 trash-icon"
-                                                        data-feather="trash-2"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <div class="row">
-                                        <div class="col-0.5 circle "></div>
-                                        <div class="col-7">Sugan</div>
-                                        <div class="col-2">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-default" type="submit"> <i class="mr-2 trash-icon"
-                                                        data-feather="trash-2"></i></button>
-                                            </div>
+                            <ul class="nav flex-column text " *ngFor="let storekeeper of storekeepers">
+                                <li class="nav-item storekeeper-details align-items-centre" (click)="onStorekeeperSelected(storekeeper)">
+                                    <div class="row px-3 py-2">
+                                        <div class="col-2 circle mx-1"></div>
+                                        <div class="col-7">{{storekeeper.name.first}} {{storekeeper.name.middle}} {{storekeeper.name.last}}</div>
+                                        <div class="col-3">
+                                            <button class="btn btn-default" type="submit"> 
+                                                <i  data-feather="trash-2"> delete </i>
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
-                            <div class="scrollbar pr-1" id="style-default">
-                                <div class="force-overflow">
-                            </div>
-                        </div>
-                            <!-- </ul> -->
-
-                        <!-- </div> -->
-                        
-                        
-                            <!-- </div> -->
-
-                            
                         </div>
                     </div>
                 </div>
                 <!-- details form card -->
-                <div class="col-7">
+                <div class="col-lg-7 col-12 mt-sm-3 mt-lg-0">
                     <div class="card">
                         <div class="card-body ">
                             <!-- nav part -->
@@ -98,28 +46,31 @@
                                 <li ngbNavItem>
                                   <a ngbNavLink>Details</a>
                                   <ng-template ngbNavContent>
-                                    <form>
+                                    <div *ngIf="selectedStorekeeper!=null; then renderDetails else selectAStorekeeper"></div>
+                                    <ng-template #renderDetails>
+                                      <h4 class="text-primary  mt-3">
+                                        Details of {{selectedStorekeeper.name.first}} {{selectedStorekeeper.name.middle}} {{selectedStorekeeper.name.last}}
+                                      </h4>
+                                    <form [formGroup]="updateStorekeeperForm">
                                         <div class="row">
                                             <div class="col-9">
-                                              <div class="form-group">
+                                              <div class="form-group" formGroupName="name">
                                                         <label for="name">Name</label>
-                                                        <input type="text" class="form-control" id="de_firstname" placeholder="First name">
-                                                        <input type="text" class="form-control" id="de_middlename" placeholder="Middle name">
-                                                        <input type="text" class="form-control" id="de_lastname" placeholder="Last name">             
+                                                        <input type="text" class="form-control mt-2" id="de_firstname" placeholder="First name" formControlName="first">
+                                                        <input type="text" class="form-control mt-1" id="de_middlename" placeholder="Middle name" formControlName="middle">
+                                                        <input type="text" class="form-control mt-1" id="de_lastname" placeholder="Last name" formControlName="last">             
                                               </div>
-                                              <div class="form-group">
-                                                
+                                              <div class="form-group" formGroupName="address">
                                                 <label for="address">Address</label>
-                                                <input type="text" class="form-control" id="de_Door" placeholder="Door number">
-                                                <input type="text" class="form-control" id="de_street" placeholder="Street">
-                                                <input type="text" class="form-control" id="de_city" placeholder="City">
+                                                <input type="text" class="form-control mt-2" id="de_Door" placeholder="Door number" formControlName="no">
+                                                <input type="text" class="form-control mt-1" id="de_street" placeholder="Street" formControlName="street">
+                                                <input type="text" class="form-control mt-1" id="de_city" placeholder="City" formControlName="city">
                                               
                                               </div>
-                                              <div class="form-group">
-                                                
+                                              <div class="form-group" formGroupName="contact">  
                                               <label for="contact">Contact</label>
-                                              <input type="email" class="form-control" id="de_email" placeholder="email">
-                                              <input type="text" class="form-control" id="de_phone" placeholder="Mobile">
+                                              <input type="email" class="form-control mt-2" id="de_email" placeholder="email" formControlName="email">
+                                              <input type="text" class="form-control mt-1" id="de_phone" placeholder="Mobile" formControlName="phone">
                                             
                                               </div>
                                             </div>
@@ -131,11 +82,20 @@
                                             </div>
                                         </div>
                                     </form>
+                                    </ng-template>
+                                    <ng-template #selectAStorekeeper>
+                                        <div class="h4 mt-3 text-center text-primary">
+                                            please select a storekeeper to view details
+                                        </div>
+                                    </ng-template>
                                   </ng-template>
                                 </li>
                                 <li ngbNavItem>
                                   <a ngbNavLink>Add new</a>
                                   <ng-template ngbNavContent>
+                                    <h4 class="text-primary  mt-3">
+                                        Register a new storekeeper  
+                                    </h4>
                                     <form>
                                         <div class="row">
                                             <div class="col-9">
@@ -180,11 +140,11 @@
 
 
                 </div>
-            </div>
-            <br>
-            <div class="row">
+            </div> 
+
+            <div class="row mt-3">
                 <!-- history list -->
-                <div class="col-7">
+                <div class="col-lg-7  col-12">
                     <div class="card">
                         <div class="card-body ">
                             <div class="row">
@@ -234,7 +194,7 @@
                     </div>
                 
                 <!-- schedule list -->
-                <div class="col-5">
+                <div class="col-lg-5 col-12  mt-sm-3 mt-lg-0">
                     <div class="card">
                          <div class="card-body ">
                               <h4 class="card-title stext">xxx schedule history</h4><br>
@@ -291,4 +251,4 @@
 
         </div>
     </div>
-</div>
+</div>  
