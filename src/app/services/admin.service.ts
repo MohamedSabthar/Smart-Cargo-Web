@@ -1,3 +1,4 @@
+import { API } from './../api.constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
@@ -13,6 +14,10 @@ export class AdminService {
   //manual testing to check JwtIntercepter can remove this
   test():Observable<any> {
     return this._httpClient.get<any>('http://localhost:3000/admin').pipe(catchError((error)=>{return throwError(error);}));
+  }
+
+  updateDriverDetails(driverDetails,driverId):Observable<any>{
+    return this._httpClient.post<any>(API.updateDriverDetails(driverId),driverDetails).pipe(catchError((error)=>{return throwError(error);}));
   }
 
 }

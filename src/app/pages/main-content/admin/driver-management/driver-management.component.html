@@ -2,11 +2,10 @@
   <div class="row">
     <app-side-bar></app-side-bar>
     <div class="col main-content">
-      <!-- Start your code here -->
-      <!--store keeper list card-->
       <div class="row">
+        <!-- driver list section -->
         <div class="col-lg-5 col-12">
-          <div class="card" style="height: 670px;">
+          <div class="card" style="min-height: 670px;">
             <div class="card-body">
               <h4 class="card-title text-primary mb-3">Drivers</h4>
 
@@ -34,22 +33,24 @@
               ></div>
 
               <ng-template #renderDriverList>
-                <ul class="nav flex-column text" *ngFor="let driver of drivers">
+                <ul class="list-unstyled">
                   <li
-                    class="nav-item driver-details align-items-center"
+                    *ngFor="let driver of drivers"
+                    class="row driver-details align-items-center py-1"
                     (click)="onDriverSeletected(driver)"
                   >
-                    <div class="row px-3 py-2">
-                      <div class="col-2 circle m-1"></div>
-                      <div class="col-7 align-self-center">
-                        {{ driver.name.first }} {{ driver.name.middle }}
-                        {{ driver.name.last }}
-                      </div>
-                      <div class="col-3">
-                        <button class="btn btn-default" type="submit">
-                          <i-feather name="trash-2" class="text-danger"></i-feather>
-                        </button>
-                      </div>
+                    <div class="col-1"><div class="circle"></div></div>
+                    <div class="col-8 pl-4">
+                      {{ driver.name.first }} {{ driver.name.middle }}
+                      {{ driver.name.last }}
+                    </div>
+                    <div class="col-3">
+                      <button class="btn">
+                        <i-feather
+                          name="trash-2"
+                          class="text-danger"
+                        ></i-feather>
+                      </button>
                     </div>
                   </li>
                 </ul>
@@ -64,9 +65,11 @@
             </div>
           </div>
         </div>
-        <!-- details form card -->
-        <div class="col-lg-7 col-12 mt-sm-3 mt-lg-0">
-          <div class="card" style="height: 670px;">
+        <!-- end-of driver list section -->
+
+        <!-- driver details & add new driver section -->
+        <div class="col-lg-7 col-12 mt-3 mt-lg-0">
+          <div class="card" style="min-height: 670px;">
             <div class="card-body">
               <!-- nav part -->
               <ul ngbNav #nav="ngbNav" class="nav-tabs">
@@ -86,6 +89,7 @@
                         {{ selectedDriver.name.middle }}
                         {{ selectedDriver.name.last }}
                       </h5>
+
                       <form [formGroup]="updateDriverForm">
                         <div class="row">
                           <div class="col-8">
@@ -328,6 +332,14 @@
                               placeholder="Vehicle type"
                             /> -->
                             </div>
+
+                            <ngb-alert
+                              *ngIf="driverUdpateMessage != null"
+                              [type]="'success'"
+                              style="max-width: 500px;"
+                              (close)="closeUpdateAlert()"
+                              >{{ driverUdpateMessage }}</ngb-alert
+                            >
                           </div>
                           <div
                             class="col-4 justify-content-between d-flex flex-column"
@@ -341,7 +353,10 @@
                               <div class="col-12">
                                 <button
                                   (click)="confirmUpdate(areYouSure)"
-                                  [disabled]="!updateDriverForm.valid"
+                                  [disabled]="
+                                    !updateDriverForm.valid ||
+                                    updateDriverForm.pristine
+                                  "
                                   class="btn btn-primary button ml-4 button"
                                 >
                                   Save
@@ -686,64 +701,91 @@
             </div>
           </div>
         </div>
+        <!-- end-of driver details & add new driver section -->
       </div>
 
       <div class="row mt-3">
-        <!-- history -->
+        <!-- driver's driving history -->
         <div class="col-lg-7 col-12">
-          <div class="card">
+          <div class="card" style="min-height: 670px;">
             <div class="card-body">
               <div class="row">
                 <div class="col-7">
-                  <h4 class="card-title dtext">xxx schedule history</h4>
+                  <h4 class="card-title dtext">
+                    <span *ngIf="selectedDriver"
+                      >{{ selectedDriver.name.first }}
+                      {{ selectedDriver.name?.middle }}
+                      {{ selectedDriver.name.last }}</span
+                    >
+                    Delivery history
+                  </h4>
                 </div>
                 <div class="col-5">
-                  <div class="input-group">
+                  <div class="input-group mb-4">
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Search"
-                      name="search"
-                      width="50px"
+                      placeholder="Search a date"
                     />
-                    <div class="input-group-btn">
-                      <button class="btn btn-default" type="submit">
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-outline-primary search-bar"
+                        type="button"
+                      >
                         <i-feather class="mr-2" name="search"></i-feather>
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Date and time</th>
-                    <th>schedule</th>
-                    <th>No.of deliveries</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>2020/02/05 01.50pm</td>
-                    <td>5</td>
-                    <td>12</td>
-                  </tr>
-                  <tr>
-                    <td>2020/02/03 10.15am</td>
-                    <td>7</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <td>2020/02/01 05.30pm</td>
-                    <td>8</td>
-                    <td>5</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div
+                *ngIf="
+                  selectedDriver != null;
+                  then renderHistory;
+                  else selectADriver
+                "
+              ></div>
+              <ng-template #renderHistory>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Date and time</th>
+                      <th>schedule</th>
+                      <th>No.of deliveries</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2020/02/05 01.50pm</td>
+                      <td>5</td>
+                      <td>12</td>
+                    </tr>
+                    <tr>
+                      <td>2020/02/03 10.15am</td>
+                      <td>7</td>
+                      <td>7</td>
+                    </tr>
+                    <tr>
+                      <td>2020/02/01 05.30pm</td>
+                      <td>8</td>
+                      <td>5</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ng-template>
+              <ng-template #selectADriver>
+                <div class="row" style="min-height: 550px;">
+                  <div class="col-12 my-auto">
+                    <h5 class="text-primary text-center">
+                      Select a driver to view details
+                    </h5>
+                  </div>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>
+        <!-- end-of driver's driving history -->
         <!-- order details -->
         <div class="col-lg-5 col-12 mt-sm-3 mt-lg-0">
           <div class="card">
@@ -798,9 +840,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="p-2"></div>
               </div>
-
               <!-- </div> -->
             </div>
           </div>

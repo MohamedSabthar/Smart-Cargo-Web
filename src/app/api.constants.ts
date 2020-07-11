@@ -18,4 +18,8 @@ export class API {
   public static getListOfDrivers(){
     return `${API.base}/storekeeper/drivers`;
   }
+
+  public static updateDriverDetails(driverId){
+    return `${API.base}/admin//update-driver/${driverId}`
+  }
 }
