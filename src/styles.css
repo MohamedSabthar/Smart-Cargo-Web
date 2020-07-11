@@ -18,6 +18,8 @@ label {
   padding: 30px;
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .btn.search-bar{
   border: solid 1px;
   border-color: var(--primary);
