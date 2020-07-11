@@ -2,7 +2,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DriverDetails } from './../../../../models/driverDetails';
 import { StoreKeeperService } from './../../../../services/store-keeper.service';
 import { Component, OnInit,TemplateRef } from '@angular/core';
-import * as Feather from 'feather-icons';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -18,7 +17,7 @@ export class DriverManagementComponent implements OnInit {
   ) {}
 
   modalRef: BsModalRef;
-  drivers: DriverDetails[];
+  drivers: DriverDetails[]=null;
   selectedDriver: DriverDetails = null;
 
   updateDriverForm = this._fb.group({
@@ -47,7 +46,7 @@ export class DriverManagementComponent implements OnInit {
     license_no: ['', [Validators.required]],
   });
 
-  isLoading = false; //variable display/hide loader
+
 
   get updateFirstName() {
     return this.updateDriverForm.get('name.first');
@@ -96,9 +95,6 @@ export class DriverManagementComponent implements OnInit {
     );
   }
 
-  ngAfterViewInit(): void {
-    Feather.replace();
-  }
 
   onDriverSeletected(driver: DriverDetails) {
     this.selectedDriver = driver;

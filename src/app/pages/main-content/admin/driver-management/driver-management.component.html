@@ -8,8 +8,7 @@
         <div class="col-lg-5 col-12">
           <div class="card" style="height: 670px;">
             <div class="card-body">
-              <h4 class="card-title dtext">Drivers</h4>
-              <br /><br />
+              <h4 class="card-title text-primary mb-3">Drivers</h4>
 
               <div class="input-group mb-4">
                 <input
@@ -22,31 +21,46 @@
                     class="btn btn-outline-primary search-bar"
                     type="button"
                   >
-                    <i class="mr-2" data-feather="search"></i>
+                    <i-feather class="mr-2" name="search"></i-feather>
                   </button>
                 </div>
               </div>
+              <div
+                *ngIf="
+                  drivers != null;
+                  then renderDriverList;
+                  else loadingDriverList
+                "
+              ></div>
 
-              <ul class="nav flex-column text" *ngFor="let driver of drivers">
-                <li
-                  class="nav-item driver-details align-items-center"
-                  (click)="onDriverSeletected(driver)"
-                >
-                  <div class="row px-3 py-2">
-                    <div class="col-2 circle mx-1"></div>
-                    <div class="col-7">
-                      {{ driver.name.first }} {{ driver.name.middle }}
-                      {{ driver.name.last }}
+              <ng-template #renderDriverList>
+                <ul class="nav flex-column text" *ngFor="let driver of drivers">
+                  <li
+                    class="nav-item driver-details align-items-center"
+                    (click)="onDriverSeletected(driver)"
+                  >
+                    <div class="row px-3 py-2">
+                      <div class="col-2 circle m-1"></div>
+                      <div class="col-7 align-self-center">
+                        {{ driver.name.first }} {{ driver.name.middle }}
+                        {{ driver.name.last }}
+                      </div>
+                      <div class="col-3">
+                        <button class="btn btn-default" type="submit">
+                          <i-feather name="trash-2" class="text-danger"></i-feather>
+                        </button>
+                      </div>
                     </div>
-                    <div class="col-3">
-                      <button class="btn btn-default" type="submit">
-                        <!-- <i data-feather="trash-2"></i> -->
-                        delete
-                      </button>
-                    </div>
+                  </li>
+                </ul>
+              </ng-template>
+              <ng-template #loadingDriverList>
+                <div class="row" style="min-height: 550px;">
+                  <div class="col-12 my-auto text-center">
+                    <i-feather name="loader"></i-feather>
                   </div>
-                </li>
-              </ul>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>
@@ -349,7 +363,9 @@
                     <ng-template #selectADriver>
                       <div class="row" style="min-height: 550px;">
                         <div class="col-12 my-auto">
-                          <h5 class="text-primary text-center">Select a driver to view details</h5>
+                          <h5 class="text-primary text-center">
+                            Select a driver to view details
+                          </h5>
                         </div>
                       </div>
                     </ng-template>
@@ -427,15 +443,13 @@
                               placeholder="Last name"
                               formControlName="last"
                               [class.is-invalid]="
-                                updateLastName.touched &&
-                                updateLastName.invalid
+                                updateLastName.touched && updateLastName.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
                               *ngIf="
-                                updateLastName.touched &&
-                                updateLastName.invalid
+                                updateLastName.touched && updateLastName.invalid
                               "
                             >
                               <span *ngIf="updateLastName.errors.required"
@@ -467,8 +481,8 @@
                                 >Door number is required</span
                               >
                               <span *ngIf="updateNo.errors.pattern">
-                                Door no can't contain special charters like
-                                *,#, etc..
+                                Door no can't contain special charters like *,#,
+                                etc..
                               </span>
                             </div>
                             <input
@@ -491,8 +505,8 @@
                                 >Street name is required</span
                               >
                               <span *ngIf="updateStreet.errors.pattern">
-                                Street name can't contain special charters
-                                like *,#, etc..
+                                Street name can't contain special charters like
+                                *,#, etc..
                               </span>
                             </div>
                             <input
@@ -532,9 +546,7 @@
                             />
                             <div
                               class="invalid-feedback"
-                              *ngIf="
-                                updateEmail.touched && updateEmail.invalid
-                              "
+                              *ngIf="updateEmail.touched && updateEmail.invalid"
                             >
                               <span *ngIf="updateEmail.errors.required"
                                 >City is required</span
@@ -556,9 +568,7 @@
                             />
                             <div
                               class="invalid-feedback"
-                              *ngIf="
-                                updatePhone.touched && updatePhone.invalid
-                              "
+                              *ngIf="updatePhone.touched && updatePhone.invalid"
                             >
                               <span *ngIf="updatePhone.errors.required"
                                 >Phone number is required</span
@@ -698,7 +708,7 @@
                     />
                     <div class="input-group-btn">
                       <button class="btn btn-default" type="submit">
-                        <i class="mr-2" data-feather="search"></i>
+                        <i-feather class="mr-2" name="search"></i-feather>
                       </button>
                     </div>
                   </div>
@@ -751,7 +761,7 @@
                   />
                   <div class="input-group-btn">
                     <button class="btn btn-default" type="submit">
-                      <i class="mr-2" data-feather="search"></i>
+                      <i-feather class="mr-2" name="search"></i-feather>
                     </button>
                   </div>
                 </div>
