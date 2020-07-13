@@ -1,5 +1,6 @@
-import { CommonService } from './../../../../services/common.service';
 import { AdminService } from './../../../../services/admin.service';
+import { StoreKeeperService } from './../../../../services/store-keeper.service';
+import { DriverDetails } from './../../../../models/driverDetails';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,36 +9,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.css'],
 })
 export class AdminDashboardComponent implements OnInit {
-  //drivers
-  onlineDrivers;
-  offlineDrivers;
+  //list of online drivers
+  drivers: DriverDetails[];
 
+  //drivers
+  offlineDrivers = 4;
+  //onlineDrivers = this.drivers.length;
   //orders
-  pendingOrders;
-  deliveredOrders;
+  pendingOrders = 22;
+  deliveredOrders = 15;
 
   //routes
-  scheduledRoutes;
-  deliveredRoutes;
-
-  //list of online drivers
-  drivers;
+  scheduledRoutes = 18;
+  deliveredRoutes = 12;
 
   constructor(
     private _adminService: AdminService,
-    commonService: CommonService
-  ) {
-    this.onlineDrivers = commonService.getOnlineDrivers();
-    this.offlineDrivers = commonService.getOfflineDrivers();
-    this.deliveredOrders = commonService.getDeliveredOrders();
-    this.pendingOrders = commonService.getPendingOrders();
-    this.deliveredRoutes = commonService.getDeliveredRoutes();
-    this.scheduledRoutes = commonService.getScheduledRoutes();
-    this.drivers = commonService.getDrivers();
-  }
+    private _storekeeperService: StoreKeeperService
+  ) {}
 
   ngOnInit(): void {
     //added for Jwt testing can remove this
     //this._adminService.test().subscribe((res)=>console.log(res), (err)=>console.log(err));
+
+    this._storekeeperService.getListOfDrivers().subscribe(
+      (response) => {
+        this.drivers = response.drivers;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

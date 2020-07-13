@@ -15,7 +15,7 @@
               <div class="status-divider align-middle mx-2"></div>
               <span class="mx-2 align-middle status-description">Online</span>
               <span class="mx-2 align-middle status-number">{{
-                onlineDrivers
+                drivers.length
               }}</span>
               <div
                 class="status-divider status-divider-min align-middle mx-2"
@@ -119,6 +119,13 @@
                   class="form-control m-2"
                   placeholder="Search a driver"
                 />
+                <div>
+                  <ul *ngFor="let driver of drivers">
+                    <li>
+                      <div>{{ driver.name.first }}</div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

@@ -1,4 +1,3 @@
-import { CommonService } from './services/common.service';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -12,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -75,9 +73,7 @@ export function tokenGetter() {
     TimeLineComponent,
     ForbiddenPageComponent,
     RestPasswordPageComponent,
-<<<<<<< HEAD
     OrdersChartComponent,
-=======
     AddOrderDimentionComponent,
     AddOrderFormComponent,
     AddOrderDetailsComponent,
@@ -85,7 +81,6 @@ export function tokenGetter() {
     ScheduleOrderAssignDriverComponent,
     ScheduleOrderAssignVehicleComponent,
     ScheduleOrderOrderListComponent,
->>>>>>> 916deb5ab41bb9f37ba86e4f5f5f5f7bb4f765ba
   ],
   imports: [
     BrowserModule,
@@ -108,14 +103,11 @@ export function tokenGetter() {
     GaurdService,
     AdminGaurdService,
     StoreKeeperGaurdService,
-    CommonService,
+
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    AddOrderFormComponent,
-    AddOrderDetailsComponent
-  ]
+  entryComponents: [AddOrderFormComponent, AddOrderDetailsComponent],
 })
 export class AppModule {}
