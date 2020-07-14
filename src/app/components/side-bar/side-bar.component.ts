@@ -1,6 +1,5 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import * as Feather from 'feather-icons';
 
 @Component({
   selector: 'app-side-bar',
@@ -8,13 +7,14 @@ import * as Feather from 'feather-icons';
   styleUrls: ['./side-bar.component.css'],
 })
 export class SideBarComponent implements OnInit {
+  role: String;
+
   constructor(private _authService: AuthService) {}
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    Feather.replace();
+  ngOnInit(): void {
+    this.role = this._authService.getRole();
   }
+
   //logout from the application
   logout() {
     this._authService.logout();

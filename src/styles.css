@@ -17,3 +17,8 @@ label {
 .main-content {
   padding: 30px;
 }
+
+.btn.search-bar{
+  border: solid 1px;
+  border-color: var(--primary);
+}

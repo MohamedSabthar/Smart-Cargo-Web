@@ -1,3 +1,5 @@
+import { IconsModule } from './icon.module';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -42,6 +44,9 @@ import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order
 import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
 import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { TrackVehileMapComponent } from './components/track-vehile-map/track-vehile-map.component';
+import { TrackVehileDetailsComponent } from './components/track-vehile-details/track-vehile-details.component';
+
 import { ScheduleOrderAssignDriverComponent } from './components/schedule-order-assign-driver/schedule-order-assign-driver.component';
 import { ScheduleOrderAssignVehicleComponent } from './components/schedule-order-assign-vehicle/schedule-order-assign-vehicle.component';
 import { ScheduleOrderOrderListComponent } from './components/schedule-order-order-list/schedule-order-order-list.component';
@@ -50,6 +55,9 @@ import { ScheduleOrderOrderListComponent } from './components/schedule-order-ord
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
+
+
+
 
 @NgModule({
   declarations: [
@@ -78,6 +86,8 @@ export function tokenGetter() {
     AddOrderFormComponent,
     AddOrderDetailsComponent,
     ProfileComponent,
+    TrackVehileMapComponent,
+    TrackVehileDetailsComponent,
     ScheduleOrderAssignDriverComponent,
     ScheduleOrderAssignVehicleComponent,
     ScheduleOrderOrderListComponent,
@@ -92,11 +102,13 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    IconsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
       },
     }),
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService,
@@ -104,10 +116,14 @@ export function tokenGetter() {
     AdminGaurdService,
     StoreKeeperGaurdService,
 
+    BsModalService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddOrderFormComponent, AddOrderDetailsComponent],
+  entryComponents: [
+    AddOrderFormComponent,
+    AddOrderDetailsComponent
+  ],
 })
 export class AppModule {}

@@ -2,7 +2,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import * as Feather from 'feather-icons';
 
 @Component({
   selector: 'app-forgot-password-page',
@@ -35,9 +34,7 @@ export class ForgotPasswordPageComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    Feather.replace();
-  }
+
 
   get email() {
     return this.forgotPasswordForm.get('email');

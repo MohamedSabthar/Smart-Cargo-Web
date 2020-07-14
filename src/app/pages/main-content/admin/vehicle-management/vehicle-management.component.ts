@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as Feather from 'feather-icons';
 import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
