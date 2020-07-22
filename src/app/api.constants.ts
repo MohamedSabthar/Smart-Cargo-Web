@@ -1,6 +1,7 @@
 export class API {
-  public static base: string = 'https://smart-cargo.herokuapp.com';
-   //"http://localhost:3000"
+  public static base: string =
+  'https://smart-cargo.herokuapp.com';
+  //  "http://localhost:3000";
 
 
   public static login() {
@@ -25,5 +26,9 @@ export class API {
 
   public static updateDriverDetails(driverId){
     return `${API.base}/admin//update-driver/${driverId}`
+  }
+
+  public static deleteDriver(driverId){
+    return `${API.base}/admin//delete-driver/${driverId}`
   }
 }

@@ -32,4 +32,8 @@ export class AdminService {
     return this._httpClient.post<any>(API.updateDriverDetails(driverId),driverDetails).pipe(catchError((error)=>{return throwError(error);}));
   }
 
+  deleteDriver(driverId):Observable<any>{
+    return this._httpClient.delete<any>(API.deleteDriver(driverId)).pipe(catchError((error)=>{return throwError(error);}));
+  }
+
 }

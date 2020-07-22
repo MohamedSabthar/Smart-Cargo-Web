@@ -13,12 +13,14 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Search a driver"
+                  [(ngModel)] = "searchText"
+                  placeholder="Search driver by name"
+                  (keyup)="onSearch()"
                 />
                 <div class="input-group-append">
                   <button
                     class="btn btn-outline-primary search-bar"
-                    type="button"
+                    type="button" (click)="onSearch()"
                   >
                     <i-feather class="mr-2" name="search"></i-feather>
                   </button>
@@ -35,17 +37,18 @@
               <ng-template #renderDriverList>
                 <ul class="list-unstyled">
                   <li
-                    *ngFor="let driver of drivers"
+                    *ngFor="let driver of driversFilter||drivers"
                     class="row driver-details align-items-center py-1"
                     (click)="onDriverSeletected(driver)"
                   >
                     <div class="col-1"><div class="circle"></div></div>
                     <div class="col-8 pl-4">
-                      {{ driver.name.first }} {{ driver.name.middle }}
-                      {{ driver.name.last }}
+                      <span class="d-block"><b>Driver Id : </b>{{driver._id}}</span>
+                      <span class="d-block"><b>Driver Name : </b>{{ driver.name.first }} {{ driver.name.middle }}
+                      {{ driver.name.last }}</span>
                     </div>
                     <div class="col-3">
-                      <button class="btn">
+                      <button class="btn" (click)="onDelete(driver)">
                         <i-feather
                           name="trash-2"
                           class="text-danger"
