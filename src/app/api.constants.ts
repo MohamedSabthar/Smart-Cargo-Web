@@ -42,7 +42,7 @@ export class API {
     return `${API.base}/admin//delete-vehicle/${vehicleId}`
   }
 
-  public static getListOfVehiclesType(){
+  public static getListOfVehiclesTypes(){
     return `${API.base}/storekeeper/vehicle-types`;
   }
 

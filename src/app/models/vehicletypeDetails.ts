@@ -1,7 +1,11 @@
-export interface VehicleType {
+export interface Vehicletype {
   type: String,
+
    capacity: {
       volume: Number,
       max_load: Number },
-   fuel_economy:  Number
+
+     _id: String,
+    fuel_economy:  Number,
+    __v:Number
 }

@@ -5,7 +5,7 @@ import { Drivers } from '../models/drivers.response';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { API } from '../api.constants';
 import { Vehicles } from '../models/vehicle.response';
-import { VehicleTypes } from '../models/vehicletype.response';
+import { Vehicletypes } from '../models/vehicletype.response';
 
 @Injectable({
   providedIn: 'root',
@@ -22,16 +22,17 @@ export class StoreKeeperService {
   }
   getListOfVehicles():Observable<Vehicles> {
     return this._httpClient.get<Vehicles>(API.getListOfVehicles()).pipe(
-      catchError((error) => {
+      catchError((error) => {        
         return throwError(error);
         })
         );
       }
 
-      getListOfVehiclesTypes():Observable<VehicleTypes> {
-        return this._httpClient.get<VehicleTypes>(API.getListOfVehiclesType()).pipe(
+      getListOfVehiclesTypes():Observable<Vehicletypes> {
+        console.log("api called");
+        return this._httpClient.get<Vehicletypes>(API.getListOfVehiclesTypes()).pipe(
           catchError((error) => {
-            return throwError(error);
+              return throwError(error);
             })
             );
           }

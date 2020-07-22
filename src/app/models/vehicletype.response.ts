@@ -1,5 +1,5 @@
-import { VehicleType } from './vehicletypeDetails';
+import { Vehicletype } from './vehicletypeDetails';
 
-export interface VehicleTypes{
-  vehicleTypes:VehicleType[];
+export interface Vehicletypes{
+  vehicletypes:Vehicletype[];
 }
