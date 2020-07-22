@@ -41,4 +41,17 @@ export class API {
   public static deleteVehicle(vehicleId){
     return `${API.base}/admin//delete-vehicle/${vehicleId}`
   }
+
+  public static getListOfVehiclesType(){
+    return `${API.base}/storekeeper/vehicle-types`;
+  }
+
+  public static updateVehicleDetailsType(vehicleTypeId){
+    return `${API.base}/admin//update-vehicle-type/${vehicleTypeId}`
+  }
+
+  public static deleteVehicleType(vehicleTypeId){
+    return `${API.base}/admin//delete-vehicle-type/${vehicleTypeId}`
+  }
+
 }
