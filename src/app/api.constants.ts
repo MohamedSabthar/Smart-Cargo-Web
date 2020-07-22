@@ -18,4 +18,7 @@ export class API {
   public static getListOfDrivers(){
     return `${API.base}/storekeeper/drivers`;
   }
+  public static getListOfVehicles(){
+    return `${API.base}/storekeeper/vehicles`;
+  }
 }
