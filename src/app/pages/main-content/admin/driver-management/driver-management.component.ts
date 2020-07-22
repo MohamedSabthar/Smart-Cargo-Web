@@ -21,8 +21,10 @@ export class DriverManagementComponent implements OnInit {
 
   modalRef: BsModalRef;
   drivers: DriverDetails[];
+  driversFilter: DriverDetails[];
   selectedDriver: DriverDetails;
-  driverUdpateMessage: String;
+  driverUdpateMessage: string;
+  searchText: string;
 
   updateDriverForm = this._fb.group({
     name: this._fb.group({
@@ -245,5 +247,25 @@ export class DriverManagementComponent implements OnInit {
         this.drivers.push(response.driver);
       });
     this.modalRef.hide();
+  }
+  onDelete(driver: DriverDetails) {
+    this._adminService.deleteDriver(driver._id).subscribe(
+      (response) => {
+        let index = this.drivers.indexOf(driver);
+        this.drivers.splice(index, 1); //delete driver from local list
+        this.selectedDriver = null; // set the selected driver to null to hide the update/details component
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  onSearch() {
+    console.log(this.searchText);
+    this.driversFilter = this.drivers.filter((driver) => {
+      let name: string = `${driver.name.first} ${driver.name.middle} ${driver.name.last}`;
+      return name.search(this.searchText.toLowerCase()) != -1;
+    });
   }
 }

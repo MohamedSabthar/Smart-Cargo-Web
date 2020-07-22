@@ -46,4 +46,11 @@ export class AdminService {
       })
     );
   }
+  deleteDriver(driverId): Observable<any> {
+    return this._httpClient.delete<any>(API.deleteDriver(driverId)).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
 }
