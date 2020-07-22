@@ -1,3 +1,4 @@
+import { IconsModule } from './icon.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
@@ -54,6 +55,9 @@ export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,6 +99,7 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    IconsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -115,6 +120,6 @@ export function tokenGetter() {
   entryComponents: [
     AddOrderFormComponent,
     AddOrderDetailsComponent
-  ]
+  ],
 })
 export class AppModule {}

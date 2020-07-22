@@ -1,33 +1,15 @@
 .dtext {
     display: inline;
-    color: #4d5c84;
+    color: var(--primary);
     font-weight: 400;
     font-size: 1.6rem;
   }
 
-.text {
-    display: inline;
-    color: #4d5c84;
-    font-weight: 400;
-    font-size: 16px;
-  }
-
-.search-text {
-    display: inline;
-    color: #4d5c84;
-    font-weight: 400;
-    font-size: 1.0rem;
-  }
-
-.trash-icon{
-    color: red;
-    width: 18px;
-    height: 18px;
-}
-
 .circle {
-    max-height: 25px;
-    max-width: 25px;
+    min-height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    max-height: 30px;
     background-color: var(--primary);
     border-radius: 50%;
   }
@@ -35,29 +17,9 @@
   .profile-circle {
     height: 80px;
     width: 80px;
-    background-color:#4d5c84;
+    background-color:var(--primary);
     border-radius: 50%;
     margin-left: 20px;
-  }
-
-  .button {
-    width: 80px;
-  }
-
-  .scrollbar
-  {
-    margin-left: 350px;
-    float: left;
-    height: 300px;
-    width: 60px;
-    background: #F5F5F5;
-    overflow-y: scroll;
-    margin-top: 5px;
-  }
-
-  .force-overflow
-  {
-    min-height: 450px;
   }
 
   th {
@@ -75,10 +37,4 @@
     border-color: var(--primary-lite);
     border-radius: 0.25rem;
   }
-
-  .trash-icon{
-    color: red;
-    width: 18px;
-    height: 18px;
-}
 

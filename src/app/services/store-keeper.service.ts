@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Drivers } from '../models/drivers.response';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { API } from '../api.constants';
+import { Vehicles } from '../models/vehicle.response';
 
 @Injectable({
   providedIn: 'root',
@@ -18,4 +19,13 @@ export class StoreKeeperService {
       })
     );
   }
+  getListOfVehicles():Observable<Vehicles> {
+    return this._httpClient.get<Vehicles>(API.getListOfVehicles()).pipe(
+      catchError((error) => {
+        return throwError(error);
+        })
+        );
+      }
+     
+  
 }
