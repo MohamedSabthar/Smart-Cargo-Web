@@ -55,7 +55,7 @@
                             <li ngbNavItem>
                               <a ngbNavLink class="btn-btn-primary">Details</a>
                               <ng-template ngbNavContent>
-                                <form>
+                                <form [formGroup]="AddVehicleForm">
                                     <div class="row">
                                         <!-- register in setup -->
                                         <div class="col-5 col-md-8 col-lg-9 py-2">
@@ -63,34 +63,42 @@
                                                 <label for="">Vehicle Type</label>
                                                 <input
                                                   id="vehicleType"
+                                                  formControlName="VehicleType"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Vehicle type"
+                                                  [ngClass]="{ 'is-invalid': (VehicleType.touched && VehicleType.invalid)  }"
                                                 />
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Capacity</label>
                                                 <input
                                                   id="Volume"
+                                                  formControlName="Capacity"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Volume in M ^ 3"
+                                                  [ngClass]="{ 'is-invalid': (Capacity.touched && Capacity.invalid)  }"
                                                 />
                                                 <br>
                                                 <input
                                                   id="Load"
+                                                  formControlName="Load"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Load"
+                                                  [ngClass]="{ 'is-invalid': (Load.touched && Load.invalid)  }"
                                                 />
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Fuel economy</label>
                                                 <input
                                                   id="Fuel"
+                                                  formControlName="Fueleconomy"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Fuel economy Km/L"
+                                                  [ngClass]="{ 'is-invalid': (Fueleconomy.touched && Fueleconomy.invalid)  }"
                                                 />
                                             </div>
                                         </div>
