@@ -86,7 +86,7 @@ get Load() {
   return this.AddVehicleForm.get('Load')
 }
 get Fueleconomy() {
-  return this.AddVehicleForm.get(' Fueleconomy')
+  return this.AddVehicleForm.get('Fueleconomy')
 }
 
 }
