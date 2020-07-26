@@ -18,10 +18,10 @@
                           <br>
                           <!-- Vehicle name list -->
                           <ul class="nav flex-column" >
-                            <li class="nav-item">
+                            <li class="nav-item" *ngFor="let vehicle of vehicles">
                                 <div class="row">
                                     <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Lorry BFC-9852</div>
+                                    <div class="col-5 col-md-8 text">{{vehicle.license_plate}}</div>
                                     <div class="col-1">
                                         <div class="input-group-btn">
                                             <button class="btn btn-default" type="submit"> <span class="mr-2 wrong_icon" name="x-circle"></span></button>
