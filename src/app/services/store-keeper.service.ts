@@ -32,9 +32,9 @@ export class StoreKeeperService {
         console.log("api called");
         return this._httpClient.get<Vehicletypes>(API.getListOfVehiclesTypes()).pipe(
           catchError((error) => {
-              return throwError(error);
-            })
-            );
+            return throwError(error);
+          })
+          );
           }
      
   
