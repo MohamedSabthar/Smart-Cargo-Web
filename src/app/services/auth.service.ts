@@ -33,7 +33,9 @@ export class AuthService {
     this._router.navigate(['/']);
   }
 
+
   public isLoggedIn() {
+    console.log(this._JWTService.tokenGetter());
     return !this._JWTService.isTokenExpired();
   }
 

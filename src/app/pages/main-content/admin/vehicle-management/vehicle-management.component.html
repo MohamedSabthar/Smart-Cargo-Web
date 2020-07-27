@@ -18,10 +18,10 @@
                           <br>
                           <!-- Vehicle name list -->
                           <ul class="nav flex-column" >
-                            <li class="nav-item">
+                            <li class="nav-item" *ngFor="let vehicle of vehicles">
                                 <div class="row">
                                     <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Lorry BFC-9852</div>
+                                    <div class="col-5 col-md-8 text">{{vehicle.license_plate}}</div>
                                     <div class="col-1">
                                         <div class="input-group-btn">
                                             <button class="btn btn-default" type="submit"> <span class="mr-2 wrong_icon" name="x-circle"></span></button>
@@ -34,118 +34,12 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <div class="row">
-                                    <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Dimo batta DGT-0723</div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 correct_icon" name="check-circle"></i-feather></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 trash_icon" name="trash-2" color="red"></i-feather></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="row">
-                                    <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Three-wheel TRP-5234</div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 correct_icon" name="check-circle" ></i-feather></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 trash_icon" name="trash-2" ></i-feather></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="row">
-                                    <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Lorry KGF-8956</div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 correct_icon" name="check-circle"></i-feather></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 trash_icon" name="trash-2"></i-feather></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="row">
-                                    <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Bike BFN=9083</div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 wrong_icon" name="x-circle"></i-feather></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 trash_icon" name="trash-2"></i-feather></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="row">
-                                    <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Bike UOF-8809</div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 correct_icon" name="check-circle"></i-feather></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 trash_icon" name="trash-2"></i-feather></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="row">
-                                    <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Lorry UPF-9087</div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 wrong_icon" name="x-circle"></i-feather></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 trash_icon" name="trash-2"></i-feather></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="row">
-                                    <div class="col-0.5 circle"></div>
-                                    <div class="col-5 col-md-8 text">Dimo batta DGG-8998</div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 correct_icon" name="check_circle"></i-feather></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"> <i-feather class="mr-2 trash_icon" name="trash-2"></i-feather></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            
+                               
+                           
+                            
+                           
+                                    
                           </ul>
                       </div>
                   </div>
@@ -161,7 +55,7 @@
                             <li ngbNavItem>
                               <a ngbNavLink class="btn-btn-primary">Details</a>
                               <ng-template ngbNavContent>
-                                <form>
+                                <form [formGroup]="AddVehicleForm">
                                     <div class="row">
                                         <!-- register in setup -->
                                         <div class="col-5 col-md-8 col-lg-9 py-2">
@@ -169,35 +63,58 @@
                                                 <label for="">Vehicle Type</label>
                                                 <input
                                                   id="vehicleType"
+                                                  formControlName="VehicleType"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Vehicle type"
+                                                  [ngClass]="{ 'is-invalid': (VehicleType.touched && VehicleType.invalid)  }"
                                                 />
+                                                <div *ngIf="!VehicleType.value" class="invalid-feedback">
+                                                  Vehicle Type is required
+                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Capacity</label>
                                                 <input
                                                   id="Volume"
+                                                  formControlName="Capacity"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Volume in M ^ 3"
+                                                  [ngClass]="{ 'is-invalid': (Capacity.touched && Capacity.invalid)  }"
                                                 />
-                                                <br>
+                                                <div *ngIf="!Capacity.value" class="invalid-feedback">
+                                                  Capacity Type is required
+                                                 </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                  <label for="">Load</label>
                                                 <input
                                                   id="Load"
+                                                  formControlName="Load"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Load"
+                                                  [ngClass]="{ 'is-invalid': (Load.touched && Load.invalid)  }"
                                                 />
+                                                <div *ngIf="!Load.value" class="invalid-feedback">
+                                                  Load Type is required
+                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Fuel economy</label>
                                                 <input
                                                   id="Fuel"
+                                                  formControlName="Fueleconomy"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Fuel economy Km/L"
+                                                  [ngClass]="{ 'is-invalid': (Fueleconomy.touched && Fueleconomy.invalid)  }"
                                                 />
+                                                <div *ngIf="!Fueleconomy.value" class="invalid-feedback">
+                                                  Fuel economy Type is required
+                                                 </div>
                                             </div>
                                         </div>
                                         <!-- register pic and save or close -->

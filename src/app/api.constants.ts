@@ -22,7 +22,7 @@ export class API {
   public static getListOfDrivers() {
     return `${API.base}/storekeeper/drivers`;
   }
-
+ 
   public static updateDriverDetails(driverId){
     return `${API.base}/admin//update-driver/${driverId}`
   }
@@ -30,4 +30,28 @@ export class API {
   public static deleteDriver(driverId){
     return `${API.base}/admin//delete-driver/${driverId}`
   }
+  public static getListOfVehicles(){
+    return `${API.base}/storekeeper/vehicles`;
+  }
+
+  public static updateVehicleDetails(vehicleId){
+    return `${API.base}/admin//update-vehicle/${vehicleId}`
+  }
+
+  public static deleteVehicle(vehicleId){
+    return `${API.base}/admin//delete-vehicle/${vehicleId}`
+  }
+
+  public static getListOfVehiclesTypes(){
+    return `${API.base}/storekeeper/vehicle-types`;
+  }
+
+  public static updateVehicleDetailsType(vehicleTypeId){
+    return `${API.base}/admin//update-vehicle-type/${vehicleTypeId}`
+  }
+
+  public static deleteVehicleType(vehicleTypeId){
+    return `${API.base}/admin//delete-vehicle-type/${vehicleTypeId}`
+  }
+
 }
