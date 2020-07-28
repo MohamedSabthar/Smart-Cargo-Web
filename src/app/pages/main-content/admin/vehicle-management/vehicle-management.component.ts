@@ -134,7 +134,10 @@ export class VehicleManagementComponent implements OnInit {
     console.log(vehicle);
     this.AddVehicleForm.patchValue({
       vehicle_type: vehicle.vehicle_type,
-      license_plate: vehicle.license_plate
+      license_plate: vehicle.license_plate,
+      capacity: vehicle.capacity,
+      load: vehicle.load,
+      fuel_economy: vehicle.fuel_economy
     });
   }
   

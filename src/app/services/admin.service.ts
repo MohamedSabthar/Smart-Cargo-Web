@@ -31,7 +31,7 @@ export class AdminService {
   
 
   updateVehicleDetails(vehicleDetails,vehicleId):Observable<any>{
-    return this._httpClient.post<any>(API.updateVehicleDetails(vehicleId),vehicleDetails).pipe(catchError((error)=>{return throwError(error);}));
+    return this._httpClient.put<any>(API.updateVehicleDetails(vehicleId),vehicleDetails).pipe(catchError((error)=>{return throwError(error);}));
   }
 
   updateDriverDetails(driverDetails,driverId):Observable<any>{

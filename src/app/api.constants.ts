@@ -33,7 +33,7 @@ export class API {
   public static getListOfVehicles(){
     return `${API.base}/storekeeper/vehicles`;
   }
-  
+
   public static updateVehicleDetails(vehicleId){
     return `${API.base}/admin//update-vehicle/${vehicleId}`
   }
