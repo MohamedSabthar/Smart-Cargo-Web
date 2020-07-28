@@ -34,6 +34,10 @@ export class AdminService {
     return this._httpClient.put<any>(API.updateVehicleDetails(vehicleId),vehicleDetails).pipe(catchError((error)=>{return throwError(error);}));
   }
 
+  deleteVehicle(vehicleId):Observable<any>{
+    return this._httpClient.delete<any>(API.deleteVehicle(vehicleId)).pipe(catchError((error)=>{return throwError(error);}));
+  }
+
   updateDriverDetails(driverDetails,driverId):Observable<any>{
     return this._httpClient.post<any>(API.updateDriverDetails(driverId),driverDetails).pipe(catchError((error)=>{return throwError(error);}));
   }
@@ -41,5 +45,7 @@ export class AdminService {
   deleteDriver(driverId):Observable<any>{
     return this._httpClient.delete<any>(API.deleteDriver(driverId)).pipe(catchError((error)=>{return throwError(error);}));
   }
+
+
 
 }

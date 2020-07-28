@@ -144,7 +144,21 @@ export class VehicleManagementComponent implements OnInit {
     //disable the update(save) button until touched
     disableUpdateButton() {
       this.AddVehicleForm.markAsPristine();
-    }
+  }
+  
+
+  onDelete(vehicle: VehicleDetails) {
+    this._adminService.deleteVehicle(vehicle._id).subscribe(
+      (response) => {
+        let index = this.vehicles.indexOf(vehicle);
+        this.vehicles.splice(index, 1); //delete driver from local list
+        this.selectedVehicle = null; // set the selected driver to null to hide the update/details component
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   //getters for form validations
   get vehicle_type() {
