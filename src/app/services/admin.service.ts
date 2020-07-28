@@ -28,6 +28,12 @@ export class AdminService {
     );
   }
 
+  
+
+  updateVehicleDetails(vehicleDetails,vehicleId):Observable<any>{
+    return this._httpClient.post<any>(API.updateVehicleDetails(vehicleId),vehicleDetails).pipe(catchError((error)=>{return throwError(error);}));
+  }
+
   updateDriverDetails(driverDetails,driverId):Observable<any>{
     return this._httpClient.post<any>(API.updateDriverDetails(driverId),driverDetails).pipe(catchError((error)=>{return throwError(error);}));
   }

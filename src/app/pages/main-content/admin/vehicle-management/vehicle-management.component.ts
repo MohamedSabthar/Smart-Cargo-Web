@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AdminService } from './../../../../services/admin.service';
+import { Component, OnInit,TemplateRef } from '@angular/core';
 import { NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { StoreKeeperService } from './../../../../services/store-keeper.service';
 import { VehicleDetails } from './../../../../models/vehicleDetails';
 import { VehicletypeDetails } from './../../../../models/vehicletypeDetails';
+import { __assign } from 'tslib';
 import {
   FormGroup,
   FormControl,
@@ -28,10 +31,15 @@ export class VehicleManagementComponent implements OnInit {
   vehiclesFilter: VehicleDetails[];
   selectedVehicle: VehicleDetails;
 
+  modalRef: BsModalRef;
+  vehicleUdpateMessage: String;
+
   constructor(
     config: NgbNavConfig,
     private _storekeeperService: StoreKeeperService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _adminService: AdminService,
+    private _modalService: BsModalService
   ) {
     // customize default values of navs used by this component tree
 
@@ -43,23 +51,11 @@ export class VehicleManagementComponent implements OnInit {
     //validation for update vehicle form
     this.AddVehicleForm = this.fb.group({
       vehicle_type: ['', [Validators.required]],
-      Capacity: ['', [Validators.required]],
+      capacity: ['', [Validators.required]],
       license_plate: ['',[Validators.required]],
-      Load: ['', [Validators.required]],
+      load: ['', [Validators.required]],
 
-      Fueleconomy: ['', [Validators.required]],
-    });
-
-
-     //validation for add new vehicle form
-     this.NewVehicleForm = this.fb.group({
-       NewVehicleType: ['', [Validators.required]],
-       NewLisencePlate: ['', [Validators.required]],
-      NewCapacity: ['', [Validators.required]],
-
-      NewLoad: ['', [Validators.required]],
-
-      NewFueleconomy: ['', [Validators.required]],
+      fuel_economy: ['', [Validators.required]],
     });
 
     this._storekeeperService.getListOfVehicles().subscribe(
@@ -75,6 +71,56 @@ export class VehicleManagementComponent implements OnInit {
 
   }
   
+    // triggers the update confirmation modal
+    confirmUpdate(template: TemplateRef<any>) {
+      // this will trigger the modal
+      this.modalRef = this._modalService.show(template, {
+        class: 'modal-md modal-dialog-centered',
+      });
+  }
+
+
+   // triggers when Yer button cliked in confirmation modal
+   confirm(): void {
+    this._adminService
+      .updateVehicleDetails(this.AddVehicleForm.value, this.selectedVehicle._id)
+      .subscribe(
+        (response) => {
+          //change the vehicle details in the current list after successful update
+          const index = this.vehicles.indexOf(this.selectedVehicle);
+
+          this.selectedVehicle = __assign(
+            {},
+            this.selectedVehicle,
+            this.AddVehicleForm.value
+          );
+          this.vehicles[index] = this.selectedVehicle;
+          console.log(this.vehicles);
+          this.disableUpdateButton();
+          //display the success alert
+          this.vehicleUdpateMessage = response.message;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    this.modalRef.hide();
+  }
+  
+  
+  // triggers when No button cliked in confirmation modal
+  decline(): void {
+    // reset the data in update form if declined
+    this.updateFormReset();
+    this.modalRef.hide();
+  }
+
+    // Reset the form fields value to previous value
+    updateFormReset() {
+      this.setUpdateFormData(this.selectedVehicle);
+    }
+
+
     // populate the update form details, when a driver element clicked from list
     onVehicleSeletected(vehicle: VehicleDetails) {
       this.selectedVehicle = vehicle;
@@ -102,37 +148,20 @@ export class VehicleManagementComponent implements OnInit {
     return this.AddVehicleForm.get('vehicle_type');
   }
 
-  get Capacity() {
-    return this.AddVehicleForm.get('Capacity');
+  get capacity() {
+    return this.AddVehicleForm.get('capacity');
   }
-  get Load() {
-    return this.AddVehicleForm.get('Load');
+  get load() {
+    return this.AddVehicleForm.get('load');
   }
-  get Fueleconomy() {
-    return this.AddVehicleForm.get('Fueleconomy');
+  get fuel_economy() {
+    return this.AddVehicleForm.get('fuel_economy');
   }
   get license_plate() {
     return this.AddVehicleForm.get('license_plate');
   }
  
 
-  get NewLisencePlate() {
-    return this.NewVehicleForm.get('NewLisencePlate');
-  }
-
-  get NewVehicleType() {
-    return this.NewVehicleForm.get('NewVehicleType');
-  }
-
-  get NewCapacity() {
-    return this.NewVehicleForm.get('NewCapacity');
-  }
-  get NewLoad() {
-    return this.NewVehicleForm.get('NewLoad');
-  }
-  get NewFueleconomy() {
-    return this.NewVehicleForm.get('NewFueleconomy');
-  }
 
 
   onSearch() {
