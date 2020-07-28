@@ -5,5 +5,6 @@ export interface VehicleDetails {
   on_repair: Boolean;
   load: Number,
   fuel_economy: Number,
-  capacity: Number
+  capacity: Number,
+  _id: String
 }
