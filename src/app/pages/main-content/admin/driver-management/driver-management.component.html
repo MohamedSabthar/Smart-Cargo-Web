@@ -13,14 +13,15 @@
                 <input
                   type="text"
                   class="form-control"
-                  [(ngModel)] = "searchText"
+                  [(ngModel)]="searchText"
                   placeholder="Search driver by name"
                   (keyup)="onSearch()"
                 />
                 <div class="input-group-append">
                   <button
                     class="btn btn-outline-primary search-bar"
-                    type="button" (click)="onSearch()"
+                    type="button"
+                    (click)="onSearch()"
                   >
                     <i-feather class="mr-2" name="search"></i-feather>
                   </button>
@@ -37,18 +38,25 @@
               <ng-template #renderDriverList>
                 <ul class="list-unstyled">
                   <li
-                    *ngFor="let driver of driversFilter||drivers"
+                    *ngFor="let driver of driversFilter || drivers"
                     class="row driver-details align-items-center py-1"
                     (click)="onDriverSeletected(driver)"
                   >
                     <div class="col-1"><div class="circle"></div></div>
                     <div class="col-8 pl-4">
-                      <span class="d-block"><b>Driver Id : </b>{{driver._id}}</span>
-                      <span class="d-block"><b>Driver Name : </b>{{ driver.name.first }} {{ driver.name.middle }}
-                      {{ driver.name.last }}</span>
+                      <span class="d-block"
+                        ><b>Driver Id : </b>{{ driver._id }}</span
+                      >
+                      <span class="d-block"
+                        ><b>Driver Name : </b>{{ driver.name.first }}
+                        {{ driver.name.middle }} {{ driver.name.last }}</span
+                      >
                     </div>
                     <div class="col-3">
-                      <button class="btn" (click)="onDelete(driver)">
+                      <button
+                        class="btn float-right"
+                        (click)="confirmDelete(deleteModal)"
+                      >
                         <i-feather
                           name="trash-2"
                           class="text-danger"
@@ -355,7 +363,7 @@
                             <div class="row mt-5">
                               <div class="col-12">
                                 <button
-                                  (click)="confirmUpdate(areYouSure)"
+                                  (click)="confirmUpdate(updateModal)"
                                   [disabled]="
                                     !updateDriverForm.valid ||
                                     updateDriverForm.pristine
@@ -643,7 +651,7 @@
                           <div class="row mt-5">
                             <div class="col-12">
                               <button
-                                (click)="confirmUpdate(areYouSure)"
+                                (click)="confirmUpdate(updateModal)"
                                 [disabled]="!updateDriverForm.valid"
                                 class="btn btn-primary button ml-4 button"
                               >
@@ -668,8 +676,8 @@
 
               <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
-              <!-- confirmation modal (template variable called in comfirmUpdate(areYouSure) ) -->
-              <ng-template #areYouSure>
+              <!-- update-confirmation modal (template variable called in comfirmUpdate(areYouSure) ) -->
+              <ng-template #updateModal>
                 <div class="modal-body text-center">
                   <h4 class="mb-2 text-primary">Are you sure?</h4>
                   <p class="mb-3">
@@ -687,6 +695,41 @@
                       type="button"
                       class="mx-2 btn btn-default"
                       (click)="confirm()"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-primary"
+                      (click)="decline()"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+
+              <!-- end-of confiramation modal -->
+
+              <!-- delete-confirmation modal (template variable called in comfirmUpdate(areYouSure) ) -->
+              <ng-template #deleteModal>
+                <div class="modal-body text-center">
+                  <h4 class="mb-2 text-primary">Are you sure?</h4>
+                  <p class="mb-3">
+                    Now you are requesting to delete the record of<br />
+                    <b class="d-inline-block"
+                      >{{ selectedDriver.name.first }}
+                      {{ selectedDriver.name.middle }}
+                      {{ selectedDriver.name.last }}</b
+                    >
+                    <br />
+                    click Yes to proceed and No to cancel the process
+                  </p>
+                  <div class="text-center">
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-default"
+                      (click)="onDelete(selectedDriver)"
                     >
                       Yes
                     </button>
@@ -749,29 +792,44 @@
                 "
               ></div>
               <ng-template #renderHistory>
-                <table class="table table-hover">
+                <div
+                  *ngIf="
+                    driverScheduleHistory == null ||
+                    driverScheduleHistory.length == 0
+                  "
+                  class="row"
+                  style="min-height: 550px;"
+                >
+                  <div class="col-12 my-auto">
+                    <h5 class="text-primary text-center">
+                      No shudeles assigned to this driver yet
+                    </h5>
+                  </div>
+                </div>
+                <table
+                  *ngIf="
+                    driverScheduleHistory != null &&
+                    driverScheduleHistory.length > 0
+                  "
+                  class="table table-hover"
+                >
                   <thead>
                     <tr>
                       <th>Date and time</th>
-                      <th>schedule</th>
+                      <th>Vehicle Type</th>
+                      <th>Vehicle License No</th>
                       <th>No.of deliveries</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>2020/02/05 01.50pm</td>
-                      <td>5</td>
-                      <td>12</td>
-                    </tr>
-                    <tr>
-                      <td>2020/02/03 10.15am</td>
-                      <td>7</td>
-                      <td>7</td>
-                    </tr>
-                    <tr>
-                      <td>2020/02/01 05.30pm</td>
-                      <td>8</td>
-                      <td>5</td>
+                    <tr
+                      *ngFor="let schedule of driverScheduleHistory"
+                      (click)="onScheduleSelected(schedule)"
+                    >
+                      <td>{{ schedule.date | date: "short" }}</td>
+                      <td>{{ schedule.vehicle.vehicle_type.type }}</td>
+                      <td>{{ schedule.vehicle.license_plate }}</td>
+                      <td>{{ schedule.orders.length }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -792,60 +850,70 @@
         <!-- order details -->
         <div class="col-lg-5 col-12 mt-sm-3 mt-lg-0">
           <div class="card">
-            <div class="card-body">
-              <h4 class="card-title dtext">xxx Deliveries on</h4>
-              <br />
-              <div class="d-flex justify-content-center">
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search"
-                    name="search"
-                    width="10px"
-                  />
-                  <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit">
-                      <i-feather class="mr-2" name="search"></i-feather>
-                    </button>
+            <div
+              *ngIf="
+                selectedSchedule != null;
+                then renderScheduleData;
+                else selectSchdhule
+              "
+            ></div>
+            <ng-template #renderScheduleData>
+              <div class="card-body">
+                <h4 class="card-title dtext">
+                  Deliveries on {{ selectedSchedule.date | date: "short" }}
+                </h4>
+                <br />
+                <div class="d-flex justify-content-center">
+                  <div class="input-group mt-2">
+                    <div class="input-group mb-1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search order by id"
+                      />
+                      <div class="input-group-append">
+                        <button
+                          class="btn btn-outline-primary search-bar"
+                          type="button"
+                        >
+                          <i-feather class="mr-2" name="search"></i-feather>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <br />
+                <br />
 
-              <!-- <div class="row"> -->
-              <div class="d-flex flex-row">
-                <div class="mr-auto p-0">
-                  <div class="d-flex flex-column-reverse">
-                    <div class="col-9">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Special title 1</h5>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-3"></div>
-                    <br />
-                    <div class="col-sm-9">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Special title 2</h5>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
-                      </div>
+                <div class="row" style="min-height: 520px;">
+                  <div
+                    class="col-12 mx-2"
+                    *ngFor="let order of selectedSchedule.orders"
+                  >
+                    <div class="card order p-2">
+                      <ul class="list-unstyled">
+                        <li><b>Order Id :</b> {{ order._id }}</li>
+                        <li><b>Customer mail:</b> {{ order.email }}</li>
+                        <li><b>Customer phone:</b> {{ order.phone }}</li>
+                        <li class="pt-1 float-right">
+                          <button class="btn btn-outline-primary">
+                            View All details
+                          </button>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- </div> -->
-            </div>
+            </ng-template>
+            <ng-template #selectSchdhule>
+              <div class="row" style="min-height: 670px;">
+                <div class="col-12 my-auto">
+                  <h5 class="text-primary text-center">
+                    Select a schedule from the Delivery Histroy table
+                  </h5>
+                </div>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
