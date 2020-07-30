@@ -20,22 +20,24 @@ export class StoreKeeperService {
       })
     );
   }
-  getListOfVehicles():Observable<Vehicles> {
+  getListOfVehicles(): Observable<Vehicles> {
     return this._httpClient.get<Vehicles>(API.getListOfVehicles()).pipe(
-      catchError((error) => {        
+      catchError((error) => {
         return throwError(error);
-        })
-        );
-      }
+      })
+    );
+  }
 
-      getListOfVehiclesTypes():Observable<Vehicletypes> {
-        console.log("api called");
-        return this._httpClient.get<Vehicletypes>(API.getListOfVehiclesTypes()).pipe(
-          catchError((error) => {
-            return throwError(error);
-          })
-          );
-          }
-     
-  
+  getListOfVehiclesTypes(): Observable<Vehicletypes> {
+    console.log('api called');
+    return this._httpClient
+      .get<Vehicletypes>(API.getListOfVehiclesTypes())
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
+
 }
