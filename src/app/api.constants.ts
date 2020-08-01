@@ -1,7 +1,7 @@
 export class API {
   public static base: string =
-  'https://smart-cargo.herokuapp.com';
-  //  "http://localhost:3000";
+  //'https://smart-cargo.herokuapp.com';
+    "http://localhost:3000";
 
 
   public static login() {
@@ -31,4 +31,34 @@ export class API {
   public static deleteDriver(driverId){
     return `${API.base}/admin//delete-driver/${driverId}`
   }
+  public static getListOfVehicles(){
+    return `${API.base}/storekeeper/vehicles`;
+  }
+
+  public static updateVehicleDetails(vehicleId){
+    return `${API.base}/admin//update-vehicle/${vehicleId}`
+  }
+
+  public static deleteVehicle(vehicleId){
+    return `${API.base}/admin//delete-vehicle/${vehicleId}`
+  }
+
+  public static getListOfVehiclesTypes(){
+    return `${API.base}/storekeeper/vehicle-types`;
+  }
+
+  public static updateVehicleDetailsType(vehicleTypeId){
+    return `${API.base}/admin//update-vehicle-type/${vehicleTypeId}`
+  }
+
+  public static deleteVehicleType(vehicleTypeId){
+    return `${API.base}/admin//delete-vehicle-type/${vehicleTypeId}`
+  }
+
+  public static getDriverSchedlueHistory(driverId){
+    return `${API.base}/admin/driver-schedules/${driverId}`
+  }
+
+
+
 }
