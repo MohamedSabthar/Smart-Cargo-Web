@@ -1,3 +1,4 @@
+import { ViewOrderDetailsComponent } from './components/view-order-details/view-order-details.component';
 import { IconsModule } from './icon.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
@@ -12,7 +13,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,9 +55,6 @@ export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,6 +86,7 @@ export function tokenGetter() {
     ScheduleOrderAssignDriverComponent,
     ScheduleOrderAssignVehicleComponent,
     ScheduleOrderOrderListComponent,
+    ViewOrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -117,9 +115,6 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    AddOrderFormComponent,
-    AddOrderDetailsComponent
-  ],
+  entryComponents: [AddOrderFormComponent, AddOrderDetailsComponent],
 })
 export class AppModule {}

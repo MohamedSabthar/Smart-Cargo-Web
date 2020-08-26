@@ -30,6 +30,15 @@ export class AdminService {
     );
   }
 
+  //get bulk orders
+  getbulkOrder(statusId): Observable<any>{
+    return this._httpClient.get<any>(API.getbulkOrder(statusId)).pipe(
+      catchError((error)=>{
+        return throwError(error);
+      })
+    );
+  }
+
   updateVehicleDetails(vehicleDetails, vehicleId): Observable<any> {
     return this._httpClient
       .put<any>(API.updateVehicleDetails(vehicleId), vehicleDetails)
