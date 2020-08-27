@@ -88,11 +88,8 @@ export function tokenGetter() {
     ScheduleOrderAssignDriverComponent,
     ScheduleOrderAssignVehicleComponent,
     ScheduleOrderOrderListComponent,
-<<<<<<< HEAD
     DataTableComponent,
-=======
     ViewOrderDetailsComponent
->>>>>>> dd6e785b93f5c82347203aa2a7c30d035fde234f
   ],
   imports: [
     BrowserModule,
