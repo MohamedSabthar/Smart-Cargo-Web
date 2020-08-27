@@ -1,3 +1,4 @@
+import { ViewOrderDetailsComponent } from './components/view-order-details/view-order-details.component';
 import { IconsModule } from './icon.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
@@ -13,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTableModule } from 'ornamentum';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,9 +57,6 @@ export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +88,11 @@ export function tokenGetter() {
     ScheduleOrderAssignDriverComponent,
     ScheduleOrderAssignVehicleComponent,
     ScheduleOrderOrderListComponent,
+<<<<<<< HEAD
     DataTableComponent,
+=======
+    ViewOrderDetailsComponent
+>>>>>>> dd6e785b93f5c82347203aa2a7c30d035fde234f
   ],
   imports: [
     BrowserModule,
@@ -121,9 +122,6 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    AddOrderFormComponent,
-    AddOrderDetailsComponent
-  ],
+  entryComponents: [AddOrderFormComponent, AddOrderDetailsComponent],
 })
 export class AppModule {}

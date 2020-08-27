@@ -1,3 +1,5 @@
+import { ViewOrderDetailsComponent } from './../../../../components/view-order-details/view-order-details.component';
+import { Orders } from './../../../../models/orderDetails';
 import { ScheduleDetails } from './../../../../models/scheduleDetails';
 import { AdminService } from './../../../../services/admin.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -6,6 +8,7 @@ import { StoreKeeperService } from './../../../../services/store-keeper.service'
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { __assign } from 'tslib';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-driver-management',
@@ -17,7 +20,8 @@ export class DriverManagementComponent implements OnInit {
     private _storekeeperService: StoreKeeperService,
     private _adminService: AdminService,
     private _fb: FormBuilder,
-    private _modalService: BsModalService
+    private _modalService: BsModalService,
+    private _modalComponentService:NgbModal
   ) {}
 
   modalRef: BsModalRef;
@@ -224,5 +228,14 @@ export class DriverManagementComponent implements OnInit {
 
   clearDeliveies() {
     this.selectedSchedule = null;
+  }
+
+
+  viewOrderDetails(order:Orders){
+
+    const modalRef = this._modalComponentService.open(ViewOrderDetailsComponent,{ size: 'xl' });
+    modalRef.componentInstance.order = order;
+
+
   }
 }

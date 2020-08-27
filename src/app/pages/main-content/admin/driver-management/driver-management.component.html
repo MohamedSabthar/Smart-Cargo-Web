@@ -895,7 +895,10 @@
                         <li><b>Customer mail:</b> {{ order.email }}</li>
                         <li><b>Customer phone:</b> {{ order.phone }}</li>
                         <li class="pt-1 float-right">
-                          <button class="btn btn-outline-primary">
+                          <button
+                            class="btn btn-outline-primary"
+                            (click)="viewOrderDetails(order)"
+                          >
                             View All details
                           </button>
                         </li>
