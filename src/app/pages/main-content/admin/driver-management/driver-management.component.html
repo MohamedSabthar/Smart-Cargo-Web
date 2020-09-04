@@ -884,12 +884,13 @@
                 </div>
                 <br />
 
-                <div class="row" style="min-height: 520px;">
-                  <div
-                    class="col-12 mx-2"
+                <div  style="min-height: 520px;overscroll-behavior-x: scroll;">
+                  <div class="row">
+                    <div
+                    class="col-12 mt-2"
                     *ngFor="let order of selectedSchedule.orders"
                   >
-                    <div class="card order p-2">
+                    <div class="card order p-2 ">
                       <ul class="list-unstyled">
                         <li><b>Order Id :</b> {{ order._id }}</li>
                         <li><b>Customer mail:</b> {{ order.email }}</li>
@@ -905,6 +906,8 @@
                       </ul>
                     </div>
                   </div>
+                  </div>
+
                 </div>
               </div>
             </ng-template>

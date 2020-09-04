@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td>Location</td>
-            <td></td>
+            <td>{{order.location | json}}</td>
           </tr>
         </table>
       </div>
@@ -72,12 +72,8 @@
 
 
     </div>
-    <div call="col-12 col-md-6">
-    <!--Google map-->
+    <div call="col-12 col-md-6" id="map" style="height: 800px;width: 500px;">
 
-      <iframe [src]='getLocationOnMap()' frameborder="0" height="800" width="500" allowfullscreen></iframe>
-
-  <!--Google Maps-->
     </div>
   </div>
 <div class="modal-footer"></div>
