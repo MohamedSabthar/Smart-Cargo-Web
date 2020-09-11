@@ -51,6 +51,8 @@ import { ScheduleOrderAssignDriverComponent } from './components/schedule-order-
 import { ScheduleOrderAssignVehicleComponent } from './components/schedule-order-assign-vehicle/schedule-order-assign-vehicle.component';
 import { ScheduleOrderOrderListComponent } from './components/schedule-order-order-list/schedule-order-order-list.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { DeliveryHistoryTableComponent } from './components/delivery-history-table/delivery-history-table.component';
+import { DeliveryHistoryExpandedComponent } from './components/delivery-history-expanded/delivery-history-expanded.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -89,7 +91,9 @@ export function tokenGetter() {
     ScheduleOrderAssignVehicleComponent,
     ScheduleOrderOrderListComponent,
     DataTableComponent,
-    ViewOrderDetailsComponent
+    ViewOrderDetailsComponent,
+    DeliveryHistoryTableComponent,
+    DeliveryHistoryExpandedComponent
   ],
   imports: [
     BrowserModule,

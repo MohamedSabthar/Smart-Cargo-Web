@@ -1,0 +1,65 @@
+<ng-data-table
+    [id]="'history-table'"
+    [title]="''"
+    [items]="history"
+    [minContentHeight]="500"
+    [minContentWidth]="700"
+    [showHeader]="true"
+    [pageable]="true"
+    [showRefreshButton]="true"
+    [showRowSelectCheckbox]="true"
+    [rowSelectable]="false"
+    [selectOnRowClick]="true"
+    [showSubstituteRows]="true"
+    [persistTableState]="true"
+    [showColumnSelector]="true"
+    [expandableRows]="true"
+    [showLoadingSpinner]="true"
+    [selectMode]="'multi'"
+    [showRowSelectAllCheckbox]="true">
+  <ng-data-table-column
+  [field]="'date'"
+  [title]="'Date and time'"
+  [showInColumnSelector]="false"
+  [sortable]="true"
+  [filterable]="true"
+  [filterPlaceholder]="'Search'"
+  [width]="200">
+  <ng-template #ngDataTableRowExpand let-row="row">
+    <app-delivery-history-expanded *ngIf="row.expanded || row.dataLoaded"
+                                       [row]="row"></app-delivery-history-expanded>
+                                       <!-- show sub-table on expand operation -->
+  </ng-template>
+</ng-data-table-column>
+
+    <ng-data-table-column
+      [field]="'vehicle.vehicle_type.type'"
+      [title]="'Vehicle Type'"
+      [filterable]="true"
+      [showDropdownFilter]="true"
+      [dropdownFilterShowClearSelectionButton]="true"
+      [dropdownFilterSearchable]="true"
+      [dropDownFilterShowOptionSelectCheckbox]="true"
+      [filterPlaceholder]="'Search'"
+      [width]="200">
+    </ng-data-table-column>
+    <ng-data-table-column
+      [field]="'vehicle.license_plate'"
+      [title]="'Vehicle License No'"
+      [filterable]="true"
+      [showDropdownFilter]="true"
+      [dropdownFilterShowClearSelectionButton]="true"
+      [dropdownFilterSearchable]="true"
+      [dropDownFilterShowOptionSelectCheckbox]="true"
+      [filterPlaceholder]="'Search'"
+      [width]="200">
+    </ng-data-table-column>
+    <ng-data-table-column
+      [field]="'orders.length'"
+      [title]="'No.of deliveries'"
+      [width]="200"
+    >
+    </ng-data-table-column>
+
+
+  </ng-data-table>
