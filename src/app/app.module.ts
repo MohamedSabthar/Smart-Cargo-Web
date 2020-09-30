@@ -1,3 +1,4 @@
+import { ViewOrderDetailsComponent } from './components/view-order-details/view-order-details.component';
 import { IconsModule } from './icon.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
@@ -12,7 +13,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { DataTableModule } from 'ornamentum';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,14 +50,14 @@ import { TrackVehileDetailsComponent } from './components/track-vehile-details/t
 import { ScheduleOrderAssignDriverComponent } from './components/schedule-order-assign-driver/schedule-order-assign-driver.component';
 import { ScheduleOrderAssignVehicleComponent } from './components/schedule-order-assign-vehicle/schedule-order-assign-vehicle.component';
 import { ScheduleOrderOrderListComponent } from './components/schedule-order-order-list/schedule-order-order-list.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { DeliveryHistoryTableComponent } from './components/delivery-history-table/delivery-history-table.component';
+import { DeliveryHistoryExpandedComponent } from './components/delivery-history-expanded/delivery-history-expanded.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
-
-
-
 
 @NgModule({
   declarations: [
@@ -89,6 +90,10 @@ export function tokenGetter() {
     ScheduleOrderAssignDriverComponent,
     ScheduleOrderAssignVehicleComponent,
     ScheduleOrderOrderListComponent,
+    DataTableComponent,
+    ViewOrderDetailsComponent,
+    DeliveryHistoryTableComponent,
+    DeliveryHistoryExpandedComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +105,7 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     IconsModule,
+    DataTableModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -117,9 +123,6 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    AddOrderFormComponent,
-    AddOrderDetailsComponent
-  ],
+  entryComponents: [AddOrderFormComponent, AddOrderDetailsComponent],
 })
 export class AppModule {}

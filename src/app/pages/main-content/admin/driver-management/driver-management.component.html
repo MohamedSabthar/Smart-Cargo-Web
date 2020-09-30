@@ -752,13 +752,14 @@
 
       <div class="row mt-3">
         <!-- driver's driving history -->
-        <div class="col-lg-7 col-12">
+        <!-- <div class="col-lg-7 col-12"> -->
+        <div class="col-12">
           <div class="card" style="min-height: 670px;">
             <div class="card-body">
               <div class="row">
-                <div class="col-7">
+                <div class="col-12">
                   <h4 class="card-title dtext">
-                    <span *ngIf="selectedDriver"
+                    <span  *ngIf="selectedDriver"
                       >{{ selectedDriver.name.first }}
                       {{ selectedDriver.name?.middle }}
                       {{ selectedDriver.name.last }}</span
@@ -766,7 +767,7 @@
                     Delivery history
                   </h4>
                 </div>
-                <div class="col-5">
+                <!-- <div class="col-5">
                   <div class="input-group mb-4">
                     <input
                       type="text"
@@ -782,7 +783,7 @@
                       </button>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div
                 *ngIf="
@@ -798,7 +799,7 @@
                     driverScheduleHistory.length == 0
                   "
                   class="row"
-                  style="min-height: 550px;"
+
                 >
                   <div class="col-12 my-auto">
                     <h5 class="text-primary text-center">
@@ -806,7 +807,7 @@
                     </h5>
                   </div>
                 </div>
-                <table
+                <!-- <table
                   *ngIf="
                     driverScheduleHistory != null &&
                     driverScheduleHistory.length > 0
@@ -832,7 +833,10 @@
                       <td>{{ schedule.orders.length }}</td>
                     </tr>
                   </tbody>
-                </table>
+                </table> -->
+              <div class="mt-3">
+                <app-delivery-history-table [history]="driverScheduleHistory"></app-delivery-history-table>
+              </div>
               </ng-template>
               <ng-template #selectADriver>
                 <div class="row" style="min-height: 550px;">
@@ -848,7 +852,7 @@
         </div>
         <!-- end-of driver's driving history -->
         <!-- order details -->
-        <div class="col-lg-5 col-12 mt-sm-3 mt-lg-0">
+        <!-- <div class="col-lg-5 col-12 mt-sm-3 mt-lg-0">
           <div class="card">
             <div
               *ngIf="
@@ -884,24 +888,30 @@
                 </div>
                 <br />
 
-                <div class="row" style="min-height: 520px;">
-                  <div
-                    class="col-12 mx-2"
+                <div  style="min-height: 520px;overscroll-behavior-x: scroll;">
+                  <div class="row">
+                    <div
+                    class="col-12 mt-2"
                     *ngFor="let order of selectedSchedule.orders"
                   >
-                    <div class="card order p-2">
+                    <div class="card order p-2 ">
                       <ul class="list-unstyled">
                         <li><b>Order Id :</b> {{ order._id }}</li>
                         <li><b>Customer mail:</b> {{ order.email }}</li>
                         <li><b>Customer phone:</b> {{ order.phone }}</li>
                         <li class="pt-1 float-right">
-                          <button class="btn btn-outline-primary">
+                          <button
+                            class="btn btn-outline-primary"
+                            (click)="viewOrderDetails(order)"
+                          >
                             View All details
                           </button>
                         </li>
                       </ul>
                     </div>
                   </div>
+                  </div>
+
                 </div>
               </div>
             </ng-template>
@@ -915,7 +925,7 @@
               </div>
             </ng-template>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -22,3 +22,11 @@ label {
   border: solid 1px;
   border-color: var(--primary);
 }
+
+.ng-data-table-top-header-container{
+  background-color: var(--primary) !important;
+}
+
+.ng-dropdown-search .ng-dropdown-input-group .ng-dropdown-input-group-addon {
+  background-color: var(--primary) !important;
+}
