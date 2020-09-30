@@ -20,6 +20,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
 import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-management/vehicle-management.component';
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 
@@ -56,6 +57,7 @@ const routes: Routes = [
     ],
   },
   {path:'reset-password/:token',component:RestPasswordPageComponent},
+  {path:'settings',canActivate:[GaurdService],component:ProfileComponent},
   { path: '**', component: NotFoundPageComponent }
 ];
 
