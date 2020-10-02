@@ -27,7 +27,8 @@
         [routerLink]="['/admin/store-keeper-management']"
         [routerLinkActive]="'active'"
       >
-        <i-feather class="mr-2" name="package"></i-feather> Store-keeper Managment
+        <i-feather class="mr-2" name="package"></i-feather> Store-keeper
+        Managment
       </a>
     </li>
     <li class="nav-item">
@@ -54,22 +55,32 @@
 
   <ul class="nav flex-column mb-2">
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a
+        class="nav-link"
+        [routerLink]="['/schedule-orders']"
+        [routerLinkActive]="'active'"
+      >
         <i-feather class="mr-2" name="clock"></i-feather> Schedule Orders
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link"
-      [routerLink]="['/admin/add-order-dimention']"
-        [routerLinkActive]="'active'">
-        <i-feather class="mr-2" name="plus-square"></i-feather> Add Order Dimensions
+      <a
+        class="nav-link"
+        [routerLink]="['/admin/add-order-dimention']"
+        [routerLinkActive]="'active'"
+      >
+        <i-feather class="mr-2" name="plus-square"></i-feather> Add Order
+        Dimensions
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link"
-      [routerLink]="['/admin/track-vehicle']"
-      [routerLinkActive]="'active'">
-        <i-feather class="mr-2" name="navigation"></i-feather> Track Delivery Vehicles
+      <a
+        class="nav-link"
+        [routerLink]="['/admin/track-vehicle']"
+        [routerLinkActive]="'active'"
+      >
+        <i-feather class="mr-2" name="navigation"></i-feather> Track Delivery
+        Vehicles
       </a>
     </li>
   </ul>

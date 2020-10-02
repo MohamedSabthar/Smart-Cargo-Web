@@ -39,10 +39,10 @@ const routes: Routes = [
       { path: 'vehicle-management', component:  VehicleManagementComponent },
       { path: 'depot-management', component: DepotManagementComponent },
       { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
-      { path: 'schedule-orders', component: ScheduleOrdersComponent },
+
       { path: 'track-vehicle', component:TrackOrderComponent},
-      
-      
+
+
       { path: 'add-order-dimention', component:AddOrderDimentionComponent}
     ],
   },
@@ -55,6 +55,7 @@ const routes: Routes = [
       { path: 'dashboard', component: StoreKeeperDashboardComponent },
     ],
   },
+  { path: 'schedule-orders', component: ScheduleOrdersComponent },
   {path:'reset-password/:token',component:RestPasswordPageComponent},
   { path: '**', component: NotFoundPageComponent }
 ];

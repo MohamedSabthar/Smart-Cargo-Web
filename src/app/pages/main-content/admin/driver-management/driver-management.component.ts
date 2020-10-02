@@ -129,7 +129,7 @@ export class DriverManagementComponent implements OnInit {
     });
   }
 
-  // triggers the update confirmation modal
+  // triggers the delete confirmation modal
   confirmDelete(template: TemplateRef<any>) {
     // this will trigger the modal
     this.modalRef = this._modalService.show(template, {
