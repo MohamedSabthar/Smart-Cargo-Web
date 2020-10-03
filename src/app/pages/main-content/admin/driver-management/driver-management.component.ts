@@ -1,3 +1,6 @@
+import { ViewOrderDetailsComponent } from './../../../../components/view-order-details/view-order-details.component';
+import { Orders } from './../../../../models/orderDetails';
+import { ScheduleDetails } from './../../../../models/scheduleDetails';
 import { AdminService } from './../../../../services/admin.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DriverDetails } from './../../../../models/driverDetails';
@@ -5,6 +8,7 @@ import { StoreKeeperService } from './../../../../services/store-keeper.service'
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { __assign } from 'tslib';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-driver-management',
@@ -16,7 +20,8 @@ export class DriverManagementComponent implements OnInit {
     private _storekeeperService: StoreKeeperService,
     private _adminService: AdminService,
     private _fb: FormBuilder,
-    private _modalService: BsModalService
+    private _modalService: BsModalService,
+    private _modalComponentService:NgbModal
   ) {}
 
   modalRef: BsModalRef;
@@ -25,6 +30,8 @@ export class DriverManagementComponent implements OnInit {
   selectedDriver: DriverDetails;
   driverUdpateMessage: string;
   searchText: string;
+  driverScheduleHistory: ScheduleDetails[];
+  selectedSchedule: ScheduleDetails;
 
   updateDriverForm = this._fb.group({
     name: this._fb.group({
@@ -105,6 +112,8 @@ export class DriverManagementComponent implements OnInit {
     this.selectedDriver = driver;
     this.setUpdateFormData(driver);
     this.disableUpdateButton();
+    this.clearDeliveies();
+    this.fetchDriverScheduleHistory(driver);
   }
 
   // Reset the form fields value to previous value
@@ -120,6 +129,14 @@ export class DriverManagementComponent implements OnInit {
     });
   }
 
+  // triggers the update confirmation modal
+  confirmDelete(template: TemplateRef<any>) {
+    // this will trigger the modal
+    this.modalRef = this._modalService.show(template, {
+      class: 'modal-md modal-dialog-centered',
+    });
+  }
+
   //populate the form feilds with givern details
   setUpdateFormData(driver: DriverDetails) {
     this.updateDriverForm.patchValue({ ...driver, role: 'driver' });
@@ -127,6 +144,7 @@ export class DriverManagementComponent implements OnInit {
 
   // triggers when Yer button cliked in confirmation modal
   confirm(): void {
+    console.log(this.updateDriverForm.value);
     this._adminService
       .updateDriverDetails(this.updateDriverForm.value, this.selectedDriver._id)
       .subscribe(
@@ -259,6 +277,7 @@ export class DriverManagementComponent implements OnInit {
         console.log(error);
       }
     );
+    this.modalRef.hide();
   }
 
   onSearch() {
@@ -267,5 +286,35 @@ export class DriverManagementComponent implements OnInit {
       let name: string = `${driver.name.first} ${driver.name.middle} ${driver.name.last}`;
       return name.search(this.searchText.toLowerCase()) != -1;
     });
+  }
+
+  fetchDriverScheduleHistory(driver: DriverDetails) {
+    this._adminService
+      .getDriverSheduleHistory(driver._id)
+      .subscribe((response) => {
+        this.driverScheduleHistory = response.schedules;
+        console.log(this.driverScheduleHistory);
+      }),
+      (error) => {
+        console.log(error);
+      };
+  }
+
+  onScheduleSelected(schedule) {
+    this.selectedSchedule = schedule;
+    console.log(this.selectedSchedule);
+  }
+
+  clearDeliveies() {
+    this.selectedSchedule = null;
+  }
+
+
+  viewOrderDetails(order:Orders){
+
+    const modalRef = this._modalComponentService.open(ViewOrderDetailsComponent,{ size: 'xl' });
+    modalRef.componentInstance.order = order;
+
+
   }
 }

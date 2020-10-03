@@ -38,3 +38,12 @@
     border-radius: 0.25rem;
   }
 
+.order{
+  box-shadow: none;
+  border-style: solid 1px;
+}
+
+.order:hover{
+  border-color:var(--primary-lite);
+  width: inherit;
+}

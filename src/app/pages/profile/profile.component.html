@@ -1,1 +1,122 @@
-<p>profile works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <app-side-bar></app-side-bar>
+        <div class="col main-content">
+            <!--Edit Profile -->
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                <div class="card" style="width: 45rem">
+                    <div class="card-body">
+                        <h4 class="text-primary  mt-3">
+                            Edit Profile  
+                        </h4>
+                        <form>
+                            <div class="row">
+                                <div class="col-8">
+                                  <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="ad_firstname" placeholder="First name">
+                                            <input type="text" class="form-control mt-1" id="ad_middlename" placeholder="Middle name">
+                                            <input type="text" class="form-control mt-1" id="ad_lastname" placeholder="Last name">
+                                  </div>
+                                  <div class="form-group">
+            
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" id="ad_Door" placeholder="Door number">
+                                    <input type="text" class="form-control mt-1" id="ad_street" placeholder="Street">
+                                    <input type="text" class="form-control mt-1" id="ad_city" placeholder="City">
+            
+                                  </div>
+                                  <div class="form-group">
+            
+                                  <label for="contact">Contact</label>
+                                  <input type="email" class="form-control " id="ad_email" placeholder="email">
+                                  <input type="text" class="form-control mt-1" id="ad_phone" placeholder="Mobile">
+            
+                                  </div>
+                                </div>
+                                <div class="col-4 justify-content-between d-flex flex-column">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="profile-circle"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-12">
+                                            <button class="btn btn-primary button ml-4 button">
+                                                 Save
+                                            </button>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <button class="btn btn-primary button ml-4 button">
+                                                 Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            
+            
+            
+            </div>
+            <!-- end-of profile edit -->
+
+            <!--Reset password-->
+            <div class="container mt-5">
+                <div class="row d-flex justify-content-center">
+                <div class="card" style="width: 45rem">
+                    <div class="card-body">
+                        <h4 class="text-primary  mt-2">
+                           Reset password 
+                        </h4>
+                        <form>
+                            <div class="row">
+                                <div class="col-8">
+                                  <div class="form-group">
+                                            <label for="password">Current password</label>
+                                            <input type="text" class="form-control" id="C_Password" placeholder="Current password">
+                                            
+                                  </div>
+                                  <div class="form-group" [class.has-error]="password.touched && password.invalid">
+            
+                                    <label for="password">New Password</label>
+                                    <input name="new_password" type="text" class="form-control" id="N_Password" placeholder="New password">
+                                    
+            
+                                  </div>
+                                  <div class="form-group">
+            
+                                  <label for="password">Confirm password</label>
+                                  <input type="text" class="form-control" id="Confirm_Password" placeholder="Confirm password">
+                                  
+            
+                                  </div>
+                                </div>
+                                <div class="col-4 justify-content-between d-flex flex-column mt-5 ">
+                                    
+                                    <div class="row mt-5">
+                                        <div class="col-12">
+                                            <button class="btn btn-primary button ml-4 mt-5 button">
+                                                 Reset
+                                            </button>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <button class="btn btn-primary button ml-4 button">
+                                                 Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
