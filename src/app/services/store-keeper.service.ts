@@ -6,6 +6,8 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 import { API } from '../api.constants';
 import { Vehicles } from '../models/vehicle.response';
 import { Vehicletypes } from '../models/vehicletype.response';
+import { StorekeeperDetails } from './../models/storekeeperDetails';
+import { Storekeepers } from '../models/storekeeper.response';
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +41,20 @@ export class StoreKeeperService {
       );
   }
 
+  getProfile(userId):Observable<{result:StorekeeperDetails}> {
+    return this._httpClient.get<{result:StorekeeperDetails}>(API.getProfile(userId)).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  updateProfile(userId):Observable<StorekeeperDetails> {
+    return this._httpClient.get<StorekeeperDetails>(API.updateProfile(userId)).pipe(
+      catchError((error) => {
+        return throwError(error)
+      })
+    )
+  }
 
 }

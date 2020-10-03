@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { StoreKeeperService } from './../../services/store-keeper.service';
+import { StorekeeperDetails } from './../../models/storekeeperDetails';
+
 
 @Component({
   selector: 'app-profile',
@@ -14,10 +17,12 @@ export class ProfileComponent implements OnInit {
   constructor(
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
+    private _storekeeperService: StoreKeeperService,
     private _authService: AuthService,
     private _fb: FormBuilder
   ) { }
-  
+  user:StorekeeperDetails;
+  userId : '5f077cd6a258a770d472158d';
   token: String; //variable to store email validtity token from URL
   displayAlert: boolean = false; //token to render password reset message
   validResponseMessage: string;
@@ -33,6 +38,13 @@ export class ProfileComponent implements OnInit {
   );
 
   ngOnInit(): void {
+
+    this._storekeeperService.getProfile('5f077cd6a258a770d472158d').subscribe((response:{result:StorekeeperDetails})=>{
+      this.user=response.result;
+      console.log(this.user);
+    },(error)=>{console.log(error)})
+  
+
     //get the token from URL
     this.token = this._activatedRoute.snapshot.paramMap.get('token');
     console.log(this.token);
@@ -66,7 +78,9 @@ export class ProfileComponent implements OnInit {
 
         }
       );
-  }
+
+
+      }
 
   closeAlert() {
     this.displayAlert = false;
