@@ -1,3 +1,48 @@
-<h4>Value Change</h4>
-    <ui-switch (valueChange)="onValueChange($event)"></ui-switch>
-    <p>value {{valueChange}}</p>
+<div class="row">
+    <div class="col-12">
+      <div class="card mt-5">
+          <div class="container" style="color: black;">
+              <br>
+            <h4>Select the Urgency Levels for Separating Orders to Vehicles</h4><br><hr>
+            <div class="row">
+                <div class="col">
+                    <ui-switch
+                    color="#FF6961"
+                    checkedTextColor="white"
+                    (valueChange)="onValueChange($event)"
+                    checkedLabel="Selected urgency level-High"
+                    uncheckedLabel="Urgency level-High"
+                    ></ui-switch>
+                    <p>value {{valueChange}}</p>
+                </div>
+                <div class="col">
+                    <ui-switch
+                    color="#FFD700"
+                    
+                    (valueChange)="onValueChange($event)"
+                    checkedLabel="Selected urgency level-Medium"
+                    uncheckedLabel="Urgency level-Medium"
+                    ></ui-switch>
+                    <p>value {{valueChange}}</p>
+                </div>
+                <div class="col">
+                    <ui-switch
+                    color="#50C878"
+                    checkedTextColor="white"
+                    (valueChange)="onValueChange($event)"
+                    checkedLabel="Selected urgency level-Low"
+                    uncheckedLabel="Urgency level-Low"
+                    ></ui-switch>
+                    <p>value {{valueChange}}</p>
+                </div>
+            </div>
+          </div>  
+          <hr>
+          
+          <app-view-route></app-view-route>
+      </div>
+    </div>
+</div>
+
+
+
