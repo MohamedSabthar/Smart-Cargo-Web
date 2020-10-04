@@ -41,17 +41,26 @@ export class ViewRouteComponent implements OnInit {
         zoom: 5
       })
     });
+var marker = new ol.Feature({
+  geometry: new ol.geom.Point(
+    ol.proj.fromLonLat([this.longitude,this.latitude])
+  ),
+  color: 'red',
+});
+
+marker.setStyle(new ol.style.Style({
+  image: new ol.style.Icon(({
+      color: '#ff6961',
+      crossOrigin: 'anonymous',
+      src: 'assets/img/dot.png'
+  }))
+}));
 
     //add marker
     var layer = new ol.layer.Vector({
       source: new ol.source.Vector({
         features: [
-          new ol.Feature({
-            geometry: new ol.geom.Point(
-              ol.proj.fromLonLat([this.longitude,this.latitude])
-            ),
-            color: 'red',
-          }),
+          marker
         ],
       }),
     });
