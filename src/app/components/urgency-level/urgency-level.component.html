@@ -9,7 +9,7 @@
                     <ui-switch
                     color="#FF6961"
                     checkedTextColor="white"
-                    (valueChange)="onValueChange($event)"
+                    (valueChange)="onValueChange($event,'high')"
                     checkedLabel="Selected urgency level-High"
                     uncheckedLabel="Urgency level-High"
                     ></ui-switch>
@@ -19,7 +19,7 @@
                     <ui-switch
                     color="#FFD700"
                     
-                    (valueChange)="onValueChange($event)"
+                    (valueChange)="onValueChange($event,'meduim')"
                     checkedLabel="Selected urgency level-Medium"
                     uncheckedLabel="Urgency level-Medium"
                     ></ui-switch>
@@ -29,7 +29,7 @@
                     <ui-switch
                     color="#50C878"
                     checkedTextColor="white"
-                    (valueChange)="onValueChange($event)"
+                    (valueChange)="onValueChange($event,'low')"
                     checkedLabel="Selected urgency level-Low"
                     uncheckedLabel="Urgency level-Low"
                     ></ui-switch>

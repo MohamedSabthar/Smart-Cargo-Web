@@ -13,6 +13,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 import { DataTableModule } from 'ornamentum';
 import { UiSwitchModule } from 'ngx-ui-switch';
 
@@ -41,6 +42,7 @@ import { DepotManagementComponent } from './pages/main-content/admin/depot-manag
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
+import { OrdersChartComponent } from './components/orders-chart/orders-chart.component';
 import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order-dimention/add-order-dimention.component';
 import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
 import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
@@ -55,6 +57,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { DeliveryHistoryTableComponent } from './components/delivery-history-table/delivery-history-table.component';
 import { DeliveryHistoryExpandedComponent } from './components/delivery-history-expanded/delivery-history-expanded.component';
 import { UrgencyLevelComponent } from './components/urgency-level/urgency-level.component';
+import { ScheduledOrdersTableComponent } from './components/scheduled-orders-table/scheduled-orders-table.component';
 import { ViewRouteComponent } from './components/view-route/view-route.component';
 
 //function to get jwt-token from the localstorage
@@ -84,6 +87,7 @@ export function tokenGetter() {
     TimeLineComponent,
     ForbiddenPageComponent,
     RestPasswordPageComponent,
+    OrdersChartComponent,
     AddOrderDimentionComponent,
     AddOrderFormComponent,
     AddOrderDetailsComponent,
@@ -98,7 +102,8 @@ export function tokenGetter() {
     DeliveryHistoryTableComponent,
     DeliveryHistoryExpandedComponent,
     UrgencyLevelComponent,
-    ViewRouteComponent
+    ViewRouteComponent,
+    ScheduledOrdersTableComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +114,7 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     IconsModule,
     UiSwitchModule,
     DataTableModule.forRoot(),
@@ -124,6 +130,7 @@ export function tokenGetter() {
     GaurdService,
     AdminGaurdService,
     StoreKeeperGaurdService,
+
     BsModalService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

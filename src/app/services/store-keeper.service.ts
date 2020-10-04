@@ -1,3 +1,4 @@
+import { NewOrders } from './../models/newOrders.response';
 import { Observable, pipe, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -20,6 +21,15 @@ export class StoreKeeperService {
       })
     );
   }
+
+  getNewOrders(): Observable<NewOrders> {
+    return this._httpClient.get<NewOrders>(API.getNewOrders()).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
   getListOfVehicles(): Observable<Vehicles> {
     return this._httpClient.get<Vehicles>(API.getListOfVehicles()).pipe(
       catchError((error) => {
@@ -36,6 +46,15 @@ export class StoreKeeperService {
         catchError((error) => {
           return throwError(error);
         })
+      );
+  }
+
+  getUrgentOrders(): Observable<any>{
+    return this._httpClient.get<any>(API.getUrgencyOrders())
+    .pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
       );
   }
 
