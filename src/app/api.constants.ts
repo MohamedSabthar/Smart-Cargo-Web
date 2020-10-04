@@ -1,6 +1,6 @@
 export class API {
   public static base: string = 'https://smart-cargo.herokuapp.com';
-  //'http://localhost:3000';
+  // "http://localhost:3000";
 
   public static login() {
     return `${API.base}/auth/sign-in`;
