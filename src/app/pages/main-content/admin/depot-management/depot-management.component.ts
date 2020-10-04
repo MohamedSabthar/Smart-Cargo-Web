@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepotManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _fb:FormBuilder) { }
+
+  mangaeDepot = this._fb.group({
+    address: this._fb.control('',[Validators.required])
+  });
 
   ngOnInit(): void {
   }

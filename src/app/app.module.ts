@@ -55,6 +55,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { DeliveryHistoryTableComponent } from './components/delivery-history-table/delivery-history-table.component';
 import { DeliveryHistoryExpandedComponent } from './components/delivery-history-expanded/delivery-history-expanded.component';
 import { UrgencyLevelComponent } from './components/urgency-level/urgency-level.component';
+import { ViewRouteComponent } from './components/view-route/view-route.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -96,7 +97,8 @@ export function tokenGetter() {
     ViewOrderDetailsComponent,
     DeliveryHistoryTableComponent,
     DeliveryHistoryExpandedComponent,
-    UrgencyLevelComponent
+    UrgencyLevelComponent,
+    ViewRouteComponent
   ],
   imports: [
     BrowserModule,
