@@ -23,13 +23,17 @@
               <span class="status-text align-middle mr-3">Orders</span>
               <div class="status-divider align-middle"></div>
 
-                <span class="ml-3 align-middle status-description">High</span>
-                <span class="mx-2 align-middle status-number">784</span>
+              <span class="ml-3 align-middle status-description">High</span>
+              <span class="mx-2 align-middle status-number">784</span>
 
-              <div class="status-divider status-divider-min align-middle mx-2"></div>
+              <div
+                class="status-divider status-divider-min align-middle mx-2"
+              ></div>
               <span class="mx-2 align-middle status-description">Medium</span>
               <span class="mx-2 align-middle status-number">100</span>
-              <div class="status-divider status-divider-min align-middle mx-2"></div>
+              <div
+                class="status-divider status-divider-min align-middle mx-2"
+              ></div>
               <span class="mx-2 align-middle status-description">Low</span>
               <span class="mx-2 align-middle status-number">345</span>
             </div>
@@ -74,80 +78,148 @@
                 Run Schedule
               </button>
             </div>
+            <app-scheduled-orders-table></app-scheduled-orders-table>
             <div class="table-responsive">
-            <table class="table ">
-              <thead class="thead-light">
-                <tr >
-                  <th class="text-primary" scope="col">Route</th>
-                  <th class="text-primary" scope="col">Vehicle type</th>
-                  <th class="text-primary" scope="col">Assigned Vehicle ID</th>
-                  <th class="text-primary" scope="col">Assigned Driver ID</th>
-                  <th class="text-primary" scope="col">Current Status</th>
-                  <th class="text-primary" scope="col">More</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>#79341</td>
-                  <td>Lorry</td>
-                  <td>DAC-2244</td>
-                  <td>#2564879</td>
-                  <td>In-progress</td>
-                  <td>
-                    <div class="btn-group" dropdown>
-                      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle"><span class="caret"></span>
-                      </button>
-                      <ul *dropdownMenu class="dropdown-menu" role="menu">
-                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignDriverModal()">Assign Driver</a></li>
-                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignVehicleModal()">Assign Vehicle</a></li>
-                        <li role="menuitem"><a class="dropdown-item" (click)="openOrderListModal()">View Order List</a></li>
-                      </ul>
-                    </div>
-
-                  </td>
-                    
-                </tr>
-                <tr>
-                  <td>#79342</td>
-                  <td>Van</td>
-                  <td>PH-9991</td>
-                  <td>#2565479</td>
-                  <td>Not started</td>
-                  <td>
-                    <div class="btn-group" dropdown>
-                      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle"><span class="caret"></span>
-                      </button>
-                      <ul *dropdownMenu class="dropdown-menu" role="menu">
-                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignDriverModal()">Assign Driver</a></li>
-                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignVehicleModal()">Assign Vehicle</a></li>
-                        <li role="menuitem"><a class="dropdown-item" (click)="openOrderListModal()">View Order List</a></li>
-                      </ul>
-                    </div>
-
-                  </td>
-                </tr>
-                <tr>
-                  <td>#79343</td>
-                  <td>Bike</td>
-                  <td>BAD-6245</td>
-                  <td>#2564458</td>
-                  <td>Finished</td>
-                  <td>
-                    <div class="btn-group" dropdown>
-                      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle"><span class="caret"></span>
-                      </button>
-                      <ul *dropdownMenu class="dropdown-menu" role="menu">
-                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignDriverModal()">Assign Driver</a></li>
-                        <li role="menuitem"><a class="dropdown-item" (click)="openAssignVehicleModal()">Assign Vehicle</a></li>
-                        <li role="menuitem"><a class="dropdown-item" (click)="openOrderListModal()">View Order List</a></li>
-                      </ul>
-                    </div>
-
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th class="text-primary" scope="col">Route</th>
+                    <th class="text-primary" scope="col">Vehicle type</th>
+                    <th class="text-primary" scope="col">
+                      Assigned Vehicle ID
+                    </th>
+                    <th class="text-primary" scope="col">Assigned Driver ID</th>
+                    <th class="text-primary" scope="col">Current Status</th>
+                    <th class="text-primary" scope="col">More</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#79341</td>
+                    <td>Lorry</td>
+                    <td>DAC-2244</td>
+                    <td>#2564879</td>
+                    <td>In-progress</td>
+                    <td>
+                      <div class="btn-group" dropdown>
+                        <button
+                          dropdownToggle
+                          type="button"
+                          class="btn btn-primary dropdown-toggle"
+                        >
+                          <span class="caret"></span>
+                        </button>
+                        <ul *dropdownMenu class="dropdown-menu" role="menu">
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openAssignDriverModal()"
+                              >Assign Driver</a
+                            >
+                          </li>
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openAssignVehicleModal()"
+                              >Assign Vehicle</a
+                            >
+                          </li>
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openOrderListModal()"
+                              >View Order List</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#79342</td>
+                    <td>Van</td>
+                    <td>PH-9991</td>
+                    <td>#2565479</td>
+                    <td>Not started</td>
+                    <td>
+                      <div class="btn-group" dropdown>
+                        <button
+                          dropdownToggle
+                          type="button"
+                          class="btn btn-primary dropdown-toggle"
+                        >
+                          <span class="caret"></span>
+                        </button>
+                        <ul *dropdownMenu class="dropdown-menu" role="menu">
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openAssignDriverModal()"
+                              >Assign Driver</a
+                            >
+                          </li>
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openAssignVehicleModal()"
+                              >Assign Vehicle</a
+                            >
+                          </li>
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openOrderListModal()"
+                              >View Order List</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#79343</td>
+                    <td>Bike</td>
+                    <td>BAD-6245</td>
+                    <td>#2564458</td>
+                    <td>Finished</td>
+                    <td>
+                      <div class="btn-group" dropdown>
+                        <button
+                          dropdownToggle
+                          type="button"
+                          class="btn btn-primary dropdown-toggle"
+                        >
+                          <span class="caret"></span>
+                        </button>
+                        <ul *dropdownMenu class="dropdown-menu" role="menu">
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openAssignDriverModal()"
+                              >Assign Driver</a
+                            >
+                          </li>
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openAssignVehicleModal()"
+                              >Assign Vehicle</a
+                            >
+                          </li>
+                          <li role="menuitem">
+                            <a
+                              class="dropdown-item"
+                              (click)="openOrderListModal()"
+                              >View Order List</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

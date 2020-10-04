@@ -85,4 +85,12 @@ export class AdminService {
         })
       );
   }
+
+  registerDriver(driverDetails): Observable<any> {
+    return this._httpClient.post<any>(API.registerDriver(), driverDetails).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
 }

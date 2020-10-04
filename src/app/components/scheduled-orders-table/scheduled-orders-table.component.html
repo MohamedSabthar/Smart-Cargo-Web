@@ -1,0 +1,87 @@
+<ng-data-table
+  [id]="'scheduled-orders'"
+  [title]="'Scheduled Orders'"
+  [items]="data"
+  [minContentHeight]="200"
+  [minContentWidth]="900"
+  [showHeader]="true"
+  [pageable]="true"
+  [showRefreshButton]="true"
+  [showRowSelectCheckbox]="true"
+  [rowSelectable]="true"
+  [selectOnRowClick]="true"
+  [showSubstituteRows]="true"
+  [persistTableState]="true"
+  [showColumnSelector]="true"
+  [expandableRows]="true"
+  [showLoadingSpinner]="true"
+  [selectMode]="'multi'"
+  [showRowSelectAllCheckbox]="true"
+>
+  <ng-data-table-column
+    [field]="'route'"
+    [title]="'Route'"
+    [showInColumnSelector]="false"
+    [sortable]="true"
+    [filterable]="true"
+    [filterPlaceholder]="'Search'"
+    [width]="80"
+  >
+    <ng-template #ngDataTableCell let-row="row">
+      <td>
+        <span><i class="zmdi zmdi-account"></i></span>
+        <span>{{ row.item.id }}</span>
+      </td>
+    </ng-template>
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'vehicleType'"
+    [title]="'Vehicle Type'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+    [filterPlaceholder]="'Search'"
+    [width]="130"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'vehicleID'"
+    [title]="'Assigned Vehicle ID'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'driverID'"
+    [title]="'Assigned Driver ID'"
+    [sortable]="true"
+    [filterable]="true"
+    [visible]="false"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'status'"
+    [title]="'Current Status'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+  >
+    <ng-template #ngDataTableCell let-row="row">
+      <td>
+        <span>{{ row.item.productType.toUpperCase() }}</span>
+      </td>
+    </ng-template>
+  </ng-data-table-column>
+</ng-data-table>
