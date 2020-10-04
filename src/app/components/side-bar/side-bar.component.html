@@ -10,23 +10,58 @@
   </div>
 
   <hr class="bg-white-half" />
+  <ng-container *ngIf="role == 'admin'">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/admin/driver-management']"
+          [routerLinkActive]="'active'"
+        >
+          <i-feather class="mr-2" name="user"></i-feather> Driver Management
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/admin/store-keeper-management']"
+          [routerLinkActive]="'active'"
+        >
+          <i-feather class="mr-2" name="package"></i-feather> Store-keeper
+          Managment
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/admin/vehicle-management']"
+          [routerLinkActive]="'active'"
+        >
+          <i-feather class="mr-2" name="inbox"></i-feather> Vehicle Management
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/admin/depot-management']"
+          [routerLinkActive]="'active'"
+        >
+          <i-feather class="mr-2" name="map-pin"></i-feather> Depot Management
+        </a>
+      </li>
+    </ul>
 
-  <ul class="nav flex-column">
+    <hr class="bg-white-half" />
+  </ng-container>
+
+  <ul class="nav flex-column mb-2">
     <li class="nav-item">
       <a
         class="nav-link"
-        [routerLink]="['/admin/driver-management']"
+        [routerLink]="['/admin/schedule-orders']"
         [routerLinkActive]="'active'"
       >
-        <i-feather class="mr-2" name="user"></i-feather> Driver Management
-      </a>
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        [routerLink]="['/admin/store-keeper-management']"
-        [routerLinkActive]="'active'"
-      >
+        <i-feather class="mr-2" name="clock"></i-feather> Schedule Orders
         <i-feather class="mr-2" name="package"></i-feather> Store-keeper
         Managment
       </a>
@@ -34,16 +69,17 @@
     <li class="nav-item">
       <a
         class="nav-link"
-        [routerLink]="['/admin/vehicle-management']"
+        [routerLink]="['/admin/add-order-dimention']"
         [routerLinkActive]="'active'"
       >
-        <i-feather class="mr-2" name="inbox"></i-feather> Vehicle Management
+        <i-feather class="mr-2" name="plus-square"></i-feather> Add Order
+        Dimensions
       </a>
     </li>
     <li class="nav-item">
       <a
         class="nav-link"
-        [routerLink]="['/admin/depot-management']"
+        [routerLink]="['/admin/track-vehicle']"
         [routerLinkActive]="'active'"
       >
         <i-feather class="mr-2" name="map-pin"></i-feather> Depot Management

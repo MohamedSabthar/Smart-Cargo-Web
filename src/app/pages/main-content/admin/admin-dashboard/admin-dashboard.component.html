@@ -14,10 +14,16 @@
               <span class="status-text align-middle mx-2">Drivers</span>
               <div class="status-divider align-middle mx-2"></div>
               <span class="mx-2 align-middle status-description">Online</span>
-              <span class="mx-2 align-middle status-number">17</span>
-              <div class="status-divider status-divider-min align-middle mx-2"></div>
+              <span class="mx-2 align-middle status-number">{{
+                drivers.length
+              }}</span>
+              <div
+                class="status-divider status-divider-min align-middle mx-2"
+              ></div>
               <span class="mx-2 align-middle status-description">Offline</span>
-              <span class="mx-2 align-middle status-number">4</span>
+              <span class="mx-2 align-middle status-number">{{
+                offlineDrivers
+              }}</span>
             </div>
           </div>
         </div>
@@ -30,12 +36,18 @@
               <span class="status-text align-middle mx-2">Orders</span>
               <div class="status-divider align-middle mx-2"></div>
               <span class="mx-2 align-middle status-description">Pending</span>
-              <span class="mx-2 align-middle status-number">171</span>
-              <div class="status-divider status-divider-min align-middle mx-2"></div>
+              <span class="mx-2 align-middle status-number">{{
+                pendingOrders
+              }}</span>
+              <div
+                class="status-divider status-divider-min align-middle mx-2"
+              ></div>
               <span class="mx-2 align-middle status-description"
                 >Delivered</span
               >
-              <span class="mx-2 align-middle status-number">1</span>
+              <span class="mx-2 align-middle status-number">{{
+                deliveredOrders
+              }}</span>
             </div>
           </div>
         </div>
@@ -50,12 +62,18 @@
               <span class="mx-2 align-middle status-description"
                 >Scheduled</span
               >
-              <span class="mx-2 align-middle status-number">17</span>
-              <div class="status-divider status-divider-min align-middle mx-2"></div>
+              <span class="mx-2 align-middle status-number">{{
+                scheduledRoutes
+              }}</span>
+              <div
+                class="status-divider status-divider-min align-middle mx-2"
+              ></div>
               <span class="mr-2 align-middle status-description"
                 >Delivered</span
               >
-              <span class="mx-2 align-middle status-number">4</span>
+              <span class="mx-2 align-middle status-number">{{
+                deliveredRoutes
+              }}</span>
             </div>
           </div>
         </div>
@@ -63,9 +81,35 @@
       </div>
       <!-- End of status cards -->
 
+      <!-- Orders chart -->
+      <div class="row mt-4">
+        <div class="col-md-8 col-12">
+          <div class="card">
+            <div class="card-body">
+              <h3>Order statistics</h3>
+              <app-orders-chart></app-orders-chart>
 
-      <div class="row">
-        <div class="col-md-4 col-12 mt-3">
+              <form class="mt-4">
+                <div class="form-group row justify-content-center">
+                  <label for="staticEmail" class="col-sm-1 col-form-label"
+                    >From</label
+                  >
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" id="staticEmail" />
+                  </div>
+
+                  <label for="staticEmail" class="col-sm-1 col-form-label"
+                    >To</label
+                  >
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" id="staticEmail" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-12">
           <div class="card">
             <div class="card-body">
               <h3>Drivers online</h3>
@@ -75,13 +119,19 @@
                   class="form-control m-2"
                   placeholder="Search a driver"
                 />
+                <div>
+                  <ul *ngFor="let driver of drivers">
+                    <li>
+                      <div>{{ driver.name.first }}</div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
+      <!-- End content of Admin Dashboard -->
     </div>
-    <!-- End content of Admin Dashboard -->
   </div>
 </div>
