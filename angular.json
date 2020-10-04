@@ -27,6 +27,7 @@
 
               "node_modules/ornamentum/prebuilt-themes/aegean.theme.css",
               "node_modules/ornamentum/prebuilt-themes/addon.aegean.theme.css",
+              "./node_modules/ngx-ui-switch/ui-switch.component.css",
               "src/styles.css"
 
             ],
