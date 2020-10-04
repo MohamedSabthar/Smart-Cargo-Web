@@ -68,4 +68,9 @@ export class API {
   public static getbulkOrder(statusId) {
     return `${API.base}/storekeeper/orders/${statusId}`;
   }
+
+  //orders based on urgency level
+  public static getUrgencyOrders(){
+    return `${API.base}/storekeeper/orders`;
+  }
 }

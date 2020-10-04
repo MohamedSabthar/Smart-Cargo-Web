@@ -15,6 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { DataTableModule } from 'ornamentum';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,6 +56,7 @@ import { ScheduleOrderOrderListComponent } from './components/schedule-order-ord
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { DeliveryHistoryTableComponent } from './components/delivery-history-table/delivery-history-table.component';
 import { DeliveryHistoryExpandedComponent } from './components/delivery-history-expanded/delivery-history-expanded.component';
+import { UrgencyLevelComponent } from './components/urgency-level/urgency-level.component';
 import { ScheduledOrdersTableComponent } from './components/scheduled-orders-table/scheduled-orders-table.component';
 import { ViewRouteComponent } from './components/view-route/view-route.component';
 
@@ -99,8 +101,9 @@ export function tokenGetter() {
     ViewOrderDetailsComponent,
     DeliveryHistoryTableComponent,
     DeliveryHistoryExpandedComponent,
-    ScheduledOrdersTableComponent,
+    UrgencyLevelComponent,
     ViewRouteComponent,
+    ScheduledOrdersTableComponent
   ],
   imports: [
     BrowserModule,
@@ -113,6 +116,7 @@ export function tokenGetter() {
     ReactiveFormsModule,
     ChartsModule,
     IconsModule,
+    UiSwitchModule,
     DataTableModule.forRoot(),
     JwtModule.forRoot({
       config: {
