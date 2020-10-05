@@ -73,4 +73,8 @@ export class API {
   public static getScheduledOrders() {
     return `${API.base}/storekeeper/scheduled-orders`;
   }
+  //orders based on urgency level
+  public static getUrgencyOrders() {
+    return `${API.base}/storekeeper/orders`;
+  }
 }

@@ -57,4 +57,11 @@ export class StoreKeeperService {
       })
     );
   }
+  getUrgentOrders(): Observable<any> {
+    return this._httpClient.get<any>(API.getUrgencyOrders()).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
 }
