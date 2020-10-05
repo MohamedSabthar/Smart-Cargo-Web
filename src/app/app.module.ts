@@ -1,6 +1,10 @@
 import { ViewOrderDetailsComponent } from './components/view-order-details/view-order-details.component';
 import { IconsModule } from './icon.module';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import {
+  BsModalService,
+  ModalBackdropComponent,
+  ModalContainerComponent,
+} from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -138,6 +142,16 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddOrderFormComponent, AddOrderDetailsComponent],
+  entryComponents: [
+    AddOrderFormComponent,
+    AddOrderDetailsComponent,
+    ModalBackdropComponent,
+    ModalContainerComponent,
+    ViewOrderDetailsComponent,
+    TrackVehileDetailsComponent,
+    TimeLineComponent,
+    TrackVehileMapComponent,
+    ViewRouteComponent,
+  ],
 })
 export class AppModule {}

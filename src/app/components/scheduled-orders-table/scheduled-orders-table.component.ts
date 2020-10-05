@@ -1,9 +1,12 @@
+import { ViewRouteComponent } from './../view-route/view-route.component';
 
 import { __assign } from 'tslib';
 import { StoreKeeperService } from './../../services/store-keeper.service';
 import { DepotDetails } from './../../models/depotDetails';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges,TemplateRef } from '@angular/core';
 import { DataTableRowClickEventArgs } from 'ornamentum';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-scheduled-orders-table',
@@ -15,7 +18,10 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
   @Input() details: any;
   selectedRoute: any;
   depot: DepotDetails;
-  constructor(private _storeKeeperService: StoreKeeperService) {}
+  modalRef: BsModalRef;
+
+
+    constructor(private _storeKeeperService: StoreKeeperService, private _modalComponentService:NgbModal) {}
 
   ngOnInit(): void {
     this._storeKeeperService.getDeopt().subscribe((depot)=>{
@@ -44,7 +50,11 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
   }
 
   onRowClick(clickEventArgs: DataTableRowClickEventArgs<any>): void {
-      this.selectedRoute=clickEventArgs.row.item.route;
-      console.log(this.selectedRoute);
+    this.selectedRoute=clickEventArgs.row.item.route;
+    const modalRef = this._modalComponentService.open(ViewRouteComponent,{ size: 'xl lg md sm'});
+    modalRef.componentInstance.orders = this.selectedRoute;
+    modalRef.componentInstance.depotDetails = this.depot;
   }
+
+
 }

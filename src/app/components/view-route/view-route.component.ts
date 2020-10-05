@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DepotDetails } from 'src/app/models/depotDetails';
 import { Orders } from './../../models/orderDetails';
 
@@ -15,10 +16,11 @@ declare let ol: any;
   styleUrls: ['./view-route.component.css'],
 })
 export class ViewRouteComponent implements OnInit, OnChanges {
-  constructor() {}
+  constructor(private _activeModal: NgbActiveModal) {}
 
-  ngOnChanges(): void {
+  public ngOnChanges(): void {
     if (this.orders != null && this.depotDetails != null) {
+      console.log('hitttter')
       this.loadMap();
     }
   }
@@ -43,6 +45,8 @@ export class ViewRouteComponent implements OnInit, OnChanges {
         zoom: 8,
       }),
     });
+
+    this.loadMap();
   }
 
   loadMap() {
