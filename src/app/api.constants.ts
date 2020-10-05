@@ -77,4 +77,8 @@ export class API {
   public static getUrgencyOrders() {
     return `${API.base}/storekeeper/orders`;
   }
+
+  public static getDepot(){
+    return `${API.base}/storekeeper/depot`;
+  }
 }

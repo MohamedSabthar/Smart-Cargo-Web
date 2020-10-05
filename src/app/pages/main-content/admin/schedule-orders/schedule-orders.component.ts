@@ -20,40 +20,6 @@ export class ScheduleOrdersComponent implements OnInit {
 
   scheduleDetails: any[];
 
-  test = {
-    _id: { $oid: '5edfb29a4581798d78e4f77a' },
-    location: { lat: 6.8786, lang: 79.92163 },
-    products: [
-      {
-        _id: { $oid: '5edfb29a4581798d78e4f77b' },
-        item: '#79079',
-        quantity: 25,
-      },
-      {
-        _id: { $oid: '5edfb29a4581798d78e4f77c' },
-        item: '#79079',
-        quantity: 25,
-      },
-      {
-        _id: { $oid: '5edfb29a4581798d78e4f77d' },
-        item: '#79079',
-        quantity: 25,
-      },
-      {
-        _id: { $oid: '5edfb29a4581798d78e4f77e' },
-        item: '#79079',
-        quantity: 25,
-      },
-    ],
-    email: 'test@yopmail.com',
-    phone: '+94773398956',
-    status: 'ready',
-    emergency_level: 1,
-    volume: 1,
-    load: 20,
-    __v: 0,
-  };
-
   openAssignDriverModal() {
     const modalRef = this.modalService.open(ScheduleOrderAssignDriverComponent);
 

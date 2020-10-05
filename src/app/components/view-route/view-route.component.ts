@@ -1,122 +1,168 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { DepotDetails } from 'src/app/models/depotDetails';
 import { Orders } from './../../models/orderDetails';
 
-
-declare var ol: any;
+declare let ol: any;
 @Component({
   selector: 'app-view-route',
   templateUrl: './view-route.component.html',
-  styleUrls: ['./view-route.component.css']
+  styleUrls: ['./view-route.component.css'],
 })
-export class ViewRouteComponent implements OnInit {
+export class ViewRouteComponent implements OnInit, OnChanges {
+  constructor() {}
 
-  constructor() { }
-  @Input() public order: Orders;
-
-
-  map: any;
-  latitude: Number
-  longitude: Number
-
-  ngOnInit(): void {
-
-    this.latitude = this.order.location.lat;
-    this.longitude = this.order.location.lang;
-
-    var attribution = new ol.control.Attribution({
-      collapsible: false,
-    });
-
-    console.log(this.order.location)
-    //add map
-    this.map = new ol.Map({
-      target: 'map',
-      layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM()
-        })
-      ],
-      view: new ol.View({
-        center: ol.proj.fromLonLat([ 37.41, 8.82]),
-        zoom: 5
-      })
-    });
-var marker = new ol.Feature({
-  geometry: new ol.geom.Point(
-    ol.proj.fromLonLat([this.longitude,this.latitude])
-  ),
-  color: 'red',
-});
-
-marker.setStyle(new ol.style.Style({
-  image: new ol.style.Icon(({
-      color: '#ff6961',
-      crossOrigin: 'anonymous',
-      src: 'assets/img/dot.png'
-  }))
-}));
-
-    //add marker
-    var layer = new ol.layer.Vector({
-      source: new ol.source.Vector({
-        features: [
-          marker
-        ],
-      }),
-    });
-    this.map.addLayer(layer);
-
-    var lonlat = ol.proj.fromLonLat([33.8, 8.4]);
-
-
-    var location2 = ol.proj.fromLonLat([37.5, 8.0]);
-    var location3 = ol.proj.fromLonLat([39.5, 8.3]);
-
-   var locations = [lonlat,location2,location3]
-
-      var linie2style = [
-				// linestring
-				new ol.style.Style({
-				  stroke: new ol.style.Stroke({
-					color: '#d12710',
-					width: 2
-				  })
-				})
-			  ];
-
-
-       for(let i=0;i<locations.length-1;i++){
-          var linie2 = new ol.layer.Vector({
-            source: new ol.source.Vector({
-            features: [new ol.Feature({
-              geometry: new ol.geom.LineString([locations[i], locations[i+1]]),
-              name: 'Line',
-            })]
-          })
-        });
-
-        linie2.setStyle(linie2style);
-        this.map.addLayer(linie2);
-
-      }
-
-      var linie2 = new ol.layer.Vector({
-        source: new ol.source.Vector({
-        features: [new ol.Feature({
-          geometry: new ol.geom.LineString([locations[locations.length-1], locations[0]]),
-          name: 'Line',
-        })]
-      })
-    });
-
-    linie2.setStyle(linie2style);
-    this.map.addLayer(linie2);
-
-
-
-
-
+  ngOnChanges(): void {
+    if (this.orders != null && this.depotDetails != null) {
+      this.loadMap();
+    }
   }
 
+  @Input() public orders: Orders[];
+  @Input('depot') public depotDetails: DepotDetails;
+  layer: any = null;
+  linie2: any = null;
+  map: any;
 
+  ngOnInit(): void {
+    //add map
+    this.map = new ol.Map({
+      target: 'route',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM(),
+        }),
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([80.723869, 7.449624]),
+        zoom: 8,
+      }),
+    });
+  }
+
+  loadMap() {
+    this.map.removeLayer(this.linie2); //remove old line vector layer
+    this.map.removeLayer(this.layer); //remove old marker layer
+
+    //array to store the markers
+    let markers = [];
+
+    let depotMarker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([
+          this.depotDetails.depot.location.lang,
+          this.depotDetails.depot.location.lat,
+        ])
+      ),
+      color: 'red',
+    });
+
+    //use different color for depot marker
+    depotMarker.setStyle(
+      new ol.style.Style({
+        image: new ol.style.Icon({
+          color: '#4d5c84',
+          crossOrigin: 'anonymous',
+          src: 'assets/img/dot.png',
+        }),
+      })
+    );
+    markers.push(depotMarker);
+
+    //temporary array to store lat,long openlayer objects
+    let locations = [];
+
+    for (let order of this.orders) {
+      //create marker for each order
+      let marker = new ol.Feature({
+        geometry: new ol.geom.Point(
+          ol.proj.fromLonLat([order.location.lang, order.location.lat])
+        ),
+        color: 'red',
+      });
+
+      //set marker style
+      marker.setStyle(
+        new ol.style.Style({
+          image: new ol.style.Icon({
+            color: '#FF6961',
+            crossOrigin: 'anonymous',
+            src: 'assets/img/dot.png',
+          }),
+        })
+      );
+
+      //temporarly store location
+      locations.unshift(
+        ol.proj.fromLonLat([order.location.lang, order.location.lat])
+      );
+
+      //store marker in the array
+      markers.push(marker);
+    }
+
+    // store the depot location as first element
+    locations.unshift(
+      ol.proj.fromLonLat([
+        this.depotDetails.depot.location.lang,
+        this.depotDetails.depot.location.lat,
+      ])
+    );
+
+    //add marker to the layer vector
+    this.layer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: markers,
+      }),
+    });
+
+    // route/line style
+    let lineStyle = [
+      new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: '#d12710',
+          width: 2,
+        }),
+      }),
+    ];
+
+    let lines = [];
+    //draw line between locations
+    for (let i = 0; i < locations.length - 1; i++) {
+      let line = new ol.Feature({
+        geometry: new ol.geom.LineString([locations[i], locations[i + 1]]),
+        name: 'Line',
+      });
+      //store the lines temporarly
+      lines.push(line);
+    }
+
+    //connect the last delivery location and depot
+    lines.push(
+      new ol.Feature({
+        geometry: new ol.geom.LineString([
+          locations[locations.length - 1],
+          locations[0],
+        ]),
+        name: 'Line',
+      })
+    );
+
+    //create layer vector of lines
+    this.linie2 = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: lines,
+      }),
+    });
+
+    //set layer vector style
+    this.linie2.setStyle(lineStyle);
+    this.map.addLayer(this.linie2); //add line vector layer
+    this.map.addLayer(this.layer); //add marker layer
+  }
 }

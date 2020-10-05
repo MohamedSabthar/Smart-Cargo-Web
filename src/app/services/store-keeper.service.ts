@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 import { API } from '../api.constants';
 import { Vehicles } from '../models/vehicle.response';
 import { Vehicletypes } from '../models/vehicletype.response';
+import { DepotDetails } from '../models/depotDetails';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +58,7 @@ export class StoreKeeperService {
       })
     );
   }
+
   getUrgentOrders(): Observable<any> {
     return this._httpClient.get<any>(API.getUrgencyOrders()).pipe(
       catchError((error) => {
@@ -64,4 +66,13 @@ export class StoreKeeperService {
       })
     );
   }
+
+  getDeopt(): Observable<DepotDetails> {
+    return this._httpClient.get<DepotDetails>(API.getDepot()).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
 }
