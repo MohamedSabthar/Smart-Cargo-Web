@@ -69,13 +69,26 @@
       </div>
       <!-- End of last schedule -->
 
+      <!-- Schedule table -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card mt-5">
+            <div class="d-flex flex-row-reverse">
+              <button type="button" class="btn btn-primary w-25 my-4 mr-4">
+                Run Schedule
+              </button>
+            </div>
+            <app-scheduled-orders-table
+              [details]="scheduleDetails"
+            ></app-scheduled-orders-table>
+          </div>
+        </div>
+      </div>
       <!-- start of Urgency level-->
       <app-urgency-level></app-urgency-level>
       <!-- End of Urgency level-->
 
-     
-
-<!-- 
+      <!-- 
       <app-view-route [order]="test"></app-view-route> -->
     </div>
   </div>

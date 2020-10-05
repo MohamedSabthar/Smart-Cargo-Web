@@ -1,3 +1,4 @@
+import { Schedule } from './../models/schedule.response';
 import { NewOrders } from './../models/newOrders.response';
 import { Observable, pipe, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -49,14 +50,18 @@ export class StoreKeeperService {
       );
   }
 
-  getUrgentOrders(): Observable<any>{
-    return this._httpClient.get<any>(API.getUrgencyOrders())
-    .pipe(
+  getScheduledOrders(): Observable<any> {
+    return this._httpClient.get<any>(API.getScheduledOrders()).pipe(
       catchError((error) => {
         return throwError(error);
       })
-      );
+    );
   }
-
-
+  getUrgentOrders(): Observable<any> {
+    return this._httpClient.get<any>(API.getUrgencyOrders()).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
 }

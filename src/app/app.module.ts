@@ -59,6 +59,7 @@ import { DeliveryHistoryExpandedComponent } from './components/delivery-history-
 import { UrgencyLevelComponent } from './components/urgency-level/urgency-level.component';
 import { ScheduledOrdersTableComponent } from './components/scheduled-orders-table/scheduled-orders-table.component';
 import { ViewRouteComponent } from './components/view-route/view-route.component';
+import { ScheduleOrdersExpandedComponent } from './components/schedule-orders-expanded/schedule-orders-expanded.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -103,7 +104,8 @@ export function tokenGetter() {
     DeliveryHistoryExpandedComponent,
     UrgencyLevelComponent,
     ViewRouteComponent,
-    ScheduledOrdersTableComponent
+    ScheduleOrdersExpandedComponent,
+    ScheduledOrdersTableComponent,
   ],
   imports: [
     BrowserModule,
