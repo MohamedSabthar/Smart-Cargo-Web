@@ -1,43 +1,23 @@
 <ng-data-table
   [id]="'scheduleDetails'"
-  [title]="'Scheduled Orders'"
+  [title]="'Orders'"
   [items]="scheduleDetails"
-  [minContentHeight]="200"
-  [minContentWidth]="900"
-  [showHeader]="true"
-  [pageable]="true"
-  [showRefreshButton]="true"
-  [showRowSelectCheckbox]="true"
-  [rowSelectable]="false"
-  [selectOnRowClick]="true"
-  [showSubstituteRows]="true"
-  [persistTableState]="true"
-  [showColumnSelector]="true"
-  [expandableRows]="true"
-  [showLoadingSpinner]="true"
-  [selectMode]="'multi'"
-  [showRowSelectAllCheckbox]="true"
+  [showHeader]="false"
+  [showIndexColumn]="true"
 >
   <ng-data-table-column
     [field]="'_id'"
-    [title]="'Route'"
+    [title]="'Order ID'"
     [showInColumnSelector]="false"
     [sortable]="true"
     [filterable]="true"
     [filterPlaceholder]="'Search'"
     [width]="200"
   >
-    <ng-template #ngDataTableRowExpand let-row="row">
-      <app-schedule-orders-expanded
-        *ngIf="row.expanded || row.dataLoaded"
-        [row]="row"
-      ></app-schedule-orders-expanded>
-      <!-- show sub-table on expand operation -->
-    </ng-template>
   </ng-data-table-column>
   <ng-data-table-column
-    [field]="'vehicle.vehicle_type.type'"
-    [title]="'Vehicle Type'"
+    [field]="'email'"
+    [title]="'Customer mail'"
     [sortable]="true"
     [filterable]="true"
     [showDropdownFilter]="true"
@@ -49,8 +29,8 @@
   >
   </ng-data-table-column>
   <ng-data-table-column
-    [field]="'vehicle._id'"
-    [title]="'Assigned Vehicle ID'"
+    [field]="'phone'"
+    [title]="'Customer phone'"
     [sortable]="true"
     [filterable]="true"
     [showDropdownFilter]="true"
@@ -61,8 +41,8 @@
   >
   </ng-data-table-column>
   <ng-data-table-column
-    [field]="'driver'"
-    [title]="'Assigned Driver ID'"
+    [field]="'emergency_level'"
+    [title]="'Emergency Level'"
     [sortable]="true"
     [filterable]="true"
     [visible]="true"
@@ -70,8 +50,8 @@
   >
   </ng-data-table-column>
   <ng-data-table-column
-    [field]="'route'"
-    [title]="'Current Status'"
+    [field]="'status'"
+    [title]="'Order Status'"
     [sortable]="true"
     [filterable]="true"
     [showDropdownFilter]="true"
