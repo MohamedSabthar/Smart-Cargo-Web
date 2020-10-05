@@ -40,11 +40,9 @@ const routes: Routes = [
       { path: 'vehicle-management', component:  VehicleManagementComponent },
       { path: 'depot-management', component: DepotManagementComponent },
       { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
-
       { path: 'track-vehicle', component:TrackOrderComponent},
-
-
-      { path: 'add-order-dimention', component:AddOrderDimentionComponent}
+      { path: 'add-order-dimention', component:AddOrderDimentionComponent},
+      { path: 'schedule-orders', component: ScheduleOrdersComponent },
     ],
   },
   {
@@ -54,9 +52,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: StoreKeeperDashboardComponent },
+      { path: 'schedule-orders', component: ScheduleOrdersComponent },
     ],
   },
-  { path: 'schedule-orders', component: ScheduleOrdersComponent },
   {path:'reset-password/:token',component:RestPasswordPageComponent},
   {path:'settings',canActivate:[GaurdService],component:ProfileComponent},
   { path: '**', component: NotFoundPageComponent }

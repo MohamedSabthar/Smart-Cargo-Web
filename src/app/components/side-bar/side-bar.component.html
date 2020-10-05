@@ -10,7 +10,7 @@
   </div>
 
   <hr class="bg-white-half" />
-  <ng-container *ngIf="role == 'admin'">
+  <ng-container *ngIf="isAdmin()">
     <ul class="nav flex-column">
       <li class="nav-item">
         <a
@@ -58,7 +58,7 @@
     <li class="nav-item">
       <a
         class="nav-link"
-        [routerLink]="['/schedule-orders']"
+        [routerLink]="isAdmin() ? ['/admin/schedule-orders'] : ['/store-keeper/schedule-orders']"
         [routerLinkActive]="'active'"
       >
         <i-feather class="mr-2" name="clock"></i-feather> Schedule Orders
