@@ -27,8 +27,8 @@ export class AddOrderFormComponent implements OnInit {
   ) {}
 
   //function for closing model
-  closeModal() {
-    this.activeModal.close('Modal Closed');
+  closeModal(data) {
+    this.activeModal.close(data);
   }
 
   ngOnInit(): void {
@@ -66,12 +66,13 @@ export class AddOrderFormComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log(response);
+          this.closeModal({...this.DimentionForm.value, _id:this.orders._id});
         },
         (err) => {
           console.log(err);
         }
       );
 
-    this.closeModal();
+
   }
 }

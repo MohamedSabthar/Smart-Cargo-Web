@@ -1,4 +1,5 @@
 export interface newOrderDetails {
+  _id:String,
   location: {
     lat: Number;
     lang: Number;
@@ -9,6 +10,8 @@ export interface newOrderDetails {
       quantity: Number;
     }
   ];
+  load:Number,
+  volume:Number,
   email: String;
   phone: String;
   emergency_level: Number;

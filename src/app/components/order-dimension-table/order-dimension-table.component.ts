@@ -22,10 +22,6 @@ export class OrderDimensionTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.refresh();
-  }
-
-  refresh() {
     this._storekeeperServices.getNewOrders().subscribe(
       (response: NewOrders) => {
         console.log(response);
@@ -45,6 +41,12 @@ export class OrderDimensionTableComponent implements OnInit {
   openFormModal(clickEventArgs: DataTableRowClickEventArgs<any>) {
     const modalRef = this.modalService.open(AddOrderFormComponent);
     modalRef.componentInstance.orders = clickEventArgs.row.item;
+    modalRef.result.then((res)=>{
+      let index = this.newOrders.findIndex((e)=>e._id==res._id);
+      this.newOrders[index].load = res.load;
+      this.newOrders[index].volume = res.volume;
+
+    })
   }
 
   getEmergencyLevel(emergency_level): string {
