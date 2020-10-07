@@ -80,3 +80,53 @@ td {
   border-color: var(--primary-lite);
   border-radius: 0.25rem;
 }
+
+.dtext {
+  display: inline;
+  color: var(--primary);
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.circle {
+  min-height: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  max-height: 30px;
+  background-color: var(--primary);
+  border-radius: 50%;
+}
+
+.profile-circle {
+  height: 80px;
+  width: 80px;
+  background-color:var(--primary);
+  border-radius: 50%;
+  margin-left: 20px;
+}
+
+th {
+  text-align: center;
+
+}
+
+td {
+  text-align: center;
+  font-size: 13px;
+}
+
+.driver-details:hover{
+  border: solid 1px;
+  border-color: var(--primary-lite);
+  border-radius: 0.25rem;
+}
+
+.order{
+box-shadow: none;
+border-style: solid 1px;
+}
+
+.order:hover{
+border-color:var(--primary-lite);
+width: inherit;
+}

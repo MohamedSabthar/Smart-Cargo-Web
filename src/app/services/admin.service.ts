@@ -1,3 +1,4 @@
+import { DriverDetails } from './../models/driverDetails';
 import { Schedule } from './../models/schedule.response';
 import { API } from './../api.constants';
 import { HttpClient } from '@angular/common/http';
@@ -31,9 +32,9 @@ export class AdminService {
   }
 
   //get bulk orders
-  getbulkOrder(statusId): Observable<any>{
+  getbulkOrder(statusId): Observable<any> {
     return this._httpClient.get<any>(API.getbulkOrder(statusId)).pipe(
-      catchError((error)=>{
+      catchError((error) => {
         return throwError(error);
       })
     );
@@ -83,5 +84,21 @@ export class AdminService {
           return throwError(error);
         })
       );
+  }
+
+  registerDriver(driverDetails): Observable<any> {
+    return this._httpClient.post<any>(API.registerDriver(), driverDetails).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  deleteStorekeeper(storekeeperId): Observable<any> {
+    return this._httpClient.delete<any>(API.deleteStorekeeper(storekeeperId)).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 }
