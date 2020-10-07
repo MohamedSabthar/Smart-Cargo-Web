@@ -71,5 +71,7 @@ export class AddOrderFormComponent implements OnInit {
           console.log(err);
         }
       );
+
+    this.closeModal();
   }
 }
