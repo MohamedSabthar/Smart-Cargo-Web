@@ -64,6 +64,7 @@ import { UrgencyLevelComponent } from './components/urgency-level/urgency-level.
 import { ScheduledOrdersTableComponent } from './components/scheduled-orders-table/scheduled-orders-table.component';
 import { ViewRouteComponent } from './components/view-route/view-route.component';
 import { ScheduleOrdersExpandedComponent } from './components/schedule-orders-expanded/schedule-orders-expanded.component';
+import { OrderDimensionTableComponent } from './components/order-dimension-table/order-dimension-table.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -110,6 +111,7 @@ export function tokenGetter() {
     ViewRouteComponent,
     ScheduleOrdersExpandedComponent,
     ScheduledOrdersTableComponent,
+    OrderDimensionTableComponent,
   ],
   imports: [
     BrowserModule,

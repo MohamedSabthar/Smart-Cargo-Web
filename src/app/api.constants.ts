@@ -1,7 +1,7 @@
 export class API {
   public static base: string =
-    'https://smart-cargo.herokuapp.com';
-    // 'http://localhost:3000';
+    // 'https://smart-cargo.herokuapp.com';
+    'http://localhost:3000';
 
   public static login() {
     return `${API.base}/auth/sign-in`;
@@ -78,7 +78,11 @@ export class API {
     return `${API.base}/storekeeper/orders`;
   }
 
-  public static getDepot(){
+  public static getDepot() {
     return `${API.base}/storekeeper/depot`;
+  }
+
+  public static updateDimension() {
+    return `${API.base}/storekeeper/add-order-dimension`;
   }
 }

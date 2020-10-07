@@ -58,42 +58,8 @@
       <!-- End of status cards -->
 
       <hr />
+      <app-order-dimension-table></app-order-dimension-table>
 
-      <div class="card tabled">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class="thead table-header">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Order ID</th>
-                <th scope="col">Details</th>
-                <th scope="col">Date</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let newOrder of newOrders">
-                <th scope="row">1</th>
-                <td>{{ newOrder.emergency_level }}</td>
-                <!-- Calling the customer details model -->
-                <td (click)="openDetailsModel()">Lorry</td>
-                <td>{{ date }}</td>
-                <td>
-                  <!-- Calling the add order dimention form -->
-                  <button
-                    class="btn btn-small track-button"
-                    data-toggle="modal"
-                    data-target="#exampleModal"
-                    (click)="openFormModal()"
-                  >
-                    ADD DIMENTION
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
       <!-- End content of Admin Dashboard -->
     </div>
   </div>

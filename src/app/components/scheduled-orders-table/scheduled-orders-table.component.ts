@@ -3,7 +3,13 @@ import { ViewRouteComponent } from './../view-route/view-route.component';
 import { __assign } from 'tslib';
 import { StoreKeeperService } from './../../services/store-keeper.service';
 import { DepotDetails } from './../../models/depotDetails';
-import { Component, OnInit, Input, OnChanges,TemplateRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  TemplateRef,
+} from '@angular/core';
 import { DataTableRowClickEventArgs } from 'ornamentum';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -20,20 +26,18 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
   depot: DepotDetails;
   modalRef: BsModalRef;
 
-
-    constructor(private _storeKeeperService: StoreKeeperService, private _modalComponentService:NgbModal) {}
+  constructor(
+    private _storeKeeperService: StoreKeeperService,
+    private _modalComponentService: NgbModal
+  ) {}
 
   ngOnInit(): void {
-    this._storeKeeperService.getDeopt().subscribe((depot)=>{
+    this._storeKeeperService.getDeopt().subscribe((depot) => {
       this.depot = depot;
-      console.log('hh')
-      console.log(this.depot)
-      console.log("hit");
-    })
-  }
-
-  orderStatus() {
-    console.log('faiz');
+      console.log('hh');
+      console.log(this.depot);
+      console.log('hit');
+    });
   }
 
   giveDetails(route): string {
@@ -50,11 +54,11 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
   }
 
   onRowClick(clickEventArgs: DataTableRowClickEventArgs<any>): void {
-    this.selectedRoute=clickEventArgs.row.item.route;
-    const modalRef = this._modalComponentService.open(ViewRouteComponent,{ size: 'xl lg md sm'});
+    this.selectedRoute = clickEventArgs.row.item.route;
+    const modalRef = this._modalComponentService.open(ViewRouteComponent, {
+      size: 'xl lg md sm',
+    });
     modalRef.componentInstance.orders = this.selectedRoute;
     modalRef.componentInstance.depotDetails = this.depot;
   }
-
-
 }
