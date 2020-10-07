@@ -657,8 +657,8 @@
                           <div class="row mt-5">
                             <div class="col-12">
                               <button
-                                (click)="confirmUpdate(updateModal)"
-                                [disabled]="!updateDriverForm.valid"
+                                (click)="confirmRegister(confirmRegistermodal)"
+                                [disabled]="!registerDriverForm.valid"
                                 class="btn btn-primary button ml-4 button"
                               >
                                 Save
@@ -679,6 +679,35 @@
                   </ng-template>
                 </li>
               </ul>
+
+              <!-- Confirmation model called in confirmRegister(confirmRegister) -->
+              <ng-template #confirmRegistermodal>
+                <div class="modal-body text-center">
+                  <h4 class="mb-2 text-primary">
+                    Are you sure to register this driver?
+                  </h4>
+                  <p class="mb-3">
+                    Click confirm to proceed or Cancel to Revert
+                  </p>
+                </div>
+                <div class="text-center mb-2">
+                  <button
+                    type="button"
+                    class="mx-2 btn btn-default"
+                    (click)="register()"
+                  >
+                    Confirm
+                  </button>
+
+                  <button
+                    type="button"
+                    class="mx-2 btn btn-primary"
+                    (click)="decline()"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </ng-template>
 
               <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
@@ -808,11 +837,11 @@
                   "
                   class="row"
                 >
-                  <div class="col-12 my-auto">
+                  <!-- <div class="col-12 my-auto">
                     <h5 class="text-primary text-center">
                       No shudeles assigned to this driver yet
                     </h5>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- <table
                   *ngIf="

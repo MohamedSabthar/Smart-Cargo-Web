@@ -1,6 +1,10 @@
 import { ViewOrderDetailsComponent } from './components/view-order-details/view-order-details.component';
 import { IconsModule } from './icon.module';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import {
+  BsModalService,
+  ModalBackdropComponent,
+  ModalContainerComponent,
+} from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -62,6 +66,7 @@ import { ScheduledOrdersTableComponent } from './components/scheduled-orders-tab
 import { ViewRouteComponent } from './components/view-route/view-route.component';
 import { ScheduleOrdersExpandedComponent } from './components/schedule-orders-expanded/schedule-orders-expanded.component';
 import { ScheduleStatisticChartComponent } from './components/schedule-statistic-chart/schedule-statistic-chart.component';
+import { OrderDimensionTableComponent } from './components/order-dimension-table/order-dimension-table.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -109,6 +114,7 @@ export function tokenGetter() {
     ScheduleOrdersExpandedComponent,
     ScheduledOrdersTableComponent,
     ScheduleStatisticChartComponent,
+    OrderDimensionTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -151,6 +157,16 @@ export function tokenGetter() {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddOrderFormComponent, AddOrderDetailsComponent],
+  entryComponents: [
+    AddOrderFormComponent,
+    AddOrderDetailsComponent,
+    ModalBackdropComponent,
+    ModalContainerComponent,
+    ViewOrderDetailsComponent,
+    TrackVehileDetailsComponent,
+    TimeLineComponent,
+    TrackVehileMapComponent,
+    ViewRouteComponent,
+  ],
 })
 export class AppModule {}

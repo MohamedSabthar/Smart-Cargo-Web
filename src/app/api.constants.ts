@@ -78,11 +78,14 @@ export class API {
     return `${API.base}/storekeeper/orders`;
   }
 
-  public static getDepot(){
+  public static getDepot() {
     return `${API.base}/storekeeper/depot`;
   }
 
   public static getClusteredStat(){
     return `${API.base}/storekeeper/clustered-statistics`;
+  }
+  public static updateDimension() {
+    return `${API.base}/storekeeper/add-order-dimension`;
   }
 }

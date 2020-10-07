@@ -9,6 +9,7 @@ import { API } from '../api.constants';
 import { Vehicles } from '../models/vehicle.response';
 import { Vehicletypes } from '../models/vehicletype.response';
 import { DepotDetails } from '../models/depotDetails';
+import { Orders } from '../models/orderDetails';
 
 @Injectable({
   providedIn: 'root',
@@ -83,4 +84,13 @@ export class StoreKeeperService {
     );
   }
 
+  updateDimensions(orderDimension, orderID): Observable<Orders> {
+    return this._httpClient
+      .put<Orders>(API.updateDimension(), { ...orderDimension, id: orderID })
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
 }

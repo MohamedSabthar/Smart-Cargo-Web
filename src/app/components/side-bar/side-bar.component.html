@@ -92,7 +92,7 @@
     <li class="nav-item">
       <a
         class="nav-link"
-        [routerLink]="['/settings']"
+        [routerLink]="isAdmin() ? ['/admin/settings'] : ['/store-keeper/settings']"
         [routerLinkActive]="'active'"
       >
         <i-feather class="mr-2" name="clock"></i-feather> settings
