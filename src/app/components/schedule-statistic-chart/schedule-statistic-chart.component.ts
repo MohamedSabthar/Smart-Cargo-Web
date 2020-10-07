@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreKeeperService } from 'src/app/services/store-keeper.service';
 
 @Component({
   selector: 'app-schedule-statistic-chart',
@@ -11,6 +12,7 @@ export class ScheduleStatisticChartComponent implements OnInit {
   public medium: Object[];
   public low: Object[];
   public all: Object[];
+  public result: any;
 
   public xAxis: Object;
   public yAxis: Object;
@@ -20,18 +22,17 @@ export class ScheduleStatisticChartComponent implements OnInit {
   public zoom: Object;
   public palette: string[];
 
-  constructor() { }
+  constructor(private _storekeeperService : StoreKeeperService) { }
 
   ngOnInit(): void {
 
-    this.high = [
-      {month: 'Jan', sales:35}, {month: 'Feb', sales:28},
-      {month: 'Mar', sales:34}, {month: 'Apr', sales:32},
-      {month: 'May', sales:40}, {month: 'Jun', sales:35},
-      {month: 'Jul', sales:35}, {month: 'Aug', sales:55},
-      {month: 'Sep', sales:38}, {month: 'Oct', sales:30},
-      {month: 'Nov', sales:25}, {month: 'Dec', sales:32},
-    ];
+    this._storekeeperService.getClusteredStat().subscribe(result => {
+      this.result = result; 
+    
+      console.log(Object.keys(this.result));
+    });
+
+    
 
     this.all = [
       {month: 'Jan', sales:100}, {month: 'Feb', sales:128},

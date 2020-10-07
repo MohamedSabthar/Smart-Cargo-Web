@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
   //list of online drivers
-  drivers: DriverDetails[];
+  drivers: DriverDetails[] = [];
 
   //drivers
   offlineDrivers = 4;

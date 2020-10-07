@@ -19,4 +19,8 @@ export class SideBarComponent implements OnInit {
   logout() {
     this._authService.logout();
   }
+
+  isAdmin(){
+    return this.role == "admin" ? true : false;
+  }
 }

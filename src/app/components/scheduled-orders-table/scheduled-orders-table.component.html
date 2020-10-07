@@ -1,3 +1,5 @@
+<app-view-route [orders]="selectedRoute" [depot]="depot"></app-view-route>
+
 <ng-data-table
   [id]="'scheduleDetails'"
   [title]="'Scheduled Orders'"
@@ -17,6 +19,7 @@
   [showLoadingSpinner]="true"
   [selectMode]="'multi'"
   [showRowSelectAllCheckbox]="true"
+  (rowClick)="onRowClick($event)"
 >
   <ng-data-table-column
     [field]="'_id'"
@@ -70,7 +73,7 @@
   >
   </ng-data-table-column>
   <ng-data-table-column
-    [field]="'route'"
+    [field]="'status'"
     [title]="'Current Status'"
     [sortable]="true"
     [filterable]="true"
@@ -81,3 +84,5 @@
   >
   </ng-data-table-column>
 </ng-data-table>
+
+
