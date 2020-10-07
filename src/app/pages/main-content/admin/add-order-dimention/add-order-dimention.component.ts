@@ -1,6 +1,3 @@
-import { NewOrders } from './../../../../models/newOrders.response';
-import { newOrderDetails } from './../../../../models/newOrderDetails';
-import { StoreKeeperService } from './../../../../services/store-keeper.service';
 import { AddOrderDetailsComponent } from './../../../../components/add-order-details/add-order-details.component';
 import { AddOrderFormComponent } from './../../../../components/add-order-form/add-order-form.component';
 import { Component, OnInit } from '@angular/core';
@@ -13,12 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AddOrderDimentionComponent implements OnInit {
   date;
-  constructor(
-    private modalService: NgbModal,
-    private _storekeeperServices: StoreKeeperService
-  ) {}
-
-  newOrders: newOrderDetails[];
+  constructor(private modalService: NgbModal) {}
 
   // Order dimention form
   openFormModal() {
@@ -46,17 +38,5 @@ export class AddOrderDimentionComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    //initializing a date
-    this.date = new Date();
-    this._storekeeperServices.getNewOrders().subscribe(
-      (response: NewOrders) => {
-        console.log(response);
-        this.newOrders = response.orders;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+  ngOnInit(): void {}
 }
