@@ -49,12 +49,24 @@ export class StoreKeeperService {
     );
   }
 
-  updateProfile(userId):Observable<StorekeeperDetails> {
-    return this._httpClient.get<StorekeeperDetails>(API.updateProfile(userId)).pipe(
-      catchError((error) => {
-        return throwError(error)
-      })
-    )
+  updateProfile(userId , StorekeeperDetails): Observable<any> {
+    return this._httpClient
+      .put<any>(API.updateProfile(userId), StorekeeperDetails)
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
   }
+
+  updatePassword(userId, resetPasswordDetails): Observable<any> {
+    return this._httpClient
+      .put<any>(API.updatePassword(userId), resetPasswordDetails).pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      )
+  }
+  
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Map from 'ol/Map';
-import file from 'ol/layer/file';
+//import file from 'ol/layer/file';
 import OSM from 'ol/source/OSM';
 import View from 'ol/View';
 
@@ -11,25 +11,26 @@ import View from 'ol/View';
 })
 export class DepotManagementComponent implements OnInit {
 
+  map;
   constructor() { }
 
   ngOnInit(): void {
-    this.initilizeMap();
+    //this.initilizeMap();
   }
 
-  initilizeMap() {
+  // initilizeMap() {
 
-    this.map = new Map({
-      target : 'map',
-      layers : [
-        new file({
-          source: new OSM()
-        })
-      ],
-      view: new View({
-        center: [37.41,8.82],
-        zoom: 4
-      })
-    });
-  }
+  //   this.map = new Map({
+  //     target : 'map',
+  //     layers : [
+  //       new file({
+  //         source: new OSM()
+  //       })
+  //     ],
+  //     view: new View({
+  //       center: [37.41,8.82],
+  //       zoom: 4
+  //     })
+  //   });
+  // }
 }
