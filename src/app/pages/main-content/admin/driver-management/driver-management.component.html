@@ -14,7 +14,7 @@
                   type="text"
                   class="form-control"
                   [(ngModel)]="searchText"
-                  placeholder="Search driver by name"
+                  placeholder="Search driver by Licensej number"
                   (keyup)="onSearch()"
                 />
                 <div class="input-group-append">
@@ -45,7 +45,7 @@
                     <div class="col-1"><div class="circle"></div></div>
                     <div class="col-8 pl-4">
                       <span class="d-block"
-                        ><b>Driver Id : </b>{{ driver._id }}</span
+                        ><b>Driver Licence : </b>{{ driver.license_no }}</span
                       >
                       <span class="d-block"
                         ><b>Driver Name : </b>{{ driver.name.first }}

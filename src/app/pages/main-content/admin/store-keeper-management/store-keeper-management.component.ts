@@ -45,10 +45,11 @@ export class StoreKeeperManagementComponent implements OnInit {
   ngOnInit(): void {
     this._adminServices.getListOfStorekeepers().subscribe((response:Storekeepers)=>{
       this.storekeepers=response.storekeepers;
+      console.log(response)
     },(error)=>{console.log(error)})
   }
 
-  
+
 
   onStorekeeperSelected(storekeeper : StorekeeperDetails){
     this.selectedStorekeeper=storekeeper;

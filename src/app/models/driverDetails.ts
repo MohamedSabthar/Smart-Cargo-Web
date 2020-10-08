@@ -13,6 +13,7 @@ export interface DriverDetails{
             street : String,
             city : String
         },
+        license_no : String,
         allowed_vehicle : [ {type:String} ],
         _id: String,
         role: String,

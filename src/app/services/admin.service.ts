@@ -14,15 +14,6 @@ import { ScheduleDetails } from '../models/scheduleDetails';
 export class AdminService {
   constructor(private _httpClient: HttpClient) {}
 
-  //manual testing to check JwtIntercepter can remove this
-  test(): Observable<any> {
-    return this._httpClient.get<any>('http://localhost:3000/admin').pipe(
-      catchError((error) => {
-        return throwError(error);
-      })
-    );
-  }
-
   getListOfStorekeepers(): Observable<Storekeepers> {
     return this._httpClient.get<Storekeepers>(API.getListOfStorekeepers()).pipe(
       catchError((error) => {
