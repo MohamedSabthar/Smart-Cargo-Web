@@ -42,7 +42,7 @@ export class DriverManagementComponent implements OnInit {
     address: this._fb.group({
       no: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/ ]*')]],
       street: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/, ]*')]],
-      city: ['', [Validators.required, Validators.pattern('[a-zA-Z]* [0-9]*')]],
+      city: ['', [Validators.required, Validators.pattern('[a-zA-Z]* ?[0-9]*')]],
     }),
     contact: this._fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -130,7 +130,8 @@ export class DriverManagementComponent implements OnInit {
   }
 
   // triggers the delete confirmation modal
-  confirmDelete(template: TemplateRef<any>) {
+  confirmDelete(template: TemplateRef<any>,driver:DriverDetails) {
+    this.selectedDriver = driver;
     // this will trigger the modal
     this.modalRef = this._modalService.show(template, {
       class: 'modal-md modal-dialog-centered',

@@ -55,7 +55,7 @@
                     <div class="col-3">
                       <button
                         class="btn float-right"
-                        (click)="confirmDelete(deleteModal)"
+                        (click)="confirmDelete(deleteModal,driver)"
                       >
                         <i-feather
                           name="trash-2"
@@ -755,9 +755,9 @@
                   <p class="mb-3">
                     Now you are requesting to delete the record of<br />
                     <b class="d-inline-block"
-                      >{{ selectedDriver.name.first }}
-                      {{ selectedDriver.name.middle }}
-                      {{ selectedDriver.name.last }}</b
+                      >{{ selectedDriver?.name.first }}
+                      {{ selectedDriver?.name.middle }}
+                      {{ selectedDriver?.name.last }}</b
                     >
                     <br />
                     click Yes to proceed and No to cancel the process
