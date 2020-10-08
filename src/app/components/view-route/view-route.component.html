@@ -1,5 +1,21 @@
+<div
+  class="mb-3"
+  call="col-12 col-md-6"
+  id="route"
+  style="height: 100%; width: 100%"
+></div>
 
-
-    <div call="col-12 col-md-6" id="route" style="height: 100%;width: 100%;">
-    </div>
-
+<div class="card card-body">
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">select a driver from the list</label>
+    <select
+      class="form-control"
+      formControlName="Id"
+      id="exampleFormControlSelect2"
+    >
+      <option *ngFor="let driver of availableDrivers">
+        {{ driver.name.first }} {{ driver.name.last }} {{ driver.license_no }}
+      </option>
+    </select>
+  </div>
+</div>

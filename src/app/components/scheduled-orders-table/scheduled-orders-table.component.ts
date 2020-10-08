@@ -61,4 +61,8 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
     modalRef.componentInstance.orders = this.selectedRoute;
     modalRef.componentInstance.depotDetails = this.depot;
   }
+
+  triggerModal(clickEventArgs: DataTableRowClickEventArgs<any>): void {
+    console.log(clickEventArgs.row.item);
+  }
 }

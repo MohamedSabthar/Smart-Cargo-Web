@@ -10,6 +10,7 @@ import { Vehicles } from '../models/vehicle.response';
 import { Vehicletypes } from '../models/vehicletype.response';
 import { DepotDetails } from '../models/depotDetails';
 import { Orders } from '../models/orderDetails';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -84,5 +85,13 @@ export class StoreKeeperService {
           return throwError(error);
         })
       );
+  }
+
+  getAvailableDrivers(): Observable<Drivers> {
+    return this._httpClient.get<Drivers>(API.getAvailableDrivers()).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 }

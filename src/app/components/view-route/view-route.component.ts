@@ -1,3 +1,5 @@
+import { Drivers } from './../../models/drivers.response';
+import { DriverDetails } from './../../models/driverDetails';
 import {
   Component,
   Input,
@@ -7,6 +9,7 @@ import {
 } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DepotDetails } from 'src/app/models/depotDetails';
+import { StoreKeeperService } from 'src/app/services/store-keeper.service';
 import { Orders } from './../../models/orderDetails';
 
 declare let ol: any;
@@ -16,11 +19,14 @@ declare let ol: any;
   styleUrls: ['./view-route.component.css'],
 })
 export class ViewRouteComponent implements OnInit, OnChanges {
-  constructor(private _activeModal: NgbActiveModal) {}
+  constructor(
+    private _activeModal: NgbActiveModal,
+    private _storekeeperServices: StoreKeeperService
+  ) {}
 
   public ngOnChanges(): void {
     if (this.orders != null && this.depotDetails != null) {
-      console.log('hitttter')
+      console.log('hitttter');
       this.loadMap();
     }
   }
@@ -30,6 +36,7 @@ export class ViewRouteComponent implements OnInit, OnChanges {
   layer: any = null;
   linie2: any = null;
   map: any;
+  availableDrivers: DriverDetails[];
 
   ngOnInit(): void {
     //add map
@@ -47,6 +54,17 @@ export class ViewRouteComponent implements OnInit, OnChanges {
     });
 
     this.loadMap();
+
+    this._storekeeperServices.getAvailableDrivers().subscribe(
+      (response: Drivers) => {
+        console.log('hit');
+        this.availableDrivers = response.drivers;
+        console.log(this.availableDrivers);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   loadMap() {
