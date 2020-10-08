@@ -23,6 +23,8 @@ export class AdminDashboardComponent implements OnInit {
   scheduledRoutes = 18;
   deliveredRoutes = 12;
 
+
+
   constructor(
     private _adminService: AdminService,
     private _storekeeperService: StoreKeeperService
@@ -31,6 +33,7 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     //added for Jwt testing can remove this
     //this._adminService.test().subscribe((res)=>console.log(res), (err)=>console.log(err));
+
 
     this._storekeeperService.getListOfDrivers().subscribe(
       (response) => {

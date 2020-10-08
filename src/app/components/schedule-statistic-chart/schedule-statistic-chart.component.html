@@ -1,0 +1,16 @@
+<ejs-chart 
+[primaryXAxis]= 'xAxis' 
+[primaryYAxis]= 'yAxis' 
+[tooltip]='tooltipSettings' 
+[legendSettings]='legend' 
+[zoomSettings]='zoom' 
+background="#f3f3f3"
+[palettes]='palette'
+>
+    <e-series-collection>
+      <e-series [dataSource]="high" type='Line' xName='date' yName='orders' [marker]='markerSettings' name='High Urgency'></e-series>
+      <e-series [dataSource]="medium" type='Line' xName='date' yName='orders' [marker]='markerSettings' name='Medium Urgency'></e-series>
+      <e-series [dataSource]="low" type='Line' xName='date' yName='orders' [marker]='markerSettings' name='Low Urgency'></e-series>
+      <e-series [dataSource]="all" type='Line' xName='date' yName='orders' [marker]='markerSettings' name='All'></e-series>
+    </e-series-collection>
+  </ejs-chart>

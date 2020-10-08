@@ -21,15 +21,17 @@ import {
   providers: [NgbNavConfig],
 })
 export class VehicleManagementComponent implements OnInit {
-  vehicles: VehicleDetails[];
-  vehiclesType: VehicletypeDetails[];
+  vehicles = [];
+  vehiclesWithType: any;
+  vehiclesType: any;
+  vehicleDetails = [];
 
   AddVehicleForm: FormGroup;
   NewVehicleForm: FormGroup;
 
   searchText: string;
-  vehiclesFilter: VehicleDetails[];
-  selectedVehicle: VehicleDetails;
+  vehiclesFilter = [];
+  selectedVehicle;
 
   modalRef: BsModalRef;
   vehicleUdpateMessage: String;
@@ -48,6 +50,12 @@ export class VehicleManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this._storekeeperService.getListOfVehiclesTypes().subscribe( result => {
+      this.vehiclesType = result.vehicle_types;
+      console.log(this.vehiclesType);
+    });
+
     //validation for update vehicle form
     this.AddVehicleForm = this.fb.group({
       vehicle_type: ['', [Validators.required]],
@@ -58,15 +66,37 @@ export class VehicleManagementComponent implements OnInit {
       fuel_economy: ['', [Validators.required]],
     });
 
+
+     //validation for update vehicle form
+     this.NewVehicleForm = this.fb.group({
+      Newvehicle_type: ['', [Validators.required]],
+      Newcapacity: ['', [Validators.required]],
+      Newlicense_plate: ['',[Validators.required]],
+      Newload: ['', [Validators.required]],
+
+      Newfuel_economy: ['', [Validators.required]],
+    });
+
     this._storekeeperService.getListOfVehicles().subscribe(
       (response) => {
-        this.vehicles = response.vehicles;
+        this.vehiclesWithType = response.vehicles;
+        
+        for(let x of this.vehiclesWithType){
+          this._storekeeperService.getVehicleType(x.vehicle_type).subscribe( type => {
+            x.type = type.vehicle_types.type;
+            console.log(x);
+            this.vehicles.push(x);
+          });
+        }
         console.log(this.vehicles);
       },
       (error) => {
         console.log(error);
       }
     );
+
+
+
 
 
   }
@@ -106,6 +136,34 @@ export class VehicleManagementComponent implements OnInit {
       );
     this.modalRef.hide();
   }
+
+
+
+     // triggers when Yer button cliked in confirmation modal
+     confirmNew(): void {
+       console.log(this.NewVehicleForm.value);
+       
+
+      this._adminService
+        .newVehicleDetails({
+          vehicle_type : this.NewVehicleForm.value.Newvehicle_type,
+          license_plate : this.NewVehicleForm.value.Newlicense_plate,
+          load : this.NewVehicleForm.value.Newload,
+          capacity : this.NewVehicleForm.value.Newcapacity,
+          fuel_economy : this.NewVehicleForm.value.Newfuel_economy
+         })
+        .subscribe(
+          (response) => {
+            this.vehicles.push(response);
+            //display the success alert
+            this.vehicleUdpateMessage = response.message;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      this.modalRef.hide();
+    }
   
   
   // triggers when No button cliked in confirmation modal
@@ -115,9 +173,21 @@ export class VehicleManagementComponent implements OnInit {
     this.modalRef.hide();
   }
 
+
+    // triggers when No button cliked in confirmation modal
+    declineNew(): void {
+      // reset the data in update form if declined
+      this.NewFormReset();
+      this.modalRef.hide();
+    }
+
     // Reset the form fields value to previous value
     updateFormReset() {
       this.setUpdateFormData(this.selectedVehicle);
+    }
+
+    NewFormReset() {
+      this.NewVehicleForm.reset();
     }
 
 
@@ -176,6 +246,23 @@ export class VehicleManagementComponent implements OnInit {
   }
   get license_plate() {
     return this.AddVehicleForm.get('license_plate');
+  }
+
+  get Newvehicle_type() {
+    return this.NewVehicleForm.get('Newvehicle_type');
+  }
+
+  get Newcapacity() {
+    return this.NewVehicleForm.get('Newcapacity');
+  }
+  get Newload() {
+    return this.NewVehicleForm.get('Newload');
+  }
+  get Newfuel_economy() {
+    return this.NewVehicleForm.get('Newfuel_economy');
+  }
+  get Newlicense_plate() {
+    return this.NewVehicleForm.get('Newlicense_plate');
   }
  
 

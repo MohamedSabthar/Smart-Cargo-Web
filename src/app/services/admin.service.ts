@@ -41,6 +41,15 @@ export class AdminService {
       );
   }
 
+  newVehicleDetails(vehicleDetails): Observable<any>{
+    return this._httpClient.post<any>(API.newVehicleDetails(),vehicleDetails)
+    .pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    )
+  }
+
   deleteVehicle(vehicleId): Observable<any> {
     return this._httpClient.delete<any>(API.deleteVehicle(vehicleId)).pipe(
       catchError((error) => {

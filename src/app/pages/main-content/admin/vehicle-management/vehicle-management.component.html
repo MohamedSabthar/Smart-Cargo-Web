@@ -39,15 +39,11 @@
                            <!-- Vehicle name list -->
                           <ng-template #renderVehicleList>
                             <ul class="nav flex-column" >
-                              <li class="nav-item" *ngFor="let vehicle of vehiclesFilter||vehicles" (click)="onVehicleSeletected(vehicle)">
+                              <li class="nav-item" *ngFor="let vehicle of vehicles||vehiclesFilter" (click)="onVehicleSeletected(vehicle)">
                                   <div class="row">
                                       <div class="col-0.5 circle"></div>
                                       <div class="col-5 col-md-8 text">{{vehicle.license_plate}}</div>
-                                      <div class="col-1">
-                                          <div class="input-group-btn">
-                                              <button class="btn btn-default" type="submit"> <span class="mr-2 wrong_icon" name="x-circle"></span></button>
-                                          </div>
-                                      </div>
+                                      
                                       <div class="col-1">
                                           <div class="input-group-btn">
                                               <button class="btn btn-default" type="submit" (click)="onDelete(vehicle)"> <i-feather class="mr-2 trash_icon" name="trash-2"></i-feather></button>
@@ -110,15 +106,9 @@
                                         </div>
                                             <div class="form-group">
                                                 <label for="">Vehicle Type</label>
-                                                <input
-                                                  id="vehicleType"
-                                                  formControlName="vehicle_type"
-                                                  value="{{selectedVehicle.vehicle_type}}"
-                                                  type="text"
-                                                  class="form-control"
-                                                  placeholder="Vehicle type"
-                                                  [ngClass]="{ 'is-invalid': (vehicle_type.touched && vehicle_type.invalid)  }"
-                                                />
+                                                <select class="form-control" id="vehicleType" formControlName="vehicle_type" [ngClass]="{ 'is-invalid': (vehicle_type.touched && vehicle_type.invalid)  }">
+                                                  <option *ngFor="let type of vehiclesType" value='{{type._id}}' [selected]="selectedVehicle.vehicle_type === type._id">{{type.type}}</option>
+                                                </select>
                                                 <div *ngIf="!vehicle_type.value" class="invalid-feedback">
                                                   Vehicle Type is required
                                                  </div>
@@ -200,23 +190,18 @@
                             </ng-template>
                             </li>
                             <li ngbNavItem>
-                              <a ngbNavLink class="btn-btn-primary">Add new</a>
+                              <a ngbNavLink class="btn-btn-primary">Add new Vehicle</a>
                               <ng-template ngbNavContent>
-                                <form [formGroup]="AddVehicleForm">
+                                <form [formGroup]="NewVehicleForm">
                                     <div class="row">
                                         <!-- register in setup -->
                                         <div class="col-5 col-md-8 col-lg-9 py-2">
                                             <div class="form-group">
                                                 <label for="">Vehicle Type</label>
-                                                <input
-                                                formControlName="vehicle_type"
-                                                  id="vehicleType"
-                                                  type="text"
-                                                  class="form-control"
-                                                  placeholder="Vehicle type"
-                                                  [ngClass]="{ 'is-invalid': (vehicle_type.touched && vehicle_type.invalid)  }"
-                                                />
-                                                <div *ngIf="!vehicle_type.value" class="invalid-feedback">
+                                                <select class="form-control" id="vehicleType"  formControlName="Newvehicle_type" [ngClass]="{ 'is-invalid': (Newvehicle_type.touched && Newvehicle_type.invalid)  }">
+                                                  <option *ngFor="let type of vehiclesType" value='{{type._id}}'>{{type.type}}</option>
+                                                </select>
+                                                <div *ngIf="!Newvehicle_type.value" class="invalid-feedback">
                                                   Vehicle Type is required
                                                  </div>
                                             </div>
@@ -224,13 +209,13 @@
                                                 <label for="">Lincense Plate Number</label>
                                                 <input
                                                   id="linces"
-                                                  formControlName="license_plate"
+                                                  formControlName="Newlicense_plate"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Linces Plate No"
-                                                  [ngClass]="{ 'is-invalid': (license_plate.touched && license_plate.invalid) }"
+                                                  [ngClass]="{ 'is-invalid': (Newlicense_plate.touched && Newlicense_plate.invalid) }"
                                                 />
-                                                <div *ngIf="!license_plate.value" class="invalid-feedback">
+                                                <div *ngIf="!Newlicense_plate.value" class="invalid-feedback">
                                                   Lisence Plate Number is required
                                                  </div>
                                             </div>
@@ -238,25 +223,25 @@
                                                 <label for="">Capacity</label>
                                                 <input
                                                   id="Volume"
-                                                  formControlName="capacity"
+                                                  formControlName="Newcapacity"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Volume in M ^ 3"
-                                                  [ngClass]="{ 'is-invalid': (capacity.touched && capacity.invalid)  }"
+                                                  [ngClass]="{ 'is-invalid': (Newcapacity.touched && Newcapacity.invalid)  }"
                                                 />
-                                                <div *ngIf="!capacity.value" class="invalid-feedback">
+                                                <div *ngIf="!Newcapacity.value" class="invalid-feedback">
                                                   Capacity is required
                                                  </div>
                                                 <br>
                                                 <input
                                                   id="Load"
-                                                  formControlName="load"
+                                                  formControlName="Newload"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Load"
-                                                  [ngClass]="{ 'is-invalid': (load.touched && load.invalid)  }"
+                                                  [ngClass]="{ 'is-invalid': (Newload.touched && Newload.invalid)  }"
                                                 />
-                                                <div *ngIf="!load.value" class="invalid-feedback">
+                                                <div *ngIf="!Newload.value" class="invalid-feedback">
                                                   Load is required
                                                  </div>
                                             </div>
@@ -264,13 +249,83 @@
                                                 <label for="">Fuel economy</label>
                                                 <input
                                                   id="Fuel"
-                                                  formControlName="fuel_economy"
+                                                  formControlName="Newfuel_economy"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Fuel economy Km/L"
-                                                  [ngClass]="{ 'is-invalid': (fuel_economy.touched && fuel_economy.invalid)  }"
+                                                  [ngClass]="{ 'is-invalid': (Newfuel_economy.touched && Newfuel_economy.invalid)  }"
                                                 />
-                                                <div *ngIf="!fuel_economy.value" class="invalid-feedback">
+                                                <div *ngIf="!Newfuel_economy.value" class="invalid-feedback">
+                                                  Fuel economy is required
+                                                 </div>
+                                            </div>
+                                        </div>
+                                        <!-- register pic and save or close -->
+                                        <div class="col-1 col-md-3 col-lg-3">
+                                            <div class="big_circle align ml-5"></div>
+                                            <br><br><br><br>
+                                            <button type="submit" class="btn btn-primary ml-5 button"
+                                            (click)="confirmUpdate(areYouSureNew)"
+                                            [disabled]="!NewVehicleForm.valid"
+                                            > Save </button>
+                                            <br><br>
+                                            <button type="submit" class="btn btn-primary ml-5 button" (click)="NewFormReset()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                              </ng-template>
+                            </li>
+                            <li ngbNavItem>
+                              <a ngbNavLink class="btn-btn-primary">Add new Vehicle Type</a>
+                              <ng-template ngbNavContent>
+                                <form [formGroup]="NewVehicleForm">
+                                    <div class="row">
+                                        <!-- register in setup -->
+                                        <div class="col-5 col-md-8 col-lg-9 py-2">
+                                            <div class="form-group">
+                                                <label for="">Vehicle Type</label>
+                                                <input type="text" class="form-control" formControlName="Newvehicle_type" [ngClass]="{ 'is-invalid': (Newvehicle_type.touched && Newvehicle_type.invalid)  }"/>
+                                                <div *ngIf="!Newvehicle_type.value" class="invalid-feedback">
+                                                  Vehicle Type is required
+                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Capacity</label>
+                                                <input
+                                                  id="Volume"
+                                                  formControlName="Newcapacity"
+                                                  type="text"
+                                                  class="form-control"
+                                                  placeholder="Volume in M ^ 3"
+                                                  [ngClass]="{ 'is-invalid': (Newcapacity.touched && Newcapacity.invalid)  }"
+                                                />
+                                                <div *ngIf="!Newcapacity.value" class="invalid-feedback">
+                                                  Capacity is required
+                                                 </div>
+                                                <br>
+                                                <input
+                                                  id="Load"
+                                                  formControlName="Newload"
+                                                  type="text"
+                                                  class="form-control"
+                                                  placeholder="Load"
+                                                  [ngClass]="{ 'is-invalid': (Newload.touched && Newload.invalid)  }"
+                                                />
+                                                <div *ngIf="!Newload.value" class="invalid-feedback">
+                                                  Load is required
+                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Fuel economy</label>
+                                                <input
+                                                  id="Fuel"
+                                                  formControlName="Newfuel_economy"
+                                                  type="text"
+                                                  class="form-control"
+                                                  placeholder="Fuel economy Km/L"
+                                                  [ngClass]="{ 'is-invalid': (Newfuel_economy.touched && Newfuel_economy.invalid)  }"
+                                                />
+                                                <div *ngIf="!Newfuel_economy.value" class="invalid-feedback">
                                                   Fuel economy is required
                                                  </div>
                                             </div>
@@ -281,15 +336,89 @@
                                             <br><br><br><br>
                                             <button type="submit" class="btn btn-primary ml-5 button"
                                             (click)="confirmUpdate(areYouSure)"
-                                            [disabled]="!AddVehicleForm.valid"
+                                            [disabled]="!NewVehicleForm.valid"
                                             > Save </button>
                                             <br><br>
-                                            <button type="submit" class="btn btn-primary ml-5 button" (click)="updateFormReset()">Cancel</button>
+                                            <button type="submit" class="btn btn-primary ml-5 button" (click)="NewFormReset()">Cancel</button>
                                         </div>
                                     </div>
                                 </form>
                               </ng-template>
                             </li>
+
+                            <li ngbNavItem>
+                              <a ngbNavLink class="btn-btn-primary">Update Vehicle Type</a>
+                              <ng-template ngbNavContent>
+                                <form [formGroup]="NewVehicleForm">
+                                    <div class="row">
+                                        <!-- register in setup -->
+                                        <div class="col-5 col-md-8 col-lg-9 py-2">
+                                            <div class="form-group">
+                                                <label for="">Vehicle Type</label>
+                                                <select class="form-control" id="vehicleType"  formControlName="Newvehicle_type" [ngClass]="{ 'is-invalid': (Newvehicle_type.touched && Newvehicle_type.invalid)  }">
+                                                  <option *ngFor="let type of vehiclesType" value='{{type._id}}'>{{type.type}}</option>
+                                                </select>
+                                                <div *ngIf="!Newvehicle_type.value" class="invalid-feedback">
+                                                  Vehicle Type is required
+                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Capacity</label>
+                                                <input
+                                                  id="Volume"
+                                                  formControlName="Newcapacity"
+                                                  type="text"
+                                                  class="form-control"
+                                                  placeholder="Volume in M ^ 3"
+                                                  [ngClass]="{ 'is-invalid': (Newcapacity.touched && Newcapacity.invalid)  }"
+                                                />
+                                                <div *ngIf="!Newcapacity.value" class="invalid-feedback">
+                                                  Capacity is required
+                                                 </div>
+                                                <br>
+                                                <input
+                                                  id="Load"
+                                                  formControlName="Newload"
+                                                  type="text"
+                                                  class="form-control"
+                                                  placeholder="Load"
+                                                  [ngClass]="{ 'is-invalid': (Newload.touched && Newload.invalid)  }"
+                                                />
+                                                <div *ngIf="!Newload.value" class="invalid-feedback">
+                                                  Load is required
+                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Fuel economy</label>
+                                                <input
+                                                  id="Fuel"
+                                                  formControlName="Newfuel_economy"
+                                                  type="text"
+                                                  class="form-control"
+                                                  placeholder="Fuel economy Km/L"
+                                                  [ngClass]="{ 'is-invalid': (Newfuel_economy.touched && Newfuel_economy.invalid)  }"
+                                                />
+                                                <div *ngIf="!Newfuel_economy.value" class="invalid-feedback">
+                                                  Fuel economy is required
+                                                 </div>
+                                            </div>
+                                        </div>
+                                        <!-- register pic and save or close -->
+                                        <div class="col-1 col-md-3 col-lg-3">
+                                            <div class="big_circle align ml-5"></div>
+                                            <br><br><br><br>
+                                            <button type="submit" class="btn btn-primary ml-5 button"
+                                            (click)="confirmUpdate(areYouSureNew)"
+                                            [disabled]="!NewVehicleForm.valid"
+                                            > Save </button>
+                                            <br><br>
+                                            <button type="submit" class="btn btn-primary ml-5 button" (click)="NewFormReset()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                              </ng-template>
+                            </li>
+
                           </ul>
                           <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
@@ -325,10 +454,41 @@
               </ng-template>
               <!-- end-of confiramation modal -->
 
+
+              <ng-template #areYouSureNew>
+                <div class="modal-body text-center">
+                  <h4 class="mb-2 text-primary">Are you sure?</h4>
+                  <p class="mb-3">
+                    Now you are requesting to add a new record<br />
+                    <br />
+                    click Yes to proceed and No to revert
+                  </p>
+                  <div class="text-center">
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-default"
+                      (click)="confirmNew()"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-primary"
+                      (click)="declineNew()"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+
+
+
+
                       </div>
                   </div>
                   <br><br>
-                  <!-- vehicle type card -->
+                  <!-- vehicle type card
                   <div class="card">
                     <div class="card-body">
                       <form>
@@ -336,24 +496,18 @@
                             <div class="col-5 col-md-8 col-lg-9 py-2">
                                 <div class="form-group">
                                     <label for="">Select Vehicle Type</label>
-                                    <input
-                                      id="vehicleType"
-                                      type="text"
-                                      class="form-control"
-                                      placeholder="Vehicle type"
-                                    />
+                                    <select class="form-control" id="vehicleType">
+                                      <option *ngFor="let type of vehiclesType" value='{{type._id}}'>{{type.type}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="">License No</label>
-                                    <input
-                                      id="License"
-                                      type="text"
-                                      class="form-control"
-                                      placeholder="License No"
-                                    />
+                                    <select class="form-control" id="License">
+                                      <option *ngFor="let vehicle of vehicles" value='{{vehicle._id}}'>{{vehicle.license_plate}}</option>
+                                    </select>
                                 </div>
                             </div>
-                            <!-- Vehicle pic add clear -->
+                            Vehicle pic add clear
                             <div class="col-1 col-md-3 col-lg-3">
                                 <div class="big_circle align ml-5"></div>
                                 <br>
@@ -364,7 +518,7 @@
                           </div>
                       </form>
                     </div>
-                  </div>
+                  </div> -->
               </div>
           </div>
       </div>
