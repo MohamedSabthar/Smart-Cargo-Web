@@ -154,6 +154,7 @@ export function tokenGetter() {
     TimeLineComponent,
     TrackVehileMapComponent,
     ViewRouteComponent,
+    StoreKeeperManagementComponent,
   ],
 })
 export class AppModule {}

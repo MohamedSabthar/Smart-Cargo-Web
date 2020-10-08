@@ -84,4 +84,32 @@ export class AdminService {
       })
     );
   }
+
+  updateStorekeeperDetails(storekeeperDetails, storekeeperId): Observable<any> {
+    return this._httpClient
+      .post<any>(API.updateStorekeeperDetails(storekeeperId), storekeeperDetails)
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
+  deleteStorekeeper(storekeeperId): Observable<any> {
+    return this._httpClient.delete<any>(API.deleteStorekeeper(storekeeperId)).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  registerStorekeeper(storekeeperDetails): Observable<any> {
+    return this._httpClient.post<any>(API.registerStorekeeper(), storekeeperDetails).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  
 }
