@@ -12,7 +12,7 @@ import { ScheduleDetails } from '../models/scheduleDetails';
   providedIn: 'root',
 })
 export class AdminService {
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) { }
 
   getListOfStorekeepers(): Observable<Storekeepers> {
     return this._httpClient.get<Storekeepers>(API.getListOfStorekeepers()).pipe(
@@ -111,5 +111,13 @@ export class AdminService {
     );
   }
 
-  
+  storekeeperScheduleHistory(storekeeperId): Observable<any> {
+    return this._httpClient.get<any>(API.storekeeperScheduleHistory(storekeeperId)).pipe(
+      catchError((error) => {
+        return throwError(error);
+      }
+      ));
+
+  }
+
 }

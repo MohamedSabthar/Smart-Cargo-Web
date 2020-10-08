@@ -726,87 +726,182 @@
             </div> 
 
             <div class="row mt-3">
-                <!-- history list -->
-                <div class="col-lg-7  col-12">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-7">
-                            <h4 class="card-title stext">xxx schedule history</h4>
-                        </div>
-                        <div class="col-5">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="search" width="50px">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i-feather class="mr-2"
-                                        name="search"></i-feather></button>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <br/>
-                        <app-data-table></app-data-table>
-                        
-                        </div>
-                        </div>
-                    </div>
-
-                <!-- schedule list -->
-                <div class="col-lg-5 col-12  mt-sm-3 mt-lg-0">
-                    <div class="card">
-                         <div class="card-body ">
-                              <h4 class="card-title stext">xxx schedule history</h4><br>
-                              <div class="d-flex justify-content-center">
-                              <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="search" width="10px" >
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i-feather class="mr-2"
-                                        name="search"></i-feather></button>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                    <!-- <div class="row"> -->
-                        <div class="d-flex flex-row">
-                            <div class="mr-auto p-0">
-                        <div class="d-flex flex-column-reverse">
-                        <div class="col-9">
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title">Special title 1</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                            </div>
+              <!-- driver's driving history -->
+              <!-- <div class="col-lg-7 col-12"> -->
+              <div class="col-12">
+                <div class="card" style="min-height: 670px">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12">
+                        <h4 class="card-title dtext">
+                          <span *ngIf="selectedStorekeeper"
+                            >{{ selectedStorekeeper.name.first }}
+                            {{ selectedStorekeeper.name?.middle }}
+                            {{ selectedStorekeeper.name.last }}</span
+                          >
+                          Schedule history
+                        </h4>
+                      </div>
+                      <!-- <div class="col-5">
+                        <div class="input-group mb-4">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search a date"
+                          />
+                          <div class="input-group-append">
+                            <button
+                              class="btn btn-outline-primary search-bar"
+                              type="button"
+                            >
+                              <i-feather class="mr-2" name="search"></i-feather>
+                            </button>
                           </div>
                         </div>
-                        <div class="col-3"></div>
-                        <br>
-                        <div class="col-sm-9">
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title">Special title 2</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
+                      </div> -->
+                    </div>
+                    <div
+                      *ngIf="
+                      selectedStorekeeper != null;
+                        then renderHistory;
+                        else selectAStorekeeper
+                      "
+                    ></div>
+                    <ng-template #renderHistory>
+                      <div
+                        *ngIf="
+                         schedules == null ||
+                          schedules.length == 0
+                        "
+                        class="row"
+                      >
+                        <!-- <div class="col-12 my-auto">
+                          <h5 class="text-primary text-center">
+                            No shudeles assigned to this driver yet
+                          </h5>
+                        </div> -->
+                      </div>
+                      <!-- <table
+                        *ngIf="
+                          driverScheduleHistory != null &&
+                          driverScheduleHistory.length > 0
+                        "
+                        class="table table-hover"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Date and time</th>
+                            <th>Vehicle Type</th>
+                            <th>Vehicle License No</th>
+                            <th>No.of deliveries</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let schedule of driverScheduleHistory"
+                            (click)="onScheduleSelected(schedule)"
+                          >
+                            <td>{{ schedule.date | date: "short" }}</td>
+                            <td>{{ schedule.vehicle.vehicle_type.type }}</td>
+                            <td>{{ schedule.vehicle.license_plate }}</td>
+                            <td>{{ schedule.orders.length }}</td>
+                          </tr>
+                        </tbody>
+                      </table> -->
+                      <div class="mt-3">
+                        <app-data-table
+                          [schedules]="schedules"
+                        ></app-data-table>
+                      </div>
+                    </ng-template>
+                    <ng-template #selectAStorekeeper>
+                      <div class="row" style="min-height: 550px">
+                        <div class="col-12 my-auto">
+                          <h5 class="text-primary text-center">
+                            Select a storekeeper to view details
+                          </h5>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+              <!-- end-of driver's driving history -->
+              <!-- order details -->
+              <!-- <div class="col-lg-5 col-12 mt-sm-3 mt-lg-0">
+                <div class="card">
+                  <div
+                    *ngIf="
+                      selectedSchedule != null;
+                      then renderScheduleData;
+                      else selectSchdhule
+                    "
+                  ></div>
+                  <ng-template #renderScheduleData>
+                    <div class="card-body">
+                      <h4 class="card-title dtext">
+                        Deliveries on {{ selectedSchedule.date | date: "short" }}
+                      </h4>
+                      <br />
+                      <div class="d-flex justify-content-center">
+                        <div class="input-group mt-2">
+                          <div class="input-group mb-1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Search order by id"
+                            />
+                            <div class="input-group-append">
+                              <button
+                                class="btn btn-outline-primary search-bar"
+                                type="button"
+                              >
+                                <i-feather class="mr-2" name="search"></i-feather>
+                              </button>
                             </div>
                           </div>
                         </div>
                       </div>
+                      <br />
+      
+                      <div  style="min-height: 520px;overscroll-behavior-x: scroll;">
+                        <div class="row">
+                          <div
+                          class="col-12 mt-2"
+                          *ngFor="let order of selectedSchedule.orders"
+                        >
+                          <div class="card order p-2 ">
+                            <ul class="list-unstyled">
+                              <li><b>Order Id :</b> {{ order._id }}</li>
+                              <li><b>Customer mail:</b> {{ order.email }}</li>
+                              <li><b>Customer phone:</b> {{ order.phone }}</li>
+                              <li class="pt-1 float-right">
+                                <button
+                                  class="btn btn-outline-primary"
+                                  (click)="viewOrderDetails(order)"
+                                >
+                                  View All details
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
-                        <div class="p-2">
-
                         </div>
-
-
+      
+                      </div>
                     </div>
-
-
-
-                    <!-- </div> -->
+                  </ng-template>
+                  <ng-template #selectSchdhule>
+                    <div class="row" style="min-height: 670px;">
+                      <div class="col-12 my-auto">
+                        <h5 class="text-primary text-center">
+                          Select a schedule from the Delivery Histroy table
+                        </h5>
+                      </div>
                     </div>
-                    </div>
+                  </ng-template>
+                </div>
+              </div> -->
             </div>
-
-        </div>
     </div>
 </div>  

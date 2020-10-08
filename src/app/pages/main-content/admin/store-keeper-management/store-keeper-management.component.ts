@@ -6,6 +6,8 @@ import { StorekeeperDetails } from './../../../../models/storekeeperDetails';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { __assign } from 'tslib';
+import { Schedule } from './../../../../models/schedule.response';
+import { ScheduleDetails } from './../../../../models/scheduleDetails';
 
 
 @Component({
@@ -28,7 +30,8 @@ export class StoreKeeperManagementComponent implements OnInit {
   selectedStorekeeper:StorekeeperDetails=null
   searchText:string
   storekeepersFilter:StorekeeperDetails[];
-  storekeeperUdpateMessage:string
+  storekeeperUdpateMessage:string;
+  schedules: ScheduleDetails[];
 
 
 
@@ -123,7 +126,7 @@ export class StoreKeeperManagementComponent implements OnInit {
     this.setUpdateFormData(storekeeper);
     this.disableUpdateButton();
     //this.clearDeliveies();
-    //this.fetchStorekeeperScheduleHistory(storekeeper);
+    this.fetchStorekeeperScheduleHistory(storekeeper);
   }
 
   // Reset the form fields value to previous value
@@ -269,6 +272,15 @@ export class StoreKeeperManagementComponent implements OnInit {
     this.storekeeperUdpateMessage = null;
   }
 
+  
+
+  fetchStorekeeperScheduleHistory(storekeeper){
+    this._adminServices.storekeeperScheduleHistory(storekeeper._id).subscribe((response)=>{
+      this.schedules = response.schedules
+    },(error)=>{
+      console.log(error)
+    })
+  }
 
 }
 
