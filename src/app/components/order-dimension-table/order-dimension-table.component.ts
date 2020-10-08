@@ -42,9 +42,11 @@ export class OrderDimensionTableComponent implements OnInit {
     const modalRef = this.modalService.open(AddOrderFormComponent);
     modalRef.componentInstance.orders = clickEventArgs.row.item;
     modalRef.result.then((res)=>{
+      // updating the local fields in the table
       let index = this.newOrders.findIndex((e)=>e._id==res._id);
       this.newOrders[index].load = res.load;
       this.newOrders[index].volume = res.volume;
+      this.newOrders[index].status="ready";
 
     })
   }

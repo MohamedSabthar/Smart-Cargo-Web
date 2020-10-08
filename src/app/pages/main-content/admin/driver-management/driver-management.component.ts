@@ -40,9 +40,9 @@ export class DriverManagementComponent implements OnInit {
       last: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
     }),
     address: this._fb.group({
-      no: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 /]*')]],
-      street: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 /]*')]],
-      city: ['', [Validators.required, Validators.pattern('[a-zA-Z]*[0-9]*')]],
+      no: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/ ]*')]],
+      street: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/, ]*')]],
+      city: ['', [Validators.required, Validators.pattern('[a-zA-Z]* ?[0-9]*')]],
     }),
     contact: this._fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -130,7 +130,8 @@ export class DriverManagementComponent implements OnInit {
   }
 
   // triggers the delete confirmation modal
-  confirmDelete(template: TemplateRef<any>) {
+  confirmDelete(template: TemplateRef<any>,driver:DriverDetails) {
+    this.selectedDriver = driver;
     // this will trigger the modal
     this.modalRef = this._modalService.show(template, {
       class: 'modal-md modal-dialog-centered',
@@ -283,8 +284,9 @@ export class DriverManagementComponent implements OnInit {
   onSearch() {
     console.log(this.searchText);
     this.driversFilter = this.drivers.filter((driver) => {
-      let name: string = `${driver.name.first} ${driver.name.middle} ${driver.name.last}`;
-      return name.search(this.searchText.toLowerCase()) != -1;
+      // search driver by license number
+      let license = driver.license_no.toLowerCase();
+      return license.search(this.searchText.toLowerCase()) != -1;
     });
   }
 
