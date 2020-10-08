@@ -102,4 +102,16 @@ export class API {
     return `${API.base}/admin//storekeeper-schedules/${storekeeperId}`
   }
 
+  public static getProfile(userId){
+    return `${API.base}/storekeeper/settings/${userId}`
+  }
+
+  public static updateProfile(userId){
+    return `${API.base}/storekeeper/settings/${userId}`
+  }
+
+  public static updatePassword(userId){
+    return `${API.base}/storekeeper/password-change/${userId}`
+  }
+
 }

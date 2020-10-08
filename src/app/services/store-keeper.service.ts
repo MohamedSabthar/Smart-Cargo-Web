@@ -8,6 +8,8 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 import { API } from '../api.constants';
 import { Vehicles } from '../models/vehicle.response';
 import { Vehicletypes } from '../models/vehicletype.response';
+import { StorekeeperDetails } from './../models/storekeeperDetails';
+import { Storekeepers } from '../models/storekeeper.response';
 import { DepotDetails } from '../models/depotDetails';
 import { Orders } from '../models/orderDetails';
 
@@ -59,6 +61,34 @@ export class StoreKeeperService {
       })
     );
   }
+
+  getProfile(userId):Observable<{result:StorekeeperDetails}> {
+    return this._httpClient.get<{result:StorekeeperDetails}>(API.getProfile(userId)).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  updateProfile(userId , StorekeeperDetails): Observable<any> {
+    return this._httpClient
+      .put<any>(API.updateProfile(userId), StorekeeperDetails)
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
+  updatePassword(userId, resetPasswordDetails): Observable<any> {
+    return this._httpClient
+      .put<any>(API.updatePassword(userId), resetPasswordDetails).pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      )
+  }
+  
 
   getUrgentOrders(): Observable<any> {
     return this._httpClient.get<any>(API.getUrgencyOrders()).pipe(
