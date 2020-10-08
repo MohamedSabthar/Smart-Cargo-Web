@@ -4,59 +4,68 @@
   [items]="orders"
   [showHeader]="false"
   [showIndexColumn]="true"
-  (rowClick)="onRowClick($event)">
+  (rowClick)="onRowClick($event)"
+>
   <ng-data-table-column
     [field]="'_id'"
     [title]="'Order Id'"
     [filterable]="true"
-    [filterPlaceholder]="'Search'">
+    [width]="250"
+    [filterPlaceholder]="'Search'"
+  >
   </ng-data-table-column>
   <ng-data-table-column
     [field]="'email'"
     [title]="'Customer mail'"
     [filterable]="true"
-    [filterPlaceholder]="'Search'">
+    [filterPlaceholder]="'Search'"
+  >
   </ng-data-table-column>
   <ng-data-table-column
-  [field]="'phone'"
-  [title]="'Customer phone'"
-  [filterable]="true"
-  [filterPlaceholder]="'Search'">
-</ng-data-table-column>
-<ng-data-table-column
-[field]="'emergency_level'"
-[title]="'Emergency level'"
-[filterable]="true"
-      [showDropdownFilter]="true"
-      [dropdownFilterShowClearSelectionButton]="true"
-      [dropdownFilterSearchable]="true"
-      [dropDownFilterShowOptionSelectCheckbox]="true"
-[filterPlaceholder]="'Search'">
-</ng-data-table-column>
-<ng-data-table-column
-[field]="'status'"
-[title]="'Order status'"
-[filterable]="true"
-      [showDropdownFilter]="true"
-      [dropdownFilterShowClearSelectionButton]="true"
-      [dropdownFilterSearchable]="true"
-      [dropDownFilterShowOptionSelectCheckbox]="true"
-[filterPlaceholder]="'Search'">
-</ng-data-table-column>
-<ng-data-table-column
-[field]="'volume'"
-[title]="'Total volume (Leters)'"
-[sortable]="true"
-[filterable]="true"
-[filterPlaceholder]="'Search'">
-</ng-data-table-column>
-<ng-data-table-column
-[field]="'load'"
-[sortable]="true"
-[title]="'Total Load (Kg)'"
-[filterable]="true"
-[filterPlaceholder]="'Search'">
-</ng-data-table-column>
+    [field]="'phone'"
+    [title]="'Customer phone'"
+    [filterable]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'emergency_level'"
+    [title]="'Emergency level'"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'status'"
+    [title]="'Order status'"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'volume'"
+    [title]="'Total volume (Leters)'"
+    [sortable]="true"
+    [filterable]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'load'"
+    [sortable]="true"
+    [title]="'Total Load (Kg)'"
+    [filterable]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
   <!-- <ng-template #ngDataTableNoRecords>
     <h1 style="font-family: 'Helvetica Neue'; color: #8f893f;">{{row.item.product}} was currently out of stock...</h1>
   </ng-template> -->

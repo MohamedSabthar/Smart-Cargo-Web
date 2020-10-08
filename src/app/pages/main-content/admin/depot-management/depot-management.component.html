@@ -6,32 +6,32 @@
             <div class="row justify-content-center">
                 <div class="card xcard">
                     <div class="card-body">
-                        <form>
+                        <form [formGroup]="mangaeDepot">
                             <div class="row">
                                 <div class="col-8 col-md-9">
                                     <h4 style="color: #4d5c84;">Your depot details</h4>
-                                    <div class="form-group">
-                                        <label for="">Depot Address</label>
+
+                                        <label >Depot Address</label>
                                         <input
                                           id="Depot_address"
                                           type="text"
                                           class="form-control"
-                                          formControlName="Depot_address"
+                                          formControlName="address"
                                           placeholder="Warehouse Address"
                                         />
-                                    </div>
+
                                     <label for="">Selection on map</label>
                                     <!--Google map-->
                                     <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 400px">
                                         <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0" allowfullscreen></iframe>
-                                    </div>   
+                                    </div>
                                     <!--Google Maps-->
-                                      
+
                                 </div>
-                                <div class="col-1 col-md-3">
+                                <div class="col-2 col-md-3 align-items-center">
                                     <div class="big_circle align"></div>
-                                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                                    <button type="submit" class="btn btn-primary  button">Save</button>
+
+                                    <button type="submit" class="btn btn-primary  button k-margin">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -41,4 +41,3 @@
         </div>
     </div>
 </div>
-  

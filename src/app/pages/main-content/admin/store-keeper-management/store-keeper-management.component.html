@@ -7,226 +7,901 @@
 
             <div class="row">
                  <!--store keeper list card-->
-                <div class="col-lg-5 col-12">
-                    <div class="card">
-                        <div class="card-body ">
-                            <h4 class="card-title stext">Stock keeper</h4><br><br>
-                            <div class="input-group mb-4">
-                                <input type="text" class="form-control" placeholder="Search a store keeper" >
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-primary search-bar "type="button">
-                                      <i-feather class="mr-2"
-                                      name="search"></i-feather>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- <div class="row "> -->
-                            <!-- <div class="col-12"> -->
-                            <ul class="nav flex-column text " *ngFor="let storekeeper of storekeepers">
-                                <li class="nav-item storekeeper-details align-items-centre" (click)="onStorekeeperSelected(storekeeper)">
-                                    <div class="row px-3 py-2">
-                                        <div class="col-2 circle mx-1"></div>
-                                        <div class="col-7">{{storekeeper.name.first}} {{storekeeper.name.middle}} {{storekeeper.name.last}}</div>
-                                        <div class="col-3">
-                                            <button class="btn btn-default" type="submit"> 
-                                              <i-feather class="mr-2 text-danger"
-                                              name="trash-2"></i-feather>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
+                 <div class="col-lg-5 col-12">
+                  <div class="card" style="min-height: 670px">
+                    <div class="card-body">
+                      <h4 class="card-title text-primary mb-3">Storekeepers</h4>
+        
+                      <div class="input-group mb-4">
+                        <input
+                          type="text"
+                          class="form-control"
+                          [(ngModel)]="searchText"
+                          placeholder="Search storekeeper by ID number"
+                          (keyup)="onSearch()"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-outline-primary search-bar"
+                            type="button"
+                            (click)="onSearch()"
+                          >
+                            <i-feather class="mr-2" name="search"></i-feather>
+                          </button>
                         </div>
+                      </div>
+                      <div
+                        *ngIf="
+                          storekeepers != null;
+                          then renderStorekeeperList;
+                          else loadingStorekeeperList
+                        "
+                      ></div>
+        
+                      <ng-template #renderStorekeeperList>
+                        <ul class="list-unstyled">
+                          <li
+                          *ngFor="let storekeeper of storekeepersFilter || storekeepers"
+                            class="row driver-details align-items-center py-1"
+                            (click)="onStorekeeperSeletected(storekeeper)"
+                          >
+                            <div class="col-1"><div class="circle"></div></div>
+                            <div class="col-8 pl-4">
+                              <span class="d-block"
+                                ><b>Storekeeper ID : </b>{{ storekeeper._id}}</span
+                              >
+                              <span class="d-block"
+                                ><b>Storekeeper Name : </b>{{ storekeeper.name.first }}
+                                {{ storekeeper.name.middle }} {{ storekeeper.name.last }}</span
+                              >
+                            </div>
+                            <div class="col-3">
+                              <button
+                                class="btn float-right"
+                                
+                              >
+                                <i-feather
+                                (click)="confirmDelete(deleteModal,storekeeper)"
+                                  name="trash-2"
+                                  class="text-danger"
+                                >
+                              </i-feather>
+                              </button>
+                            </div>
+                          </li>
+                        </ul>
+                      </ng-template>
+                       <!-- delete-confirmation modal (template variable called in comfirmUpdate(areYouSure) ) -->
+              <ng-template #deleteModal>
+                <div class="modal-body text-center">
+                  <h4 class="mb-2 text-primary">Are you sure?</h4>
+                  <p class="mb-3">
+                    Now you are requesting to delete the record of<br />
+                    <b class="d-inline-block"
+                      >{{ selectedStorekeeper?.name.first }}
+                      {{selectedStorekeeper?.name.middle }}
+                      {{ selectedStorekeeper?.name.last }}</b
+                    >
+                    <br />
+                    click Yes to proceed and No to cancel the process
+                  </p>
+                  <div class="text-center">
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-default"
+                      (click)="onDelete(selectedStorekeeper)"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-primary"
+                      (click)="decline()"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+              <!-- end-of confiramation modal -->
+                      <ng-template #loadingStorekeeperList>
+                        <div class="row" style="min-height: 550px">
+                          <div class="col-12 my-auto text-center">
+                            <i-feather name="loader"></i-feather>
+                          </div>
+                        </div>
+                      </ng-template>
                     </div>
+                  </div>
                 </div>
                 <!-- details form card -->
                 <div class="col-lg-7 col-12 mt-sm-3 mt-lg-0">
-                    <div class="card">
-                        <div class="card-body ">
-                            <!-- nav part -->
-                            <ul ngbNav #nav="ngbNav" class="nav-tabs">
-                                <li ngbNavItem>
-                                  <a ngbNavLink>Details</a>
-                                  <ng-template ngbNavContent>
-                                    <div *ngIf="selectedStorekeeper!=null; then renderDetails else selectAStorekeeper"></div>
-                                    <ng-template #renderDetails>
-                                      <h4 class="text-primary  mt-3">
-                                        Details of {{selectedStorekeeper.name.first}} {{selectedStorekeeper.name.middle}} {{selectedStorekeeper.name.last}}
-                                      </h4>
-                                    <form [formGroup]="updateStorekeeperForm">
-                                        <div class="row">
-                                            <div class="col-9">
-                                              <div class="form-group" formGroupName="name">
-                                                        <label for="name">Name</label>
-                                                        <input type="text" class="form-control mt-2" id="de_firstname" placeholder="First name" formControlName="first">
-                                                        <input type="text" class="form-control mt-1" id="de_middlename" placeholder="Middle name" formControlName="middle">
-                                                        <input type="text" class="form-control mt-1" id="de_lastname" placeholder="Last name" formControlName="last">             
-                                              </div>
-                                              <div class="form-group" formGroupName="address">
-                                                <label for="address">Address</label>
-                                                <input type="text" class="form-control mt-2" id="de_Door" placeholder="Door number" formControlName="no">
-                                                <input type="text" class="form-control mt-1" id="de_street" placeholder="Street" formControlName="street">
-                                                <input type="text" class="form-control mt-1" id="de_city" placeholder="City" formControlName="city">
-                                              
-                                              </div>
-                                              <div class="form-group" formGroupName="contact">  
-                                              <label for="contact">Contact</label>
-                                              <input type="email" class="form-control mt-2" id="de_email" placeholder="email" formControlName="email">
-                                              <input type="text" class="form-control mt-1" id="de_phone" placeholder="Mobile" formControlName="phone">
-                                            
-                                              </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="profile-circle"></div>
-                                                <br><br><br><br>
-                                                <button type="submit" class="btn btn-primary button ml-4">Save</button><br><br>
-                                                <button type="submit" class="btn btn-primary button ml-4">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    </ng-template>
-                                    <ng-template #selectAStorekeeper>
-                                        <div class="h4 mt-3 text-center text-primary">
-                                            please select a storekeeper to view details
-                                        </div>
-                                    </ng-template>
-                                  </ng-template>
-                                </li>
-                                <li ngbNavItem>
-                                  <a ngbNavLink>Add new</a>
-                                  <ng-template ngbNavContent>
-                                    <h4 class="text-primary  mt-3">
-                                        Register a new storekeeper  
-                                    </h4>
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-9">
-                                              <div class="form-group">
-                                                        <label for="name">Name</label>
-                                                        <input type="text" class="form-control" id="ad_firstname" placeholder="First name">
-                                                        <input type="text" class="form-control" id="ad_middlename" placeholder="Middle name">
-                                                        <input type="text" class="form-control" id="ad_lastname" placeholder="Last name">
-                                              </div>
-                                              <div class="form-group">
-
-                                                <label for="address">Address</label>
-                                                <input type="text" class="form-control" id="ad_Door" placeholder="Door number">
-                                                <input type="text" class="form-control" id="ad_street" placeholder="Street">
-                                                <input type="text" class="form-control" id="ad_city" placeholder="City">
-
-                                              </div>
-                                              <div class="form-group">
-
-                                              <label for="contact">Contact</label>
-                                              <input type="email" class="form-control" id="ad_email" placeholder="email">
-                                              <input type="text" class="form-control" id="ad_phone" placeholder="Mobile">
-
-                                              </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="profile-circle"></div>
-                                                <br><br><br><br>
-                                                <button type="submit" class="btn btn-primary button ml-4">Save</button><br><br>
-                                                <button type="submit" class="btn btn-primary button ml-4">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                  </ng-template>
-                                </li>
-                              </ul>
-
-                              <div [ngbNavOutlet]="nav" class="mt-2"></div>
-
+                  <div class="card" style="min-height: 670px">
+                    <div class="card-body">
+                      <!-- nav part -->
+                      <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                        <li ngbNavItem>
+                          <a ngbNavLink>Details</a>
+                          <ng-template ngbNavContent>
+                            <div
+                              *ngIf="
+                                selectedStorekeeper != null;
+                                then renderDetails;
+                                else selectAStorekeeper
+                              "
+                            ></div>
+                            <ng-template #renderDetails>
+                              <h5 class="text-primary mt-3">
+                                Details of {{ selectedStorekeeper.name.first }}
+                                {{ selectedStorekeeper.name.middle }}
+                                {{ selectedStorekeeper.name.last }}
+                              </h5>
+        
+                              <form [formGroup]="updateStorekeeperForm">
+                                <div class="row">
+                                  <div class="col-8">
+                                    <div formGroupName="name" class="form-group">
+                                      <label for="de_firstname">Name</label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="de_firstname"
+                                        placeholder="First name"
+                                        formControlName="first"
+                                        [class.is-invalid]="
+                                          updateFirstName.touched &&
+                                          updateFirstName.invalid
+                                        "
+                                      />
+                                      <div
+                                        class="invalid-feedback"
+                                        *ngIf="
+                                          updateFirstName.touched &&
+                                          updateFirstName.invalid
+                                        "
+                                      >
+                                        <span *ngIf="updateFirstName.errors.required"
+                                          >First name is required</span
+                                        >
+                                        <span
+                                          *ngIf="
+                                            !updateFirstName.errors.required &&
+                                            updateFirstName.errors.pattern
+                                          "
+                                          >Name can only contain alpabetic
+                                          characters</span
+                                        >
+                                      </div>
+        
+                                      <input
+                                        type="text"
+                                        class="form-control mt-1"
+                                        id="de_middlename"
+                                        placeholder="Middle name"
+                                        formControlName="middle"
+                                        [class.is-invalid]="
+                                          updateMiddleName.touched &&
+                                          updateMiddleName.invalid
+                                        "
+                                      />
+                                      <div
+                                        class="invalid-feedback"
+                                        *ngIf="
+                                          updateMiddleName.touched &&
+                                          updateMiddleName.invalid
+                                        "
+                                      >
+                                        <span *ngIf="updateMiddleName.errors.pattern"
+                                          >Name can only contain alpabetic
+                                          characters</span
+                                        >
+                                      </div>
+                                      <input
+                                        type="text"
+                                        class="form-control mt-1"
+                                        id="de_lastname"
+                                        placeholder="Last name"
+                                        formControlName="last"
+                                        [class.is-invalid]="
+                                          updateLastName.touched &&
+                                          updateLastName.invalid
+                                        "
+                                      />
+                                      <div
+                                        class="invalid-feedback"
+                                        *ngIf="
+                                          updateLastName.touched &&
+                                          updateLastName.invalid
+                                        "
+                                      >
+                                        <span *ngIf="updateLastName.errors.required"
+                                          >Last name is required</span
+                                        >
+                                        <span *ngIf="updateLastName.errors.pattern"
+                                          >Name can only contain alpabetic
+                                          characters</span
+                                        >
+                                      </div>
+                                    </div>
+                                    <div class="form-group" formGroupName="address">
+                                      <label for="address">Address</label>
+                                      <input
+                                        type="text"
+                                        class="form-control mt-2"
+                                        id="de_Door"
+                                        placeholder="Door number"
+                                        formControlName="no"
+                                        [class.is-invalid]="
+                                          updateNo.touched && updateNo.invalid
+                                        "
+                                      />
+                                      <div
+                                        class="invalid-feedback"
+                                        *ngIf="updateNo.touched && updateNo.invalid"
+                                      >
+                                        <span *ngIf="updateNo.errors.required"
+                                          >Door number is required</span
+                                        >
+                                        <span *ngIf="updateNo.errors.pattern">
+                                          Door no can't contain special charters like
+                                          *,#, etc..
+                                        </span>
+                                      </div>
+                                      <input
+                                        type="text"
+                                        class="form-control mt-1"
+                                        id="de_Street"
+                                        placeholder="Street"
+                                        formControlName="street"
+                                        [class.is-invalid]="
+                                          updateStreet.touched && updateStreet.invalid
+                                        "
+                                      />
+                                      <div
+                                        class="invalid-feedback"
+                                        *ngIf="
+                                          updateStreet.touched && updateStreet.invalid
+                                        "
+                                      >
+                                        <span *ngIf="updateStreet.errors.required"
+                                          >Street name is required</span
+                                        >
+                                        <span *ngIf="updateStreet.errors.pattern">
+                                          Street name can't contain special charters
+                                          like *,#, etc..
+                                        </span>
+                                      </div>
+                                      <input
+                                        type="text"
+                                        class="form-control mt-1"
+                                        id="de_City"
+                                        placeholder="City"
+                                        formControlName="city"
+                                        [class.is-invalid]="
+                                          updateCity.touched && updateCity.invalid
+                                        "
+                                      />
+                                      <div
+                                        class="invalid-feedback"
+                                        *ngIf="updateCity.touched && updateCity.invalid"
+                                      >
+                                        <span *ngIf="updateCity.errors.required"
+                                          >City is required</span
+                                        >
+                                        <span *ngIf="updateCity.errors.pattern">
+                                          City can only contain alpabatic characters and
+                                          numbers at the end
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div class="form-group" formGroupName="contact">
+                                      <label for="contact">Contact</label>
+                                      <input
+                                        type="email"
+                                        class="form-control mt-2"
+                                        id="de_Email"
+                                        placeholder="Email"
+                                        formControlName="email"
+                                        [class.is-invalid]="
+                                          updateEmail.touched && updateEmail.invalid
+                                        "
+                                      />
+                                      <div
+                                        class="invalid-feedback"
+                                        *ngIf="
+                                          updateEmail.touched && updateEmail.invalid
+                                        "
+                                      >
+                                        <span *ngIf="updateEmail.errors.required"
+                                          >City is required</span
+                                        >
+                                        <span *ngIf="updateEmail.errors.email">
+                                          Enter a valid email
+                                        </span>
+                                      </div>
+        
+                                      <input
+                                        type="text"
+                                        class="form-control mt-1"
+                                        id="de_Mobile"
+                                        placeholder="Mobile"
+                                        formControlName="phone"
+                                        [class.is-invalid]="
+                                          updatePhone.touched && updatePhone.invalid
+                                        "
+                                      />
+                                      <div
+                                        class="invalid-feedback"
+                                        *ngIf="
+                                          updatePhone.touched && updatePhone.invalid
+                                        "
+                                      >
+                                        <span *ngIf="updatePhone.errors.required"
+                                          >Phone number is required</span
+                                        >
+                                        <span *ngIf="updatePhone.errors.pattern">
+                                          Enter a valid phone number eg: +94777890901 or
+                                          0774567892
+                                        </span>
+                                      </div>
+                                    </div>
+        
+                                    <ngb-alert
+                                      *ngIf="storekeeperUdpateMessage != null"
+                                      [type]="'success'"
+                                      style="max-width: 500px"
+                                      (close)="closeUpdateAlert()"
+                                      >{{ storekeeperUdpateMessage }}</ngb-alert
+                                    >
+                                  </div>
+                                  <div
+                                    class="col-4 justify-content-between d-flex flex-column"
+                                  >
+                                    <div class="row">
+                                      <div class="col-12">
+                                        <div class="profile-circle"></div>
+                                      </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                      <div class="col-12">
+                                        <button
+                                          (click)="confirmUpdate(updateModal)"
+                                          [disabled]="
+                                            !updateStorekeeperForm.valid ||
+                                            updateStorekeeperForm.pristine
+                                          "
+                                          class="btn btn-primary button ml-4 button"
+                                        >
+                                          Save
+                                        </button>
+                                      </div>
+                                      <div class="col-12 mt-3">
+                                        <button
+                                          (click)="updateFormReset()"
+                                          class="btn btn-primary button ml-4 button"
+                                        >
+                                          Reset
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </ng-template>
+                            <ng-template #selectAStorekeeper>
+                              <div class="row" style="min-height: 550px">
+                                <div class="col-12 my-auto">
+                                  <h5 class="text-primary text-center">
+                                    Select a storekeeper to view details
+                                  </h5>
+                                </div>
+                              </div>
+                            </ng-template>
+                          </ng-template>
+                        </li>
+                        <li ngbNavItem>
+                          <a ngbNavLink>Add new</a>
+                          <ng-template ngbNavContent>
+                            <h5 class="text-primary mt-3">Register a new storekeeper</h5>
+                            <form [formGroup]="registerStorekeeperForm">
+                              <div class="row">
+                                <div class="col-8">
+                                  <div formGroupName="name" class="form-group">
+                                    <label for="firstname">Name</label>
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="firstname"
+                                      placeholder="First name"
+                                      formControlName="first"
+                                      [class.is-invalid]="
+                                        registerFirstName.touched &&
+                                        registerFirstName.invalid
+                                      "
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      *ngIf="
+                                        registerFirstName.touched &&
+                                        registerFirstName.invalid
+                                      "
+                                    >
+                                      <span *ngIf="registerFirstName.errors.required"
+                                        >First name is required</span
+                                      >
+                                      <span
+                                        *ngIf="
+                                          !registerFirstName.errors.required &&
+                                          registerFirstName.errors.pattern
+                                        "
+                                        >Name can only contain alpabetic
+                                        characters</span
+                                      >
+                                    </div>
+        
+                                    <input
+                                      type="text"
+                                      class="form-control mt-1"
+                                      id="middlename"
+                                      placeholder="Middle name"
+                                      formControlName="middle"
+                                      [class.is-invalid]="
+                                        registerMiddleName.touched &&
+                                        registerMiddleName.invalid
+                                      "
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      *ngIf="
+                                        registerMiddleName.touched &&
+                                        registerMiddleName.invalid
+                                      "
+                                    >
+                                      <span *ngIf="registerMiddleName.errors.pattern"
+                                        >Name can only contain alpabetic
+                                        characters</span
+                                      >
+                                    </div>
+                                    <input
+                                      type="text"
+                                      class="form-control mt-1"
+                                      id="lastname"
+                                      placeholder="Last name"
+                                      formControlName="last"
+                                      [class.is-invalid]="
+                                        registerLastName.touched &&
+                                        registerLastName.invalid
+                                      "
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      *ngIf="
+                                        registerLastName.touched &&
+                                        registerLastName.invalid
+                                      "
+                                    >
+                                      <span *ngIf="registerLastName.errors.required"
+                                        >Last name is required</span
+                                      >
+                                      <span *ngIf="registerLastName.errors.pattern"
+                                        >Name can only contain alpabetic
+                                        characters</span
+                                      >
+                                    </div>
+                                  </div>
+                                  <div class="form-group" formGroupName="address">
+                                    <label for="address">Address</label>
+                                    <input
+                                      type="text"
+                                      class="form-control mt-2"
+                                      id="Door"
+                                      placeholder="Door number"
+                                      formControlName="no"
+                                      [class.is-invalid]="
+                                        registerNo.touched && registerNo.invalid
+                                      "
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      *ngIf="registerNo.touched && registerNo.invalid"
+                                    >
+                                      <span *ngIf="registerNo.errors.required"
+                                        >Door number is required</span
+                                      >
+                                      <span *ngIf="registerNo.errors.pattern">
+                                        Door no can't contain special charters like *,#,
+                                        etc..
+                                      </span>
+                                    </div>
+                                    <input
+                                      type="text"
+                                      class="form-control mt-1"
+                                      id="Street"
+                                      placeholder="Street"
+                                      formControlName="street"
+                                      [class.is-invalid]="
+                                        registerStreet.touched && registerStreet.invalid
+                                      "
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      *ngIf="
+                                        registerStreet.touched && registerStreet.invalid
+                                      "
+                                    >
+                                      <span *ngIf="registerStreet.errors.required"
+                                        >Street name is required</span
+                                      >
+                                      <span *ngIf="registerStreet.errors.pattern">
+                                        Street name can't contain special charters like
+                                        *,#, etc..
+                                      </span>
+                                    </div>
+                                    <input
+                                      type="text"
+                                      class="form-control mt-1"
+                                      id="City"
+                                      placeholder="City"
+                                      formControlName="city"
+                                      [class.is-invalid]="
+                                        registerCity.touched && registerCity.invalid
+                                      "
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      *ngIf="
+                                        registerCity.touched && registerCity.invalid
+                                      "
+                                    >
+                                      <span *ngIf="registerCity.errors.required"
+                                        >City is required</span
+                                      >
+                                      <span *ngIf="registerCity.errors.pattern">
+                                        City can only contain alpabatic characters and
+                                        numbers at the end
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div class="form-group" formGroupName="contact">
+                                    <label for="contact">Contact</label>
+                                    <input
+                                      type="email"
+                                      class="form-control mt-2"
+                                      id="Email"
+                                      placeholder="Email"
+                                      formControlName="email"
+                                      [class.is-invalid]="
+                                        registerEmail.touched && registerEmail.invalid
+                                      "
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      *ngIf="
+                                        registerEmail.touched && registerEmail.invalid
+                                      "
+                                    >
+                                      <span *ngIf="registerEmail.errors.required"
+                                        >City is required</span
+                                      >
+                                      <span *ngIf="registerEmail.errors.email">
+                                        Enter a valid email
+                                      </span>
+                                    </div>
+        
+                                    <input
+                                      type="text"
+                                      class="form-control mt-1"
+                                      id="Mobile"
+                                      placeholder="Mobile"
+                                      formControlName="phone"
+                                      [class.is-invalid]="
+                                        registerPhone.touched && registerPhone.invalid
+                                      "
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      *ngIf="
+                                        registerPhone.touched && registerPhone.invalid
+                                      "
+                                    >
+                                      <span *ngIf="registerPhone.errors.required"
+                                        >Phone number is required</span
+                                      >
+                                      <span *ngIf="registerPhone.errors.pattern">
+                                        Enter a valid phone number eg: +94777890901 or
+                                        0774567892
+                                      </span>
+                                    </div>
+                                  </div>
+      
+                                </div>
+                                <div
+                                  class="col-4 justify-content-between d-flex flex-column"
+                                >
+                                  <div class="row">
+                                    <div class="col-12">
+                                      <div class="profile-circle"></div>
+                                    </div>
+                                  </div>
+                                  <div class="row mt-5">
+                                    <div class="col-12">
+                                      <button
+                                        (click)="confirmRegister(confirmRegistermodal)"
+                                        [disabled]="!registerStorekeeperForm.valid"
+                                        class="btn btn-primary button ml-4 button"
+                                      >
+                                        Save
+                                      </button>
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                      <button
+                                        (click)="updateFormReset()"
+                                        class="btn btn-primary button ml-4 button"
+                                      >
+                                        Reset
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </ng-template>
+                        </li>
+                      </ul>
+        
+                      <!-- Confirmation model called in confirmRegister(confirmRegister) -->
+                      <ng-template #confirmRegistermodal>
+                        <div class="modal-body text-center">
+                          <h4 class="mb-2 text-primary">
+                            Are you sure to register this driver?
+                          </h4>
+                          <p class="mb-3">
+                            Click confirm to proceed or Cancel to Revert
+                          </p>
                         </div>
+                        <div class="text-center mb-2">
+                          <button
+                            type="button"
+                            class="mx-2 btn btn-default"
+                            (click)="register()"
+                          >
+                            Confirm
+                          </button>
+        
+                          <button
+                            type="button"
+                            class="mx-2 btn btn-primary"
+                            (click)="decline()"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </ng-template>
+        
+                      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        
+                      <!-- update-confirmation modal (template variable called in comfirmUpdate(areYouSure) ) -->
+                      <ng-template #updateModal>
+                        <div class="modal-body text-center">
+                          <h4 class="mb-2 text-primary">Are you sure?</h4>
+        
+                          <p class="mb-3">
+                            Now you are requesting to update the record of<br />
+                            <b class="d-inline-block"
+                              >{{ selectedStorekeeper.name.first }}
+                              {{ selectedStorekeeper.name.middle }}
+                              {{ selectedStorekeeper.name.last }}</b
+                            >
+                            <br />
+                            click Yes to proceed and No to revert
+                          </p>
+        
+                          <div class="text-center">
+                            <button
+                              type="button"
+                              class="mx-2 btn btn-default"
+                              (click)="confirm()"
+                            >
+                              Yes
+                            </button>
+                            <button
+                              type="button"
+                              class="mx-2 btn btn-primary"
+                              (click)="decline()"
+                            >
+                              No
+                            </button>
+                          </div>
+                        </div>
+                      </ng-template>
+        
+                      <!-- end-of confiramation modal -->
+        
+                      
                     </div>
+                  </div>
 
 
                 </div>
             </div> 
 
             <div class="row mt-3">
-                <!-- history list -->
-                <div class="col-lg-7  col-12">
-                    <div class="card">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-7">
-                            <h4 class="card-title stext">xxx schedule history</h4>
-                        </div>
-                        <div class="col-5">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="search" width="50px">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i-feather class="mr-2"
-                                        name="search"></i-feather></button>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        <br/>
-                        <app-data-table></app-data-table>
-                        
-                        </div>
-                        </div>
-                    </div>
-
-                <!-- schedule list -->
-                <div class="col-lg-5 col-12  mt-sm-3 mt-lg-0">
-                    <div class="card">
-                         <div class="card-body ">
-                              <h4 class="card-title stext">xxx schedule history</h4><br>
-                              <div class="d-flex justify-content-center">
-                              <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="search" width="10px" >
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i-feather class="mr-2"
-                                        name="search"></i-feather></button>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                    <!-- <div class="row"> -->
-                        <div class="d-flex flex-row">
-                            <div class="mr-auto p-0">
-                        <div class="d-flex flex-column-reverse">
-                        <div class="col-9">
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title">Special title 1</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                            </div>
+              <!-- driver's driving history -->
+              <!-- <div class="col-lg-7 col-12"> -->
+              <div class="col-12">
+                <div class="card" style="min-height: 670px">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12">
+                        <h4 class="card-title dtext">
+                          <span *ngIf="selectedStorekeeper"
+                            >{{ selectedStorekeeper.name.first }}
+                            {{ selectedStorekeeper.name?.middle }}
+                            {{ selectedStorekeeper.name.last }}</span
+                          >
+                          Schedule history
+                        </h4>
+                      </div>
+                      <!-- <div class="col-5">
+                        <div class="input-group mb-4">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search a date"
+                          />
+                          <div class="input-group-append">
+                            <button
+                              class="btn btn-outline-primary search-bar"
+                              type="button"
+                            >
+                              <i-feather class="mr-2" name="search"></i-feather>
+                            </button>
                           </div>
                         </div>
-                        <div class="col-3"></div>
-                        <br>
-                        <div class="col-sm-9">
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title">Special title 2</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
+                      </div> -->
+                    </div>
+                    <div
+                      *ngIf="
+                      selectedStorekeeper != null;
+                        then renderHistory;
+                        else selectAStorekeeper
+                      "
+                    ></div>
+                    <ng-template #renderHistory>
+                      <div
+                        *ngIf="
+                         schedules == null ||
+                          schedules.length == 0
+                        "
+                        class="row"
+                      >
+                        <!-- <div class="col-12 my-auto">
+                          <h5 class="text-primary text-center">
+                            No shudeles assigned to this driver yet
+                          </h5>
+                        </div> -->
+                      </div>
+                      <!-- <table
+                        *ngIf="
+                          driverScheduleHistory != null &&
+                          driverScheduleHistory.length > 0
+                        "
+                        class="table table-hover"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Date and time</th>
+                            <th>Vehicle Type</th>
+                            <th>Vehicle License No</th>
+                            <th>No.of deliveries</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let schedule of driverScheduleHistory"
+                            (click)="onScheduleSelected(schedule)"
+                          >
+                            <td>{{ schedule.date | date: "short" }}</td>
+                            <td>{{ schedule.vehicle.vehicle_type.type }}</td>
+                            <td>{{ schedule.vehicle.license_plate }}</td>
+                            <td>{{ schedule.orders.length }}</td>
+                          </tr>
+                        </tbody>
+                      </table> -->
+                      <div class="mt-3">
+                        <app-data-table
+                          [schedules]="schedules"
+                        ></app-data-table>
+                      </div>
+                    </ng-template>
+                    <ng-template #selectAStorekeeper>
+                      <div class="row" style="min-height: 550px">
+                        <div class="col-12 my-auto">
+                          <h5 class="text-primary text-center">
+                            Select a storekeeper to view details
+                          </h5>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+              <!-- end-of driver's driving history -->
+              <!-- order details -->
+              <!-- <div class="col-lg-5 col-12 mt-sm-3 mt-lg-0">
+                <div class="card">
+                  <div
+                    *ngIf="
+                      selectedSchedule != null;
+                      then renderScheduleData;
+                      else selectSchdhule
+                    "
+                  ></div>
+                  <ng-template #renderScheduleData>
+                    <div class="card-body">
+                      <h4 class="card-title dtext">
+                        Deliveries on {{ selectedSchedule.date | date: "short" }}
+                      </h4>
+                      <br />
+                      <div class="d-flex justify-content-center">
+                        <div class="input-group mt-2">
+                          <div class="input-group mb-1">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Search order by id"
+                            />
+                            <div class="input-group-append">
+                              <button
+                                class="btn btn-outline-primary search-bar"
+                                type="button"
+                              >
+                                <i-feather class="mr-2" name="search"></i-feather>
+                              </button>
                             </div>
                           </div>
                         </div>
                       </div>
+                      <br />
+      
+                      <div  style="min-height: 520px;overscroll-behavior-x: scroll;">
+                        <div class="row">
+                          <div
+                          class="col-12 mt-2"
+                          *ngFor="let order of selectedSchedule.orders"
+                        >
+                          <div class="card order p-2 ">
+                            <ul class="list-unstyled">
+                              <li><b>Order Id :</b> {{ order._id }}</li>
+                              <li><b>Customer mail:</b> {{ order.email }}</li>
+                              <li><b>Customer phone:</b> {{ order.phone }}</li>
+                              <li class="pt-1 float-right">
+                                <button
+                                  class="btn btn-outline-primary"
+                                  (click)="viewOrderDetails(order)"
+                                >
+                                  View All details
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
-                        <div class="p-2">
-
                         </div>
-
-
+      
+                      </div>
                     </div>
-
-
-
-                    <!-- </div> -->
+                  </ng-template>
+                  <ng-template #selectSchdhule>
+                    <div class="row" style="min-height: 670px;">
+                      <div class="col-12 my-auto">
+                        <h5 class="text-primary text-center">
+                          Select a schedule from the Delivery Histroy table
+                        </h5>
+                      </div>
                     </div>
-                    </div>
+                  </ng-template>
+                </div>
+              </div> -->
             </div>
-
-        </div>
     </div>
 </div>  

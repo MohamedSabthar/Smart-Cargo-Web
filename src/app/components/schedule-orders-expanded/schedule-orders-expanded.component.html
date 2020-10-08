@@ -1,0 +1,63 @@
+<ng-data-table
+  [id]="'scheduleDetails'"
+  [title]="'Orders'"
+  [items]="scheduleDetails"
+  [showHeader]="false"
+  [showIndexColumn]="true"
+>
+  <ng-data-table-column
+    [field]="'_id'"
+    [title]="'Order ID'"
+    [showInColumnSelector]="false"
+    [sortable]="true"
+    [filterable]="true"
+    [filterPlaceholder]="'Search'"
+    [width]="200"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'email'"
+    [title]="'Customer mail'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+    [filterPlaceholder]="'Search'"
+    [width]="130"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'phone'"
+    [title]="'Customer phone'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'emergency_level'"
+    [title]="'Emergency Level'"
+    [sortable]="true"
+    [filterable]="true"
+    [visible]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'status'"
+    [title]="'Order Status'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+  >
+  </ng-data-table-column>
+</ng-data-table>

@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import Map from 'ol/Map';
 //import file from 'ol/layer/file';
@@ -12,7 +13,11 @@ import View from 'ol/View';
 export class DepotManagementComponent implements OnInit {
 
   map;
-  constructor() { }
+  constructor(private _fb:FormBuilder) { }
+
+  mangaeDepot = this._fb.group({
+    address: this._fb.control('',[Validators.required])
+  });
 
   ngOnInit(): void {
     //this.initilizeMap();

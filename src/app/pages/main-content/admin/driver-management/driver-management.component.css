@@ -36,6 +36,7 @@
     border: solid 1px;
     border-color: var(--primary-lite);
     border-radius: 0.25rem;
+    cursor: pointer;
   }
 
 .order{

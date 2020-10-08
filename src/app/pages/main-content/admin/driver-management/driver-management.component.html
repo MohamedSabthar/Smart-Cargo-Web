@@ -5,7 +5,7 @@
       <div class="row">
         <!-- driver list section -->
         <div class="col-lg-5 col-12">
-          <div class="card" style="min-height: 670px;">
+          <div class="card" style="min-height: 670px">
             <div class="card-body">
               <h4 class="card-title text-primary mb-3">Drivers</h4>
 
@@ -14,7 +14,7 @@
                   type="text"
                   class="form-control"
                   [(ngModel)]="searchText"
-                  placeholder="Search driver by name"
+                  placeholder="Search driver by Licensej number"
                   (keyup)="onSearch()"
                 />
                 <div class="input-group-append">
@@ -45,7 +45,7 @@
                     <div class="col-1"><div class="circle"></div></div>
                     <div class="col-8 pl-4">
                       <span class="d-block"
-                        ><b>Driver Id : </b>{{ driver._id }}</span
+                        ><b>Driver Licence : </b>{{ driver.license_no }}</span
                       >
                       <span class="d-block"
                         ><b>Driver Name : </b>{{ driver.name.first }}
@@ -55,7 +55,7 @@
                     <div class="col-3">
                       <button
                         class="btn float-right"
-                        (click)="confirmDelete(deleteModal)"
+                        (click)="confirmDelete(deleteModal,driver)"
                       >
                         <i-feather
                           name="trash-2"
@@ -67,7 +67,7 @@
                 </ul>
               </ng-template>
               <ng-template #loadingDriverList>
-                <div class="row" style="min-height: 550px;">
+                <div class="row" style="min-height: 550px">
                   <div class="col-12 my-auto text-center">
                     <i-feather name="loader"></i-feather>
                   </div>
@@ -80,7 +80,7 @@
 
         <!-- driver details & add new driver section -->
         <div class="col-lg-7 col-12 mt-3 mt-lg-0">
-          <div class="card" style="min-height: 670px;">
+          <div class="card" style="min-height: 670px">
             <div class="card-body">
               <!-- nav part -->
               <ul ngbNav #nav="ngbNav" class="nav-tabs">
@@ -347,7 +347,7 @@
                             <ngb-alert
                               *ngIf="driverUdpateMessage != null"
                               [type]="'success'"
-                              style="max-width: 500px;"
+                              style="max-width: 500px"
                               (close)="closeUpdateAlert()"
                               >{{ driverUdpateMessage }}</ngb-alert
                             >
@@ -387,7 +387,7 @@
                       </form>
                     </ng-template>
                     <ng-template #selectADriver>
-                      <div class="row" style="min-height: 550px;">
+                      <div class="row" style="min-height: 550px">
                         <div class="col-12 my-auto">
                           <h5 class="text-primary text-center">
                             Select a driver to view details
@@ -400,39 +400,37 @@
                 <li ngbNavItem>
                   <a ngbNavLink>Add new</a>
                   <ng-template ngbNavContent>
-                    <h5 class="text-primary mt-3">
-                      Register a new driver
-                    </h5>
-                    <form [formGroup]="updateDriverForm">
+                    <h5 class="text-primary mt-3">Register a new driver</h5>
+                    <form [formGroup]="registerDriverForm">
                       <div class="row">
                         <div class="col-8">
                           <div formGroupName="name" class="form-group">
-                            <label for="de_firstname">Name</label>
+                            <label for="firstname">Name</label>
                             <input
                               type="text"
                               class="form-control"
-                              id="de_firstname"
+                              id="firstname"
                               placeholder="First name"
                               formControlName="first"
                               [class.is-invalid]="
-                                updateFirstName.touched &&
-                                updateFirstName.invalid
+                                registerFirstName.touched &&
+                                registerFirstName.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
                               *ngIf="
-                                updateFirstName.touched &&
-                                updateFirstName.invalid
+                                registerFirstName.touched &&
+                                registerFirstName.invalid
                               "
                             >
-                              <span *ngIf="updateFirstName.errors.required"
+                              <span *ngIf="registerFirstName.errors.required"
                                 >First name is required</span
                               >
                               <span
                                 *ngIf="
-                                  !updateFirstName.errors.required &&
-                                  updateFirstName.errors.pattern
+                                  !registerFirstName.errors.required &&
+                                  registerFirstName.errors.pattern
                                 "
                                 >Name can only contain alpabetic
                                 characters</span
@@ -442,22 +440,22 @@
                             <input
                               type="text"
                               class="form-control mt-1"
-                              id="de_middlename"
+                              id="middlename"
                               placeholder="Middle name"
                               formControlName="middle"
                               [class.is-invalid]="
-                                updateMiddleName.touched &&
-                                updateMiddleName.invalid
+                                registerMiddleName.touched &&
+                                registerMiddleName.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
                               *ngIf="
-                                updateMiddleName.touched &&
-                                updateMiddleName.invalid
+                                registerMiddleName.touched &&
+                                registerMiddleName.invalid
                               "
                             >
-                              <span *ngIf="updateMiddleName.errors.pattern"
+                              <span *ngIf="registerMiddleName.errors.pattern"
                                 >Name can only contain alpabetic
                                 characters</span
                               >
@@ -465,23 +463,25 @@
                             <input
                               type="text"
                               class="form-control mt-1"
-                              id="de_lastname"
+                              id="lastname"
                               placeholder="Last name"
                               formControlName="last"
                               [class.is-invalid]="
-                                updateLastName.touched && updateLastName.invalid
+                                registerLastName.touched &&
+                                registerLastName.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
                               *ngIf="
-                                updateLastName.touched && updateLastName.invalid
+                                registerLastName.touched &&
+                                registerLastName.invalid
                               "
                             >
-                              <span *ngIf="updateLastName.errors.required"
+                              <span *ngIf="registerLastName.errors.required"
                                 >Last name is required</span
                               >
-                              <span *ngIf="updateLastName.errors.pattern"
+                              <span *ngIf="registerLastName.errors.pattern"
                                 >Name can only contain alpabetic
                                 characters</span
                               >
@@ -492,21 +492,21 @@
                             <input
                               type="text"
                               class="form-control mt-2"
-                              id="de_Door"
+                              id="Door"
                               placeholder="Door number"
                               formControlName="no"
                               [class.is-invalid]="
-                                updateNo.touched && updateNo.invalid
+                                registerNo.touched && registerNo.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
-                              *ngIf="updateNo.touched && updateNo.invalid"
+                              *ngIf="registerNo.touched && registerNo.invalid"
                             >
-                              <span *ngIf="updateNo.errors.required"
+                              <span *ngIf="registerNo.errors.required"
                                 >Door number is required</span
                               >
-                              <span *ngIf="updateNo.errors.pattern">
+                              <span *ngIf="registerNo.errors.pattern">
                                 Door no can't contain special charters like *,#,
                                 etc..
                               </span>
@@ -514,23 +514,23 @@
                             <input
                               type="text"
                               class="form-control mt-1"
-                              id="de_Street"
+                              id="Street"
                               placeholder="Street"
                               formControlName="street"
                               [class.is-invalid]="
-                                updateStreet.touched && updateStreet.invalid
+                                registerStreet.touched && registerStreet.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
                               *ngIf="
-                                updateStreet.touched && updateStreet.invalid
+                                registerStreet.touched && registerStreet.invalid
                               "
                             >
-                              <span *ngIf="updateStreet.errors.required"
+                              <span *ngIf="registerStreet.errors.required"
                                 >Street name is required</span
                               >
-                              <span *ngIf="updateStreet.errors.pattern">
+                              <span *ngIf="registerStreet.errors.pattern">
                                 Street name can't contain special charters like
                                 *,#, etc..
                               </span>
@@ -538,21 +538,23 @@
                             <input
                               type="text"
                               class="form-control mt-1"
-                              id="de_City"
+                              id="City"
                               placeholder="City"
                               formControlName="city"
                               [class.is-invalid]="
-                                updateCity.touched && updateCity.invalid
+                                registerCity.touched && registerCity.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
-                              *ngIf="updateCity.touched && updateCity.invalid"
+                              *ngIf="
+                                registerCity.touched && registerCity.invalid
+                              "
                             >
-                              <span *ngIf="updateCity.errors.required"
+                              <span *ngIf="registerCity.errors.required"
                                 >City is required</span
                               >
-                              <span *ngIf="updateCity.errors.pattern">
+                              <span *ngIf="registerCity.errors.pattern">
                                 City can only contain alpabatic characters and
                                 numbers at the end
                               </span>
@@ -563,21 +565,23 @@
                             <input
                               type="email"
                               class="form-control mt-2"
-                              id="de_Email"
+                              id="Email"
                               placeholder="Email"
                               formControlName="email"
                               [class.is-invalid]="
-                                updateEmail.touched && updateEmail.invalid
+                                registerEmail.touched && registerEmail.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
-                              *ngIf="updateEmail.touched && updateEmail.invalid"
+                              *ngIf="
+                                registerEmail.touched && registerEmail.invalid
+                              "
                             >
-                              <span *ngIf="updateEmail.errors.required"
+                              <span *ngIf="registerEmail.errors.required"
                                 >City is required</span
                               >
-                              <span *ngIf="updateEmail.errors.email">
+                              <span *ngIf="registerEmail.errors.email">
                                 Enter a valid email
                               </span>
                             </div>
@@ -585,21 +589,23 @@
                             <input
                               type="text"
                               class="form-control mt-1"
-                              id="de_Mobile"
+                              id="Mobile"
                               placeholder="Mobile"
                               formControlName="phone"
                               [class.is-invalid]="
-                                updatePhone.touched && updatePhone.invalid
+                                registerPhone.touched && registerPhone.invalid
                               "
                             />
                             <div
                               class="invalid-feedback"
-                              *ngIf="updatePhone.touched && updatePhone.invalid"
+                              *ngIf="
+                                registerPhone.touched && registerPhone.invalid
+                              "
                             >
-                              <span *ngIf="updatePhone.errors.required"
+                              <span *ngIf="registerPhone.errors.required"
                                 >Phone number is required</span
                               >
-                              <span *ngIf="updatePhone.errors.pattern">
+                              <span *ngIf="registerPhone.errors.pattern">
                                 Enter a valid phone number eg: +94777890901 or
                                 0774567892
                               </span>
@@ -611,23 +617,23 @@
                             <input
                               type="text"
                               class="form-control mt-2"
-                              id="de_license"
+                              id="license"
                               placeholder="license No"
                               formControlName="license_no"
                               [class.is-invalid]="
-                                updateLicenseNo.touched &&
-                                updateLicenseNo.invalid
+                                registerLicenseNo.touched &&
+                                registerLicenseNo.invalid
                               "
                             />
 
                             <div
                               class="invalid-feedback"
                               *ngIf="
-                                updateLicenseNo.touched &&
-                                updateLicenseNo.invalid
+                                registerLicenseNo.touched &&
+                                registerLicenseNo.invalid
                               "
                             >
-                              <span *ngIf="updateLicenseNo.errors.required"
+                              <span *ngIf="registerLicenseNo.errors.required"
                                 >License number is required</span
                               >
                             </div>
@@ -635,7 +641,7 @@
                             <!-- <input
                             type="text"
                             class="form-control"
-                            id="de_vehicle"
+                            id="vehicle"
                             placeholder="Vehicle type"
                           /> -->
                           </div>
@@ -651,8 +657,8 @@
                           <div class="row mt-5">
                             <div class="col-12">
                               <button
-                                (click)="confirmUpdate(updateModal)"
-                                [disabled]="!updateDriverForm.valid"
+                                (click)="confirmRegister(confirmRegistermodal)"
+                                [disabled]="!registerDriverForm.valid"
                                 class="btn btn-primary button ml-4 button"
                               >
                                 Save
@@ -674,12 +680,42 @@
                 </li>
               </ul>
 
+              <!-- Confirmation model called in confirmRegister(confirmRegister) -->
+              <ng-template #confirmRegistermodal>
+                <div class="modal-body text-center">
+                  <h4 class="mb-2 text-primary">
+                    Are you sure to register this driver?
+                  </h4>
+                  <p class="mb-3">
+                    Click confirm to proceed or Cancel to Revert
+                  </p>
+                </div>
+                <div class="text-center mb-2">
+                  <button
+                    type="button"
+                    class="mx-2 btn btn-default"
+                    (click)="register()"
+                  >
+                    Confirm
+                  </button>
+
+                  <button
+                    type="button"
+                    class="mx-2 btn btn-primary"
+                    (click)="decline()"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </ng-template>
+
               <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
               <!-- update-confirmation modal (template variable called in comfirmUpdate(areYouSure) ) -->
               <ng-template #updateModal>
                 <div class="modal-body text-center">
                   <h4 class="mb-2 text-primary">Are you sure?</h4>
+
                   <p class="mb-3">
                     Now you are requesting to update the record of<br />
                     <b class="d-inline-block"
@@ -690,6 +726,7 @@
                     <br />
                     click Yes to proceed and No to revert
                   </p>
+
                   <div class="text-center">
                     <button
                       type="button"
@@ -718,9 +755,9 @@
                   <p class="mb-3">
                     Now you are requesting to delete the record of<br />
                     <b class="d-inline-block"
-                      >{{ selectedDriver.name.first }}
-                      {{ selectedDriver.name.middle }}
-                      {{ selectedDriver.name.last }}</b
+                      >{{ selectedDriver?.name.first }}
+                      {{ selectedDriver?.name.middle }}
+                      {{ selectedDriver?.name.last }}</b
                     >
                     <br />
                     click Yes to proceed and No to cancel the process
@@ -754,12 +791,12 @@
         <!-- driver's driving history -->
         <!-- <div class="col-lg-7 col-12"> -->
         <div class="col-12">
-          <div class="card" style="min-height: 670px;">
+          <div class="card" style="min-height: 670px">
             <div class="card-body">
               <div class="row">
                 <div class="col-12">
                   <h4 class="card-title dtext">
-                    <span  *ngIf="selectedDriver"
+                    <span *ngIf="selectedDriver"
                       >{{ selectedDriver.name.first }}
                       {{ selectedDriver.name?.middle }}
                       {{ selectedDriver.name.last }}</span
@@ -799,13 +836,12 @@
                     driverScheduleHistory.length == 0
                   "
                   class="row"
-
                 >
-                  <div class="col-12 my-auto">
+                  <!-- <div class="col-12 my-auto">
                     <h5 class="text-primary text-center">
                       No shudeles assigned to this driver yet
                     </h5>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- <table
                   *ngIf="
@@ -834,12 +870,14 @@
                     </tr>
                   </tbody>
                 </table> -->
-              <div class="mt-3">
-                <app-delivery-history-table [history]="driverScheduleHistory"></app-delivery-history-table>
-              </div>
+                <div class="mt-3">
+                  <app-delivery-history-table
+                    [history]="driverScheduleHistory"
+                  ></app-delivery-history-table>
+                </div>
               </ng-template>
               <ng-template #selectADriver>
-                <div class="row" style="min-height: 550px;">
+                <div class="row" style="min-height: 550px">
                   <div class="col-12 my-auto">
                     <h5 class="text-primary text-center">
                       Select a driver to view details

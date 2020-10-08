@@ -1,14 +1,14 @@
 <ng-data-table
-    [id]="'sales_products_detail_summery'"
-    [title]="'Sales Products'"
-    [items]="data"
-    [minContentHeight]="200"
-    [minContentWidth]="900"
+    [id]="'history-table'"
+    [title]="''"
+   [items]="schedules"
+    [minContentHeight]="500"
+    [minContentWidth]="700"
     [showHeader]="true"
     [pageable]="true"
     [showRefreshButton]="true"
     [showRowSelectCheckbox]="true"
-    [rowSelectable]="true"
+    [rowSelectable]="false"
     [selectOnRowClick]="true"
     [showSubstituteRows]="true"
     [persistTableState]="true"
@@ -17,90 +17,70 @@
     [showLoadingSpinner]="true"
     [selectMode]="'multi'"
     [showRowSelectAllCheckbox]="true">
+
+
     <ng-data-table-column
-      [field]="'id'"
-      [title]="'ID'"
-      [showInColumnSelector]="false"
-      [sortable]="true"
-      [filterable]="true"
-      [filterPlaceholder]="'Search'"
-      [width]="80">
-      <ng-template #ngDataTableCell let-row="row">
-        <td>
-          <span><i class="zmdi zmdi-account"></i></span>
-          <span>{{ row.item.id }}</span>
-        </td>
-      </ng-template>
-    </ng-data-table-column>
-    <ng-data-table-column
-      [field]="'orderMethodType'"
-      [title]="'Order Method Type'"
-      [sortable]="true"
+      [field]="'_id'"
+      [title]="'Schedule ID'"
       [filterable]="true"
       [showDropdownFilter]="true"
       [dropdownFilterShowClearSelectionButton]="true"
       [dropdownFilterSearchable]="true"
       [dropDownFilterShowOptionSelectCheckbox]="true"
       [filterPlaceholder]="'Search'"
-      [width]="130">
+      [width]="200">
     </ng-data-table-column>
+
     <ng-data-table-column
-      [field]="'retailerType'"
-      [title]="'Retailer Type'"
-      [sortable]="true"
+  [field]="'date'"
+  [title]="'Date and time'"
+  [showInColumnSelector]="false"
+  [sortable]="true"
+  [filterable]="true"
+  [filterPlaceholder]="'Search'"
+  [width]="200">
+  <ng-template #ngDataTableRowExpand let-row="row">
+    <app-delivery-history-expanded *ngIf="row.expanded || row.dataLoaded"
+                                       [row]="row"></app-delivery-history-expanded>
+                                      
+  </ng-template>
+</ng-data-table-column>  
+    <ng-data-table-column
+      [field]="'vehicle.license_plate'"
+      [title]="'Vehicle License No'" 
       [filterable]="true"
       [showDropdownFilter]="true"
       [dropdownFilterShowClearSelectionButton]="true"
       [dropdownFilterSearchable]="true"
       [dropDownFilterShowOptionSelectCheckbox]="true"
-      [filterPlaceholder]="'Search'">
+      [filterPlaceholder]="'Search'"
+      [width]="200">
     </ng-data-table-column>
     <ng-data-table-column
-      [field]="'productLine'"
-      [title]="'Product Line'"
-      [sortable]="true"
-      [filterable]="true"
-      [visible]="false"
-      [filterPlaceholder]="'Search'">
-    </ng-data-table-column>
-    <ng-data-table-column
-      [field]="'productType'"
-      [title]="'Product Type'"
-      [sortable]="true"
+      [field]="'status'"
+      [title]="'Status'"
+      [width]="200"
       [filterable]="true"
       [showDropdownFilter]="true"
       [dropdownFilterShowClearSelectionButton]="true"
       [dropdownFilterSearchable]="true"
-      [dropDownFilterShowOptionSelectCheckbox]="true">
-      <ng-template #ngDataTableCell let-row="row">
-        <td>
-          <span>{{ row.item.productType.toUpperCase() }}</span>
-        </td>
-      </ng-template>
-    </ng-data-table-column>
-    <ng-data-table-column
-      [field]="'revenue'"
-      [title]="'Revenue'"
-      [sortable]="true"
-      [filterable]="true"
+      [dropDownFilterShowOptionSelectCheckbox]="true"
       [filterPlaceholder]="'Search'"
-      [width]="90">
+    >
     </ng-data-table-column>
+
     <ng-data-table-column
-      [field]="'quantity'"
-      [title]="'Quantity'"
-      [sortable]="true"
+      [field]="'driver.license_no'"
+      [title]="'Assigned driver license number'"
+      [width]="200"
       [filterable]="true"
+      [showDropdownFilter]="true"
+      [dropdownFilterShowClearSelectionButton]="true"
+      [dropdownFilterSearchable]="true"
+      [dropDownFilterShowOptionSelectCheckbox]="true"
       [filterPlaceholder]="'Search'"
-      [width]="80">
+    >
     </ng-data-table-column>
-    <ng-data-table-column
-      [field]="'grossMargin'"
-      [title]="'Gross Margin'"
-      [sortable]="true"
-      [filterable]="true"
-      [filterPlaceholder]="'Search'"
-      [width]="95">
-    </ng-data-table-column>
-   
+
+
   </ng-data-table>

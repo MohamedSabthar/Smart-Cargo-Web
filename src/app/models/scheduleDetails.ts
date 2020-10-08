@@ -1,12 +1,16 @@
 import { Orders } from './orderDetails';
 import { DriverDetails } from './driverDetails';
+import { StorekeeperDetails } from './storekeeperDetails';
 
 export interface ScheduleDetails {
   _id: String;
   orders: Orders[];
+  route: Orders[];
   driver: DriverDetails;
   vehicle: VehicleDetails;
+  storekeeper: StorekeeperDetails;
   date: Date;
+  status: String;
 }
 
 interface VehicleDetails {

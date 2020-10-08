@@ -1,0 +1,87 @@
+
+<ng-data-table
+  [id]="'scheduleDetails'"
+  [title]="'Scheduled Orders'"
+  [items]="scheduleDetails"
+  [minContentHeight]="200"
+  [minContentWidth]="900"
+  [showHeader]="true"
+  [pageable]="true"
+  [showRefreshButton]="true"
+  [showRowSelectCheckbox]="true"
+  [rowSelectable]="false"
+  [selectOnRowClick]="true"
+  [showSubstituteRows]="true"
+  [persistTableState]="true"
+  [showColumnSelector]="true"
+  [expandableRows]="true"
+  [showLoadingSpinner]="true"
+  [selectMode]="'multi'"
+  [showRowSelectAllCheckbox]="true"
+  (rowClick)="onRowClick($event)"
+>
+  <ng-data-table-column
+    [field]="'_id'"
+    [title]="'Route'"
+    [showInColumnSelector]="false"
+    [sortable]="true"
+    [filterable]="true"
+    [filterPlaceholder]="'Search'"
+    [width]="200"
+  >
+    <ng-template #ngDataTableRowExpand let-row="row">
+      <app-schedule-orders-expanded
+        *ngIf="row.expanded || row.dataLoaded"
+        [row]="row"
+      ></app-schedule-orders-expanded>
+      <!-- show sub-table on expand operation -->
+    </ng-template>
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'vehicle.vehicle_type.type'"
+    [title]="'Vehicle Type'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+    [filterPlaceholder]="'Search'"
+    [width]="130"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'vehicle._id'"
+    [title]="'Assigned Vehicle ID'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'driver'"
+    [title]="'Assigned Driver ID'"
+    [sortable]="true"
+    [filterable]="true"
+    [visible]="true"
+    [filterPlaceholder]="'Search'"
+  >
+  </ng-data-table-column>
+  <ng-data-table-column
+    [field]="'status'"
+    [title]="'Current Status'"
+    [sortable]="true"
+    [filterable]="true"
+    [showDropdownFilter]="true"
+    [dropdownFilterShowClearSelectionButton]="true"
+    [dropdownFilterSearchable]="true"
+    [dropDownFilterShowOptionSelectCheckbox]="true"
+  >
+  </ng-data-table-column>
+</ng-data-table>
+
+

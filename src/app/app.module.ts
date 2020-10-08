@@ -1,6 +1,10 @@
 import { ViewOrderDetailsComponent } from './components/view-order-details/view-order-details.component';
 import { IconsModule } from './icon.module';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import {
+  BsModalService,
+  ModalBackdropComponent,
+  ModalContainerComponent,
+} from 'ngx-bootstrap/modal';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { StoreKeeperGaurdService } from './services/store-keeper-gaurd.service';
 import { AdminGaurdService } from './services/admin-gaurd.service';
@@ -13,7 +17,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 import { DataTableModule } from 'ornamentum';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +46,7 @@ import { DepotManagementComponent } from './pages/main-content/admin/depot-manag
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 import { ForbiddenPageComponent } from './pages/forbidden-page/forbidden-page.component';
 import { RestPasswordPageComponent } from './pages/rest-password-page/rest-password-page.component';
+import { OrdersChartComponent } from './components/orders-chart/orders-chart.component';
 import { AddOrderDimentionComponent } from './pages/main-content/admin/add-order-dimention/add-order-dimention.component';
 import { AddOrderFormComponent } from './components/add-order-form/add-order-form.component';
 import { AddOrderDetailsComponent } from './components/add-order-details/add-order-details.component';
@@ -53,6 +60,11 @@ import { ScheduleOrderOrderListComponent } from './components/schedule-order-ord
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { DeliveryHistoryTableComponent } from './components/delivery-history-table/delivery-history-table.component';
 import { DeliveryHistoryExpandedComponent } from './components/delivery-history-expanded/delivery-history-expanded.component';
+import { UrgencyLevelComponent } from './components/urgency-level/urgency-level.component';
+import { ScheduledOrdersTableComponent } from './components/scheduled-orders-table/scheduled-orders-table.component';
+import { ViewRouteComponent } from './components/view-route/view-route.component';
+import { ScheduleOrdersExpandedComponent } from './components/schedule-orders-expanded/schedule-orders-expanded.component';
+import { OrderDimensionTableComponent } from './components/order-dimension-table/order-dimension-table.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -81,6 +93,7 @@ export function tokenGetter() {
     TimeLineComponent,
     ForbiddenPageComponent,
     RestPasswordPageComponent,
+    OrdersChartComponent,
     AddOrderDimentionComponent,
     AddOrderFormComponent,
     AddOrderDetailsComponent,
@@ -93,7 +106,12 @@ export function tokenGetter() {
     DataTableComponent,
     ViewOrderDetailsComponent,
     DeliveryHistoryTableComponent,
-    DeliveryHistoryExpandedComponent
+    DeliveryHistoryExpandedComponent,
+    UrgencyLevelComponent,
+    ViewRouteComponent,
+    ScheduleOrdersExpandedComponent,
+    ScheduledOrdersTableComponent,
+    OrderDimensionTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +122,9 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     IconsModule,
+    UiSwitchModule,
     DataTableModule.forRoot(),
     JwtModule.forRoot({
       config: {
@@ -118,11 +138,23 @@ export function tokenGetter() {
     GaurdService,
     AdminGaurdService,
     StoreKeeperGaurdService,
+
     BsModalService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddOrderFormComponent, AddOrderDetailsComponent],
+  entryComponents: [
+    AddOrderFormComponent,
+    AddOrderDetailsComponent,
+    ModalBackdropComponent,
+    ModalContainerComponent,
+    ViewOrderDetailsComponent,
+    TrackVehileDetailsComponent,
+    TimeLineComponent,
+    TrackVehileMapComponent,
+    ViewRouteComponent,
+    StoreKeeperManagementComponent,
+  ],
 })
 export class AppModule {}

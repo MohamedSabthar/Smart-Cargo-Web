@@ -1,9 +1,9 @@
 <div class="container-fluid">
-    <div class="row">
-      <app-side-bar></app-side-bar>
-  
-      <!-- Content of Admin Dashboard -->
-      <div class="col main-content">
+  <div class="row">
+    <app-side-bar></app-side-bar>
+
+    <!-- Content of Admin Dashboard -->
+    <div class="col main-content">
       <!-- Status Cards -->
       <div class="row">
         <!-- Ready -->
@@ -25,13 +25,17 @@
               <span class="status-text align-middle mr-3">Pending</span>
               <div class="status-divider align-middle"></div>
 
-                <span class="ml-3 align-middle status-description">High</span>
-                <span class="mx-2 align-middle status-number">78</span>
+              <span class="ml-3 align-middle status-description">High</span>
+              <span class="mx-2 align-middle status-number">78</span>
 
-              <div class="status-divider status-divider-min align-middle mx-2"></div>
+              <div
+                class="status-divider status-divider-min align-middle mx-2"
+              ></div>
               <span class="mx-2 align-middle status-description">Medium</span>
               <span class="mx-2 align-middle status-number">100</span>
-              <div class="status-divider status-divider-min align-middle mx-2"></div>
+              <div
+                class="status-divider status-divider-min align-middle mx-2"
+              ></div>
               <span class="mx-2 align-middle status-description">Low</span>
               <span class="mx-2 align-middle status-number">345</span>
             </div>
@@ -53,72 +57,10 @@
       </div>
       <!-- End of status cards -->
 
-        <hr>
-        <div class="card tabled">
-            <div class="table-responsive"> 
-                <table class="table">
-                  <thead class="thead table-header">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Order ID</th>
-                      <th scope="col"> Details </th>
-                      <th scope="col">Date</th>
-                      <th scope="col"></th>
-               
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>1102</td>
-                      <!-- Calling the customer details model -->
-                      <td (click)="openDetailsModel()">Lorry</td>
-                      <td>{{date}}</td>
-                      <td>
-                        <!-- Calling the add order dimention form -->
-                        <button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal" (click)="openFormModal()">ADD DIMENTION</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>1102</td>
-                      <td (click)="openDetailsModel()">Lorry</td>
-                      <td>{{date}}</td>
-                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal" (click)="openFormModal()">ADD DIMENTION</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>1102</td>
-                      <td (click)="openDetailsModel()">Lorry</td>
-                      <td>{{date}}</td>
-                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal" (click)="openFormModal()">ADD DIMENTION</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td>1102</td>
-                      <td (click)="openDetailsModel()">Lorry</td>
-                      <td>{{date}}</td>
-                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal" (click)="openFormModal()">ADD DIMENTION</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td>1102</td>
-                      <td (click)="openDetailsModel()">Lorry</td>
-                      <td>{{date}}</td>
-                      <td><button class="btn btn-small track-button" data-toggle="modal" data-target="#exampleModal" (click)="openFormModal()">ADD DIMENTION</button></td>
-                      
-                    </tr>
-                  </tbody>
-                </table>
-        </div>
-  
+      <hr />
+      <app-order-dimension-table></app-order-dimension-table>
 
-  
-      </div>
       <!-- End content of Admin Dashboard -->
     </div>
   </div>
-  
+</div>
