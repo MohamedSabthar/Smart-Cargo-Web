@@ -195,9 +195,9 @@ export class DriverManagementComponent implements OnInit {
       last: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
     }),
     address: this._fb.group({
-      no: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 /]*')]],
-      street: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 /]*')]],
-      city: ['', [Validators.required, Validators.pattern('[a-zA-Z]*[0-9]*')]],
+      no: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/ ]*')]],
+      street: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/, ]*')]],
+      city: ['', [Validators.required, Validators.pattern('[a-zA-Z]* ?[0-9]*')]],
     }),
     contact: this._fb.group({
       email: ['', [Validators.required, Validators.email]],

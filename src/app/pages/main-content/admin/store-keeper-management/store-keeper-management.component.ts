@@ -5,6 +5,7 @@ import { Storekeepers } from './../../../../models/storekeeper.response';
 import { StorekeeperDetails } from './../../../../models/storekeeperDetails';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { __assign } from 'tslib';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class StoreKeeperManagementComponent implements OnInit {
   selectedStorekeeper:StorekeeperDetails=null
   searchText:string
   storekeepersFilter:StorekeeperDetails[];
+  storekeeperUdpateMessage:string
 
 
 
@@ -37,14 +39,33 @@ export class StoreKeeperManagementComponent implements OnInit {
       last: ['',[Validators.required,Validators.pattern('[a-zA-Z]*')]]
     }),
     address: this._fb.group({
-      no: ['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]] ,
-      street: ['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]] ,
-      city: ['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
+      no: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/ ]*')]],
+      street: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/, ]*')]],
+      city: ['', [Validators.required, Validators.pattern('[a-zA-Z]* ?[0-9]*')]],
     }),
     contact: this._fb.group({
       email:  ['',[Validators.required,Validators.email]] ,
       phone:  ['',[Validators.required,Validators.pattern(/^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\d)\d{6}$/)]] ,
-    })
+    }),
+    role: ['store-keeper', [Validators.required]], //role feild is hidden in the form
+  });
+
+  registerStorekeeperForm = this._fb.group({
+    name: this._fb.group({
+      first: ['',[Validators.required,Validators.pattern('[a-zA-Z]*')]] ,
+      middle: ['',[Validators.pattern('[a-zA-Z]*')]] ,
+      last: ['',[Validators.required,Validators.pattern('[a-zA-Z]*')]]
+    }),
+    address: this._fb.group({
+      no: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/ ]*')]],
+      street: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9/, ]*')]],
+      city: ['', [Validators.required, Validators.pattern('[a-zA-Z]* ?[0-9]*')]],
+    }),
+    contact: this._fb.group({
+      email:  ['',[Validators.required,Validators.email]] ,
+      phone:  ['',[Validators.required,Validators.pattern(/^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\d)\d{6}$/)]] ,
+    }),
+    role: ['store-keeper', [Validators.required]], //role feild is hidden in the form
   });
 
   isLoading = false; //variable display/hide loader
@@ -56,11 +77,6 @@ export class StoreKeeperManagementComponent implements OnInit {
     },(error)=>{console.log(error)})
   }
 
-  
-
-  onStorekeeperSelected(storekeeper : StorekeeperDetails){
-    this.selectedStorekeeper=storekeeper;
-  }
 
   onSearch() {
     console.log(this.searchText);
@@ -84,9 +100,10 @@ export class StoreKeeperManagementComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  confirmDelete(template: TemplateRef<any>) {
+  confirmDelete(template: TemplateRef<any>,storekeeper:StorekeeperDetails) {
+    this.selectedStorekeeper = storekeeper
     // this will trigger the modal
-    console.log("hit")
+
     this.modalRef = this._modalService.show(template, {
       class: 'modal-md modal-dialog-centered',
     });
@@ -100,6 +117,7 @@ export class StoreKeeperManagementComponent implements OnInit {
 
     // populate the update form details, when a storekeeper element clicked from list
   onStorekeeperSeletected(storekeeper: StorekeeperDetails) {
+    console.log("hit")
     this.selectedStorekeeper = storekeeper;
     this.setUpdateFormData(storekeeper);
     this.disableUpdateButton();
@@ -134,41 +152,38 @@ export class StoreKeeperManagementComponent implements OnInit {
   //   this.selectedSchedule = null;
   // }
 
-  // get registerFirstName() {
-  //   return this.registerStorekeeperForm.get('name.first');
-  // }
+  get registerFirstName() {
+    return this.registerStorekeeperForm.get('name.first');
+  }
 
-  // get registerMiddleName() {
-  //   return this.registerStorekeeperForm.get('name.middle');
-  // }
+  get registerMiddleName() {
+    return this.registerStorekeeperForm.get('name.middle');
+  }
 
-  // get registerLastName() {
-  //   return this.registerStorekeeperForm.get('name.last');
-  // }
+  get registerLastName() {
+    return this.registerStorekeeperForm.get('name.last');
+  }
 
-  // get registerNo() {
-  //   return this.registerStorekeeperForm.get('address.no');
-  // }
+  get registerNo() {
+    return this.registerStorekeeperForm.get('address.no');
+  }
 
-  // get registerStreet() {
-  //   return this.registerStorekeeperForm.get('address.street');
-  // }
+  get registerStreet() {
+    return this.registerStorekeeperForm.get('address.street');
+  }
 
-  // get registerCity() {
-  //   return this.registerStorekeeperForm.get('address.city');
-  // }
+  get registerCity() {
+    return this.registerStorekeeperForm.get('address.city');
+  }
 
-  // get registerEmail() {
-  //   return this.registerStorekeeperForm.get('contact.email');
-  // }
+  get registerEmail() {
+    return this.registerStorekeeperForm.get('contact.email');
+  }
 
-  // get registerPhone() {
-  //   return this.registerStorekeeperForm.get('contact.phone');
-  // }
+  get registerPhone() {
+    return this.registerStorekeeperForm.get('contact.phone');
+  }
 
-  // get registerLicenseNo() {
-  //   return this.registerStorekeeperForm.get('license_no');
-  // }
 
 
 
@@ -204,9 +219,55 @@ export class StoreKeeperManagementComponent implements OnInit {
     return this.updateStorekeeperForm.get('contact.phone');
   }
 
-  get updateLicenseNo() {
-    return this.updateStorekeeperForm.get('license_no');
+
+  // triggers when Yer button cliked in confirmation modal
+  confirm(): void {
+    console.log(this.updateStorekeeperForm.value);
+    this._adminServices
+      .updateStorekeeperDetails(this.updateStorekeeperForm.value, this.selectedStorekeeper._id)
+      .subscribe(
+        (response) => {
+          //change the storekeeper details in the current list after successful update
+          const index = this.storekeepers.indexOf(this.selectedStorekeeper);
+
+          this.selectedStorekeeper = __assign(
+            {},
+            this.selectedStorekeeper,
+            this.updateStorekeeperForm.value
+          );
+          this.storekeepers[index] = this.selectedStorekeeper;
+          console.log(this.storekeepers);
+          this.disableUpdateButton();
+          //display the success alert
+          this.storekeeperUdpateMessage = response.message;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    this.modalRef.hide();
   }
+  register(): void {
+    this._adminServices
+      .registerStorekeeper(this.registerStorekeeperForm.value)
+      .subscribe((response) => {
+        this.storekeepers.push(response.storekeeper);
+      });
+    this.modalRef.hide();
+  }
+
+  confirmRegister(template: TemplateRef<any>) {
+    // this will trigger the modal
+    this.modalRef = this._modalService.show(template, {
+      class: 'modal-md modal-dialog-centered',
+    });
+  }
+
+  // closses the update-successful alert message
+  closeUpdateAlert() {
+    this.storekeeperUdpateMessage = null;
+  }
+
 
 }
 

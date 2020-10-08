@@ -24,7 +24,7 @@ export class API {
   }
 
   public static updateDriverDetails(driverId) {
-    return `${API.base}/admin//update-driver/${driverId}`;
+    return `${API.base}/admin/update-driver/${driverId}`;
   }
 
   public static registerDriver() {
@@ -32,7 +32,7 @@ export class API {
   }
 
   public static deleteDriver(driverId) {
-    return `${API.base}/admin//delete-driver/${driverId}`;
+    return `${API.base}/admin/delete-driver/${driverId}`;
   }
 
   public static getNewOrders() {
@@ -43,11 +43,11 @@ export class API {
   }
 
   public static updateVehicleDetails(vehicleId) {
-    return `${API.base}/admin//update-vehicle/${vehicleId}`;
+    return `${API.base}/admin/update-vehicle/${vehicleId}`;
   }
 
   public static deleteVehicle(vehicleId) {
-    return `${API.base}/admin//delete-vehicle/${vehicleId}`;
+    return `${API.base}/admin/delete-vehicle/${vehicleId}`;
   }
 
   public static getListOfVehiclesTypes() {
@@ -55,11 +55,11 @@ export class API {
   }
 
   public static updateVehicleDetailsType(vehicleTypeId) {
-    return `${API.base}/admin//update-vehicle-type/${vehicleTypeId}`;
+    return `${API.base}/admin/update-vehicle-type/${vehicleTypeId}`;
   }
 
   public static deleteVehicleType(vehicleTypeId) {
-    return `${API.base}/admin//delete-vehicle-type/${vehicleTypeId}`;
+    return `${API.base}/admin/delete-vehicle-type/${vehicleTypeId}`;
   }
 
   public static getDriverSchedlueHistory(driverId) {
@@ -87,6 +87,15 @@ export class API {
   }
 
   public static deleteStorekeeper(storekeeperId) {
-    return `${API.base}/admin//delete-storekeeper/${storekeeperId}`;
+    return `${API.base}/admin/delete-storekeeper/${storekeeperId}`;
   }
+
+  public static updateStorekeeperDetails(storekeeperId) {
+    return `${API.base}/admin/update-storekeeper/${storekeeperId}`;
+  }
+
+  public static registerStorekeeper() {
+    return `${API.base}/admin/register-storekeeper`;
+  }
+   
 }
