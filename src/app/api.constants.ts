@@ -46,12 +46,20 @@ export class API {
     return `${API.base}/admin//update-vehicle/${vehicleId}`;
   }
 
+  public static newVehicleDetails(){
+    return `${API.base}/admin//register-vehicle`;
+  }
+
   public static deleteVehicle(vehicleId) {
     return `${API.base}/admin//delete-vehicle/${vehicleId}`;
   }
 
   public static getListOfVehiclesTypes() {
     return `${API.base}/storekeeper/vehicle-types`;
+  }
+
+  public static getVehicleType(vehicleId){
+    return `${API.base}/storekeeper/vehicle-types/${vehicleId}`;
   }
 
   public static updateVehicleDetailsType(vehicleTypeId) {

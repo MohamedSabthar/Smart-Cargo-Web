@@ -41,15 +41,24 @@ export class StoreKeeperService {
     );
   }
 
-  getListOfVehiclesTypes(): Observable<Vehicletypes> {
+  getListOfVehiclesTypes(): Observable<any> {
     console.log('api called');
     return this._httpClient
-      .get<Vehicletypes>(API.getListOfVehiclesTypes())
+      .get<any>(API.getListOfVehiclesTypes())
       .pipe(
         catchError((error) => {
           return throwError(error);
         })
       );
+  }
+
+  getVehicleType(vehicleId): Observable<any>{
+    return this._httpClient.get<any>(API.getVehicleType(vehicleId))
+    .pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 
   getScheduledOrders(): Observable<any> {
