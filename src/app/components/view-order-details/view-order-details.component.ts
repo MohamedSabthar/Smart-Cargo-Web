@@ -40,20 +40,33 @@ export class ViewOrderDetailsComponent implements OnInit {
       ],
       view: new ol.View({
         center: ol.proj.fromLonLat([ this.longitude,this.latitude]),
-        zoom: 16
+        zoom: 12
       })
     });
 
-    //add marker
+    let marker = new ol.Feature({
+      geometry: new ol.geom.Point(
+        ol.proj.fromLonLat([this.longitude,this.latitude])
+      ),
+      color: 'red',
+    });
+
+     //set marker style
+     marker.setStyle(
+      new ol.style.Style({
+        image: new ol.style.Icon({
+          color: '#FF6961',
+          crossOrigin: 'anonymous',
+          src: 'assets/img/dot.png',
+        }),
+      })
+    );
+
+    //add marker to vector layer
     var layer = new ol.layer.Vector({
       source: new ol.source.Vector({
         features: [
-          new ol.Feature({
-            geometry: new ol.geom.Point(
-              ol.proj.fromLonLat([this.longitude,this.latitude])
-            ),
-            color: 'red',
-          }),
+         marker
         ],
       }),
     });
