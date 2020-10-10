@@ -1,9 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import Map from 'ol/Map';
-//import file from 'ol/layer/file';
-import OSM from 'ol/source/OSM';
-import View from 'ol/View';
+
 
 @Component({
   selector: 'app-depot-management',

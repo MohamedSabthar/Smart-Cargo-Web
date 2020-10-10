@@ -38,11 +38,11 @@
                           ></div>
                            <!-- Vehicle name list -->
                           <ng-template #renderVehicleList>
-                            <ul class="nav flex-column" >
-                              <li class="nav-item" *ngFor="let vehicle of vehicles||vehiclesFilter" (click)="onVehicleSeletected(vehicle)">
+                            <ul class="list-unstyled" >
+                              <li class="align-items-center py-1" *ngFor="let vehicle of vehicles||vehiclesFilter" (click)="onVehicleSeletected(vehicle)">
                                   <div class="row">
                                       <div class="col-0.5 circle"></div>
-                                      <div class="col-5 col-md-8 text">{{vehicle.license_plate}}</div>
+                                      <div class="col-5 col-md-8 Vtext">{{vehicle.license_plate}}</div>
                                       
                                       <div class="col-1">
                                           <div class="input-group-btn">
@@ -159,6 +159,14 @@
                                                   Fuel economy is required
                                                  </div>
                                             </div>
+
+                                            <ngb-alert
+                                      *ngIf="vehicleUdpateMessage != null"
+                                      [type]="'success'"
+                                      style="max-width: 500px"
+                                      (close)="closeUpdateAlert()"
+                                      >{{ vehicleUdpateMessage }}</ngb-alert
+                                    >
                                         </div>
                                         <!-- register pic and save or close -->
                                         <div class="col-1 col-md-3 col-lg-3">
@@ -232,7 +240,9 @@
                                                 <div *ngIf="!Newcapacity.value" class="invalid-feedback">
                                                   Capacity is required
                                                  </div>
-                                                <br>
+                                            </div>
+                                                 <div class="form-group">
+                                                  <label for="">Load</label>
                                                 <input
                                                   id="Load"
                                                   formControlName="Newload"
@@ -259,6 +269,14 @@
                                                   Fuel economy is required
                                                  </div>
                                             </div>
+
+                                            <ngb-alert
+                                            *ngIf="vehicleUdpateMessage != null"
+                                            [type]="'success'"
+                                            style="max-width: 500px"
+                                            (close)="closeUpdateAlert()"
+                                            >{{ vehicleUdpateMessage }}</ngb-alert
+                                          >
                                         </div>
                                         <!-- register pic and save or close -->
                                         <div class="col-1 col-md-3 col-lg-3">
@@ -278,65 +296,83 @@
                             <li ngbNavItem>
                               <a ngbNavLink class="btn-btn-primary">Add new Vehicle Type</a>
                               <ng-template ngbNavContent>
-                                <form [formGroup]="NewVehicleForm">
+                                <form [formGroup]="NewTypeForm">
                                     <div class="row">
                                         <!-- register in setup -->
                                         <div class="col-5 col-md-8 col-lg-9 py-2">
                                             <div class="form-group">
                                                 <label for="">Vehicle Type</label>
-                                                <input type="text" class="form-control" formControlName="Newvehicle_type" [ngClass]="{ 'is-invalid': (Newvehicle_type.touched && Newvehicle_type.invalid)  }"/>
-                                                <div *ngIf="!Newvehicle_type.value" class="invalid-feedback">
+                                                <input type="text" class="form-control" formControlName="NewTypevehicle_type" [ngClass]="{ 'is-invalid': (NewTypevehicle_type.touched && NewTypevehicle_type.invalid)  }"/>
+                                                <div *ngIf="!NewTypevehicle_type.value" class="invalid-feedback">
                                                   Vehicle Type is required
                                                  </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Capacity</label>
+                                                <label for="">Volume</label>
                                                 <input
                                                   id="Volume"
-                                                  formControlName="Newcapacity"
+                                                  formControlName="NewTypecapacity"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Volume in M ^ 3"
-                                                  [ngClass]="{ 'is-invalid': (Newcapacity.touched && Newcapacity.invalid)  }"
+                                                  [ngClass]="{ 'is-invalid': (NewTypecapacity.touched && NewTypecapacity.invalid)  }"
                                                 />
-                                                <div *ngIf="!Newcapacity.value" class="invalid-feedback">
-                                                  Capacity is required
+                                                <div *ngIf="!NewTypecapacity.value" class="invalid-feedback">
+                                                 Volume is required
                                                  </div>
-                                                <br>
+                                                
+                                              </div>
+                                                <div class="form-group">
+                                                  <label for="">max Load</label>
                                                 <input
                                                   id="Load"
-                                                  formControlName="Newload"
+                                                  formControlName="NewTypeload"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Load"
-                                                  [ngClass]="{ 'is-invalid': (Newload.touched && Newload.invalid)  }"
+                                                  [ngClass]="{ 'is-invalid': (NewTypeload.touched && NewTypeload.invalid)  }"
                                                 />
-                                                <div *ngIf="!Newload.value" class="invalid-feedback">
-                                                  Load is required
+                                                <div *ngIf="!NewTypeload.value" class="invalid-feedback">
+                                                  max_Load is required
                                                  </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Fuel economy</label>
                                                 <input
                                                   id="Fuel"
-                                                  formControlName="Newfuel_economy"
+                                                  formControlName="NewTypefuel_economy"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Fuel economy Km/L"
-                                                  [ngClass]="{ 'is-invalid': (Newfuel_economy.touched && Newfuel_economy.invalid)  }"
+                                                  [ngClass]="{ 'is-invalid': (NewTypefuel_economy.touched && NewTypefuel_economy.invalid)  }"
                                                 />
-                                                <div *ngIf="!Newfuel_economy.value" class="invalid-feedback">
+                                                <div *ngIf="!NewTypefuel_economy.value" class="invalid-feedback">
                                                   Fuel economy is required
                                                  </div>
                                             </div>
+
+                                            <ngb-alert
+                                            *ngIf="vehicleUdpateMessage != null"
+                                            [type]="'success'"
+                                            style="max-width: 500px"
+                                            (close)="closeUpdateAlert()"
+                                            >{{ vehicleUdpateMessage }}</ngb-alert
+                                          >
+                                          <ngb-alert
+                                            *ngIf="vehicleUdpateMessage != null"
+                                            [type]="'success'"
+                                            style="max-width: 500px"
+                                            (close)="closeErrorAlert()"
+                                            >{{ vehicleErrorMessage }}</ngb-alert
+                                          >
                                         </div>
                                         <!-- register pic and save or close -->
                                         <div class="col-1 col-md-3 col-lg-3">
                                             <div class="big_circle align ml-5"></div>
                                             <br><br><br><br>
                                             <button type="submit" class="btn btn-primary ml-5 button"
-                                            (click)="confirmUpdate(areYouSure)"
-                                            [disabled]="!NewVehicleForm.valid"
+                                            (click)="confirmUpdate(areYouSureNewType)"
+                                            
                                             > Save </button>
                                             <br><br>
                                             <button type="submit" class="btn btn-primary ml-5 button" (click)="NewFormReset()">Cancel</button>
@@ -349,67 +385,78 @@
                             <li ngbNavItem>
                               <a ngbNavLink class="btn-btn-primary">Update Vehicle Type</a>
                               <ng-template ngbNavContent>
-                                <form [formGroup]="NewVehicleForm">
+                                <form [formGroup]="UpdateTypeForm">
                                     <div class="row">
                                         <!-- register in setup -->
                                         <div class="col-5 col-md-8 col-lg-9 py-2">
                                             <div class="form-group">
                                                 <label for="">Vehicle Type</label>
-                                                <select class="form-control" id="vehicleType"  formControlName="Newvehicle_type" [ngClass]="{ 'is-invalid': (Newvehicle_type.touched && Newvehicle_type.invalid)  }">
-                                                  <option *ngFor="let type of vehiclesType" value='{{type._id}}'>{{type.type}}</option>
+                                                <select class="form-control"  [(ngModel)]="selectedValue" (ngModelChange)="assignCorporationToManage($event)" formControlName="UpdateTypevehicle_type" [ngClass]="{ 'is-invalid': (UpdateTypevehicle_type.touched && UpdateTypevehicle_type.invalid)  }">
+                                                  <option *ngFor="let type of vehiclesType" [ngValue]="type" value='{{type._id}}'>{{type.type}}</option>
                                                 </select>
-                                                <div *ngIf="!Newvehicle_type.value" class="invalid-feedback">
+                                                <div *ngIf="!UpdateTypevehicle_type.value" class="invalid-feedback">
                                                   Vehicle Type is required
                                                  </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Capacity</label>
+                                                <label for="">Volume</label>
                                                 <input
                                                   id="Volume"
-                                                  formControlName="Newcapacity"
+                                                  formControlName="UpdateTypecapacity"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Volume in M ^ 3"
-                                                  [ngClass]="{ 'is-invalid': (Newcapacity.touched && Newcapacity.invalid)  }"
+                                                  
+                                                  [ngClass]="{ 'is-invalid': (UpdateTypecapacity.touched && UpdateTypecapacity.invalid)  }"
                                                 />
-                                                <div *ngIf="!Newcapacity.value" class="invalid-feedback">
-                                                  Capacity is required
+                                               
+                                                <div *ngIf="!UpdateTypecapacity.value" class="invalid-feedback">
+                                                  Volume is required
                                                  </div>
-                                                <br>
+                                            </div>
+                                                 <div class="form-group">
+                                                  <label for="">Max_Load</label>
                                                 <input
                                                   id="Load"
-                                                  formControlName="Newload"
+                                                  formControlName="UpdateTypeload"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Load"
-                                                  [ngClass]="{ 'is-invalid': (Newload.touched && Newload.invalid)  }"
+                                                  [ngClass]="{ 'is-invalid': (UpdateTypeload.touched && UpdateTypeload.invalid)  }"
                                                 />
-                                                <div *ngIf="!Newload.value" class="invalid-feedback">
-                                                  Load is required
+                                                <div *ngIf="!UpdateTypeload.value" class="invalid-feedback">
+                                                  max_Load is required
                                                  </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Fuel economy</label>
                                                 <input
                                                   id="Fuel"
-                                                  formControlName="Newfuel_economy"
+                                                  formControlName="UpdateTypefuel_economy"
                                                   type="text"
                                                   class="form-control"
                                                   placeholder="Fuel economy Km/L"
-                                                  [ngClass]="{ 'is-invalid': (Newfuel_economy.touched && Newfuel_economy.invalid)  }"
+                                                  [ngClass]="{ 'is-invalid': (UpdateTypefuel_economy.touched && UpdateTypefuel_economy.invalid)  }"
                                                 />
-                                                <div *ngIf="!Newfuel_economy.value" class="invalid-feedback">
+                                                <div *ngIf="!UpdateTypefuel_economy.value" class="invalid-feedback">
                                                   Fuel economy is required
                                                  </div>
                                             </div>
+                                            <ngb-alert
+                                            *ngIf="vehicleUdpateMessage != null"
+                                            [type]="'success'"
+                                            style="max-width: 500px"
+                                            (close)="closeUpdateAlert()"
+                                            >{{ vehicleUdpateMessage }}</ngb-alert
+                                          >
                                         </div>
                                         <!-- register pic and save or close -->
                                         <div class="col-1 col-md-3 col-lg-3">
                                             <div class="big_circle align ml-5"></div>
                                             <br><br><br><br>
                                             <button type="submit" class="btn btn-primary ml-5 button"
-                                            (click)="confirmUpdate(areYouSureNew)"
-                                            [disabled]="!NewVehicleForm.valid"
+                                            (click)="confirmUpdate(areYouSureUpdateType)"
+                                            
                                             > Save </button>
                                             <br><br>
                                             <button type="submit" class="btn btn-primary ml-5 button" (click)="NewFormReset()">Cancel</button>
@@ -475,6 +522,63 @@
                       type="button"
                       class="mx-2 btn btn-primary"
                       (click)="declineNew()"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+
+
+              <ng-template #areYouSureNewType>
+                <div class="modal-body text-center">
+                  <h4 class="mb-2 text-primary">Are you sure?</h4>
+                  <p class="mb-3">
+                    Now you are requesting to add a new Type<br />
+                    <br />
+                    click Yes to proceed and No to revert
+                  </p>
+                  <div class="text-center">
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-default"
+                      (click)="confirmNewType()"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-primary"
+                      (click)="declineNewType()"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+
+
+              <ng-template #areYouSureUpdateType>
+                <div class="modal-body text-center">
+                  <h4 class="mb-2 text-primary">Are you sure?</h4>
+                  <p class="mb-3">
+                    Now you are requesting to update the Type<br />
+                   
+                    <br />
+                    click Yes to proceed and No to revert
+                  </p>
+                  <div class="text-center">
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-default"
+                      (click)="confirmUpdateType()"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="mx-2 btn btn-primary"
+                      (click)="declineUpdateType()"
                     >
                       No
                     </button>
