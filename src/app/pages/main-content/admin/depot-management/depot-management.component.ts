@@ -1,18 +1,11 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Map } from 'ol/Map';
 import { AdminService } from './../../../../services/admin.service';
 import { DepotDetails } from 'src/app/models/depotDetails';
 
 declare var ol: any;
 declare var OpenLayers: any;
-=======
-// import Map from 'ol/Map';
-// //import file from 'ol/layer/file';
-// import OSM from 'ol/source/OSM';
-// import View from 'ol/View';
->>>>>>> 51a5ea60e7bc6fa82fc9ebb8d758804e9eae5f4e
 
 @Component({
   selector: 'app-depot-management',
@@ -20,7 +13,6 @@ declare var OpenLayers: any;
   styleUrls: ['./depot-management.component.css'],
 })
 export class DepotManagementComponent implements OnInit {
-<<<<<<< HEAD
   constructor(private _fb: FormBuilder, private adminService: AdminService) {}
 
   latitude: number = 6.928659;
@@ -36,12 +28,6 @@ export class DepotManagementComponent implements OnInit {
   map: any;
 
   manageDepot = this._fb.group({
-=======
-  map;
-  constructor(private _fb: FormBuilder) {}
-
-  mangaeDepot = this._fb.group({
->>>>>>> 51a5ea60e7bc6fa82fc9ebb8d758804e9eae5f4e
     address: this._fb.control('', [Validators.required]),
   });
 
