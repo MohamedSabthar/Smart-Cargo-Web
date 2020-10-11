@@ -132,4 +132,12 @@ export class StoreKeeperService {
         })
       );
   }
+
+  makeCluster(emergancyLevels):Observable<any>{
+    return this._httpClient.post<any>(API.makeCluster(),emergancyLevels).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
 }

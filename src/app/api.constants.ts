@@ -129,4 +129,8 @@ export class API {
     return `${API.base}/storekeeper/password-change/${userId}`
   }
 
+  public static makeCluster(){
+    return `${API.base}/storekeeper/make-cluster`
+  }
+
 }
