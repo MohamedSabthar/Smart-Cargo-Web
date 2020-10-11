@@ -94,6 +94,24 @@ export class AdminService {
     );
   }
 
+  registerVehicleType(vehicleType):Observable<any>{
+    return this._httpClient.post<any>(API.registerVehicleType(),vehicleType).pipe(
+      catchError((error)=>{
+        return throwError(error);
+      })
+    );
+  }
+
+  updateVehicleType(vehicleType,typeId):Observable<any>{
+    return this._httpClient
+    .put<any>(API.updateVehicleDetailsType(typeId),vehicleType)
+    .pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
   updateStorekeeperDetails(storekeeperDetails, storekeeperId): Observable<any> {
     return this._httpClient
       .post<any>(API.updateStorekeeperDetails(storekeeperId), storekeeperDetails)
@@ -128,5 +146,7 @@ export class AdminService {
       ));
 
   }
+
+ 
 
 }

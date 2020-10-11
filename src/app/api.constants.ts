@@ -61,6 +61,10 @@ export class API {
     return `${API.base}/storekeeper/vehicle-types/${vehicleId}`;
   }
 
+  public static registerVehicleType(){
+    return `${API.base}/admin/register-vehicle-type`;
+  }
+
   public static updateVehicleDetailsType(vehicleTypeId) {
     return `${API.base}/admin/update-vehicle-type/${vehicleTypeId}`;
   }
@@ -125,6 +129,10 @@ export class API {
 
   public static updatePassword(userId) {
     return `${API.base}/storekeeper/password-change/${userId}`;
+  }
+
+  public static makeCluster(){
+    return `${API.base}/storekeeper/make-cluster`
   }
 
   public static assignDriver() {
