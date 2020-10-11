@@ -1,19 +1,21 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-
+// import Map from 'ol/Map';
+// //import file from 'ol/layer/file';
+// import OSM from 'ol/source/OSM';
+// import View from 'ol/View';
 
 @Component({
   selector: 'app-depot-management',
   templateUrl: './depot-management.component.html',
-  styleUrls: ['./depot-management.component.css']
+  styleUrls: ['./depot-management.component.css'],
 })
 export class DepotManagementComponent implements OnInit {
-
   map;
-  constructor(private _fb:FormBuilder) { }
+  constructor(private _fb: FormBuilder) {}
 
   mangaeDepot = this._fb.group({
-    address: this._fb.control('',[Validators.required])
+    address: this._fb.control('', [Validators.required]),
   });
 
   ngOnInit(): void {

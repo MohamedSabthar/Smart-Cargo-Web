@@ -1,9 +1,9 @@
+import { Drivers } from './../models/drivers.response';
 import { Schedule } from './../models/schedule.response';
 import { NewOrders } from './../models/newOrders.response';
 import { Observable, pipe, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Drivers } from '../models/drivers.response';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { API } from '../api.constants';
 import { Vehicles } from '../models/vehicle.response';
@@ -12,6 +12,7 @@ import { StorekeeperDetails } from './../models/storekeeperDetails';
 import { Storekeepers } from '../models/storekeeper.response';
 import { DepotDetails } from '../models/depotDetails';
 import { Orders } from '../models/orderDetails';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -71,15 +72,17 @@ export class StoreKeeperService {
     );
   }
 
-  getProfile(userId):Observable<{result:StorekeeperDetails}> {
-    return this._httpClient.get<{result:StorekeeperDetails}>(API.getProfile(userId)).pipe(
-      catchError((error) => {
-        return throwError(error);
-      })
-    );
+  getProfile(userId): Observable<{ result: StorekeeperDetails }> {
+    return this._httpClient
+      .get<{ result: StorekeeperDetails }>(API.getProfile(userId))
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
   }
 
-  updateProfile(userId , StorekeeperDetails): Observable<any> {
+  updateProfile(userId, StorekeeperDetails): Observable<any> {
     return this._httpClient
       .put<any>(API.updateProfile(userId), StorekeeperDetails)
       .pipe(
@@ -91,13 +94,13 @@ export class StoreKeeperService {
 
   updatePassword(userId, resetPasswordDetails): Observable<any> {
     return this._httpClient
-      .put<any>(API.updatePassword(userId), resetPasswordDetails).pipe(
+      .put<any>(API.updatePassword(userId), resetPasswordDetails)
+      .pipe(
         catchError((error) => {
           return throwError(error);
         })
-      )
+      );
   }
-  
 
   getUrgentOrders(): Observable<any> {
     return this._httpClient.get<any>(API.getUrgencyOrders()).pipe(
@@ -135,6 +138,21 @@ export class StoreKeeperService {
 
   makeCluster(emergancyLevels):Observable<any>{
     return this._httpClient.post<any>(API.makeCluster(),emergancyLevels).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+  getAvailableDrivers(): Observable<Drivers> {
+    return this._httpClient.get<Drivers>(API.getAvailableDrivers()).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  assignDriver(driverID): Observable<Drivers> {
+    return this._httpClient.put<Drivers>(API.assignDriver(), driverID).pipe(
       catchError((error) => {
         return throwError(error);
       })
