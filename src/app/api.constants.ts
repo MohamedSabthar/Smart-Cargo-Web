@@ -46,7 +46,7 @@ export class API {
     return `${API.base}/admin/update-vehicle/${vehicleId}`;
   }
 
-  public static newVehicleDetails(){
+  public static newVehicleDetails() {
     return `${API.base}/admin//register-vehicle`;
   }
 
@@ -58,8 +58,12 @@ export class API {
     return `${API.base}/storekeeper/vehicle-types`;
   }
 
-  public static getVehicleType(vehicleId){
+  public static getVehicleType(vehicleId) {
     return `${API.base}/storekeeper/vehicle-types/${vehicleId}`;
+  }
+
+  public static registerVehicleType(){
+    return `${API.base}/admin/register-vehicle-type`;
   }
 
   public static updateVehicleDetailsType(vehicleTypeId) {
@@ -90,7 +94,7 @@ export class API {
     return `${API.base}/storekeeper/depot`;
   }
 
-  public static getClusteredStat(){
+  public static getClusteredStat() {
     return `${API.base}/storekeeper/clustered-statistics`;
   }
   public static updateDimension() {
@@ -109,21 +113,24 @@ export class API {
     return `${API.base}/admin/register-storekeeper`;
   }
 
-  public static storekeeperScheduleHistory(storekeeperId){
-    return `${API.base}/admin//storekeeper-schedules/${storekeeperId}`
+  public static storekeeperScheduleHistory(storekeeperId) {
+    return `${API.base}/admin/storekeeper-schedules/${storekeeperId}`;
   }
 
-  public static getProfile(userId){
-    return `${API.base}/storekeeper/settings/${userId}`
+  public static getAvailableDrivers() {
+    return `${API.base}/storekeeper/available-drivers`;
+  }
+  public static getProfile(userId) {
+    return `${API.base}/storekeeper/settings/${userId}`;
   }
 
-  public static updateProfile(userId){
-    return `${API.base}/storekeeper/settings/${userId}`
+  public static updateProfile(userId) {
+    return `${API.base}/storekeeper/settings/${userId}`;
   }
 
-  public static updatePassword(userId){
-    return `${API.base}/storekeeper/password-change/${userId}`
-  } 
+  public static updatePassword(userId) {
+    return `${API.base}/storekeeper/password-change/${userId}`;
+  }
 
   public static registerDepot(){
     return `${API.base}/admin/register-depot`;
@@ -136,5 +143,12 @@ export class API {
   public static updateDepot(userId){
     return `${API.base}/admin/update-depot/${userId}`
   }
+  
+  public static makeCluster(){
+    return `${API.base}/storekeeper/make-cluster`
+  }
 
+  public static assignDriver() {
+    return `${API.base}/storekeeper/assign-driver`;
+  }
 }

@@ -28,13 +28,19 @@ export class VehicleManagementComponent implements OnInit {
 
   AddVehicleForm: FormGroup;
   NewVehicleForm: FormGroup;
+  NewTypeForm:FormGroup;
+  UpdateTypeForm:FormGroup;
 
   searchText: string;
   vehiclesFilter = [];
   selectedVehicle;
+  selected;
+  selectedValue: any;
+  selectedType:any;
 
   modalRef: BsModalRef;
   vehicleUdpateMessage: String;
+  vehicleErrorMessage:String;
 
   constructor(
     config: NgbNavConfig,
@@ -77,6 +83,37 @@ export class VehicleManagementComponent implements OnInit {
       Newfuel_economy: ['', [Validators.required]],
     });
 
+
+    
+     //validation for update vehicle form
+     this.NewTypeForm = this.fb.group({
+      NewTypevehicle_type: ['', [Validators.required]],
+      NewTypecapacity: ['', [Validators.required]],
+      NewTypelicense_plate: ['',[Validators.required]],
+      NewTypeload: ['', [Validators.required]],
+
+      NewTypefuel_economy: ['', [Validators.required]],
+    });
+
+    this.UpdateTypeForm = this.fb.group({
+      UpdateTypevehicle_type: ['', [Validators.required]],
+      UpdateTypecapacity: ['', [Validators.required]],
+      UpdateTypelicense_plate: ['',[Validators.required]],
+      UpdateTypeload: ['', [Validators.required]],
+
+      UpdateTypefuel_economy: ['', [Validators.required]],
+    });
+
+this.getVehicles();
+
+
+
+
+
+  }
+
+
+  getVehicles(){
     this._storekeeperService.getListOfVehicles().subscribe(
       (response) => {
         this.vehiclesWithType = response.vehicles;
@@ -84,21 +121,14 @@ export class VehicleManagementComponent implements OnInit {
         for(let x of this.vehiclesWithType){
           this._storekeeperService.getVehicleType(x.vehicle_type).subscribe( type => {
             x.type = type.vehicle_types.type;
-            console.log(x);
             this.vehicles.push(x);
           });
         }
-        console.log(this.vehicles);
       },
       (error) => {
         console.log(error);
       }
     );
-
-
-
-
-
   }
   
     // triggers the update confirmation modal
@@ -125,7 +155,6 @@ export class VehicleManagementComponent implements OnInit {
             this.AddVehicleForm.value
           );
           this.vehicles[index] = this.selectedVehicle;
-          console.log(this.vehicles);
           this.disableUpdateButton();
           //display the success alert
           this.vehicleUdpateMessage = response.message;
@@ -154,7 +183,8 @@ export class VehicleManagementComponent implements OnInit {
          })
         .subscribe(
           (response) => {
-            this.vehicles.push(response);
+            console.log(response.vehicle);
+            this.vehicles.push(response.vehicle);
             //display the success alert
             this.vehicleUdpateMessage = response.message;
           },
@@ -165,6 +195,78 @@ export class VehicleManagementComponent implements OnInit {
       this.modalRef.hide();
     }
   
+
+    confirmNewType(): void {
+     
+      if(this.NewTypeForm.valid){
+      this._adminService.registerVehicleType({
+        type: this.NewTypeForm.value.NewTypevehicle_type,
+        capacity: { volume: this.NewTypeForm.value.NewTypecapacity , max_load: this.NewTypeForm.value.NewTypeload} ,
+        fuel_economy: this.NewTypeForm.value.NewTypefuel_economy
+      }).subscribe(
+        (response)=> {
+          console.log(response.vehicleType);
+          this.vehiclesType.push(response.vehicleType);
+          this.vehicleUdpateMessage = response.message;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      }else {
+        this.vehicleErrorMessage = "please enter valid details and make sure all fields are filled"
+      }
+
+     
+     this.modalRef.hide();
+   }
+
+   confirmUpdateType(): void {
+    console.log(this.UpdateTypeForm.value);
+      this._adminService.updateVehicleType({
+        type:this.selectedType.type,
+        capacity: { volume: this.UpdateTypeForm.value.UpdateTypecapacity , max_load: this.UpdateTypeForm.value.UpdateTypeload} ,
+        fuel_economy: this.UpdateTypeForm.value.UpdateTypefuel_economy
+      },this.UpdateTypeForm.value.UpdateTypevehicle_type).subscribe((responce) => {
+        console.log(responce);
+        const index = this.vehiclesType.indexOf(this.selectedType);
+
+        this.selectedType = __assign(
+          {},
+          this.selectedType,
+          this.UpdateTypeForm.value
+        );
+        this.vehiclesType[index] = this.selectedType;
+        
+        //display the success alert
+        this.vehicleUdpateMessage = responce.message;
+
+      },
+      (error) => {
+      console.log(error);
+      }
+      );
+    
+    
+
+   
+   this.modalRef.hide();
+ }
+
+ 
+
+   declineNewType(): void {
+    // reset the data in update form if declined
+    this.NewFormReset();
+    this.modalRef.hide();
+  }
+
+  
+  declineUpdateType(): void {
+    // reset the data in update form if declined
+    this.UpdateTypeFormReset();
+    this.modalRef.hide();
+  }
   
   // triggers when No button cliked in confirmation modal
   decline(): void {
@@ -190,6 +292,22 @@ export class VehicleManagementComponent implements OnInit {
       this.NewVehicleForm.reset();
     }
 
+    NewTypeFormReset() {
+      this.NewTypeForm.reset();
+    }
+
+    UpdateTypeFormReset() {
+      this.UpdateTypeForm.reset();
+    }
+
+
+      // closses the update-successful alert message
+  closeUpdateAlert() {
+    this.vehicleUdpateMessage = null;
+  }
+  closeErrorAlert(){
+    this.vehicleErrorMessage = null;
+  }
 
     // populate the update form details, when a driver element clicked from list
     onVehicleSeletected(vehicle: VehicleDetails) {
@@ -230,6 +348,11 @@ export class VehicleManagementComponent implements OnInit {
     );
   }
 
+
+  onTypeSelected(type){
+    console.log(type);
+  }
+
   //getters for form validations
   get vehicle_type() {
     return this.AddVehicleForm.get('vehicle_type');
@@ -267,6 +390,52 @@ export class VehicleManagementComponent implements OnInit {
  
 
 
+  get NewTypevehicle_type() {
+    return this.NewTypeForm.get('NewTypevehicle_type');
+  }
+
+  get NewTypecapacity() {
+    return this.NewTypeForm.get('NewTypecapacity');
+  }
+  get NewTypeload() {
+    return this.NewTypeForm.get('NewTypeload');
+  }
+  get NewTypefuel_economy() {
+    return this.NewTypeForm.get('NewTypefuel_economy');
+  }
+
+
+  get UpdateTypevehicle_type() {
+    return this.UpdateTypeForm.get('UpdateTypevehicle_type');
+  }
+
+  get UpdateTypecapacity() {
+    return this.UpdateTypeForm.get('UpdateTypecapacity');
+  }
+  get UpdateTypeload() {
+    return this.UpdateTypeForm.get('UpdateTypeload');
+  }
+  get UpdateTypefuel_economy() {
+    return this.UpdateTypeForm.get('UpdateTypefuel_economy');
+  }
+
+  assignCorporationToManage(selectedValue) {
+    if(selectedValue){
+
+      const result = this.vehiclesType.filter(p => p._id.includes(selectedValue));
+      this.selectedType = result[0];
+      console.log(this.selectedType);
+      this.UpdateTypeForm.patchValue(
+        {
+          
+          UpdateTypecapacity:this.selectedType.capacity.volume,
+          UpdateTypeload:this.selectedType.capacity.max_load,
+          UpdateTypefuel_economy: this.selectedType.fuel_economy,
+  
+        });
+    }
+  
+}
 
   onSearch() {
     console.log(this.searchText);
