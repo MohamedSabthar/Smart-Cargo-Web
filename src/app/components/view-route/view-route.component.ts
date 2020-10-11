@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { Drivers } from './../../models/drivers.response';
 import { DriverDetails } from './../../models/driverDetails';
 import {
@@ -20,7 +21,7 @@ declare let ol: any;
 })
 export class ViewRouteComponent implements OnInit, OnChanges {
   constructor(
-    private _activeModal: NgbActiveModal,
+    public activeModal: NgbActiveModal,
     private _storekeeperServices: StoreKeeperService
   ) {}
 
@@ -37,6 +38,9 @@ export class ViewRouteComponent implements OnInit, OnChanges {
   linie2: any = null;
   map: any;
   availableDrivers: DriverDetails[];
+  @Input() public drivers: DriverDetails;
+  AssignDriverForm: FormGroup;
+  selectedDriver: DriverDetails;
 
   ngOnInit(): void {
     //add map
@@ -186,5 +190,24 @@ export class ViewRouteComponent implements OnInit, OnChanges {
     this.linie2.setStyle(lineStyle);
     this.map.addLayer(this.linie2); //add line vector layer
     this.map.addLayer(this.layer); //add marker layer
+  }
+
+  //function for closing model
+  closeModal(data) {
+    this.activeModal.close(data);
+  }
+
+  assignDriver(): void {
+    if (this.selectedDriver != null)
+      this._storekeeperServices
+        .assignDriver({ _id: this.selectedDriver._id })
+        .subscribe(
+          (response) => {
+            this.closeModal({ _id: this.selectedDriver._id });
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
   }
 }

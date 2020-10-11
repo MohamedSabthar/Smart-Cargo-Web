@@ -10,12 +10,17 @@
     <label for="exampleFormControlSelect2">select a driver from the list</label>
     <select
       class="form-control"
-      formControlName="Id"
       id="exampleFormControlSelect2"
+      [(ngModel)]="selectedDriver"
     >
-      <option *ngFor="let driver of availableDrivers">
+      <option *ngFor="let driver of availableDrivers" [ngValue]="driver">
         {{ driver.name.first }} {{ driver.name.last }} {{ driver.license_no }}
       </option>
     </select>
+  </div>
+  <div>
+    <button (click)="assignDriver()" class="btn btn-small submit">
+      Assign
+    </button>
   </div>
 </div>

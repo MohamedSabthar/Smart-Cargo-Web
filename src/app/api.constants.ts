@@ -97,10 +97,25 @@ export class API {
   }
 
   public static storekeeperScheduleHistory(storekeeperId) {
-    return `${API.base}/admin//storekeeper-schedules/${storekeeperId}`;
+    return `${API.base}/admin/storekeeper-schedules/${storekeeperId}`;
   }
 
   public static getAvailableDrivers() {
     return `${API.base}/storekeeper/available-drivers`;
+  }
+  public static getProfile(userId) {
+    return `${API.base}/storekeeper/settings/${userId}`;
+  }
+
+  public static updateProfile(userId) {
+    return `${API.base}/storekeeper/settings/${userId}`;
+  }
+
+  public static updatePassword(userId) {
+    return `${API.base}/storekeeper/password-change/${userId}`;
+  }
+
+  public static assignDriver() {
+    return `${API.base}/storekeeper/assign-driver`;
   }
 }

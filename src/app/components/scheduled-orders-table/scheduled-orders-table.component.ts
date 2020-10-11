@@ -13,6 +13,7 @@ import {
 import { DataTableRowClickEventArgs } from 'ornamentum';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-scheduled-orders-table',
@@ -60,6 +61,10 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
     });
     modalRef.componentInstance.orders = this.selectedRoute;
     modalRef.componentInstance.depotDetails = this.depot;
+    modalRef.result.then((res) => {
+      console.log(res);
+      console.log('hit');
+    });
   }
 
   triggerModal(clickEventArgs: DataTableRowClickEventArgs<any>): void {

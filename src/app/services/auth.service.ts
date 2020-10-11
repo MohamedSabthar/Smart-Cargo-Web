@@ -44,6 +44,11 @@ export class AuthService {
     return this._JWTService.decodeToken().role;
   }
 
+  public getId(){
+   return this._JWTService.decodeToken()._id;
+
+  }
+
   public forgotPassword(email): Observable<any> {
     console.log(email);
     return this._httpClient.post<any>(API.forgotPassword(), email).pipe(

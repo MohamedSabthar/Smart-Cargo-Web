@@ -1,122 +1,419 @@
 <div class="container-fluid">
-    <div class="row">
-        <app-side-bar></app-side-bar>
-        <div class="col main-content">
-            <!--Edit Profile -->
-            <div class="container">
-                <div class="row d-flex justify-content-center">
-                <div class="card" style="width: 45rem">
-                    <div class="card-body">
-                        <h4 class="text-primary  mt-3">
-                            Edit Profile  
-                        </h4>
-                        <form>
-                            <div class="row">
-                                <div class="col-8">
-                                  <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="ad_firstname" placeholder="First name">
-                                            <input type="text" class="form-control mt-1" id="ad_middlename" placeholder="Middle name">
-                                            <input type="text" class="form-control mt-1" id="ad_lastname" placeholder="Last name">
-                                  </div>
-                                  <div class="form-group">
-            
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="ad_Door" placeholder="Door number">
-                                    <input type="text" class="form-control mt-1" id="ad_street" placeholder="Street">
-                                    <input type="text" class="form-control mt-1" id="ad_city" placeholder="City">
-            
-                                  </div>
-                                  <div class="form-group">
-            
-                                  <label for="contact">Contact</label>
-                                  <input type="email" class="form-control " id="ad_email" placeholder="email">
-                                  <input type="text" class="form-control mt-1" id="ad_phone" placeholder="Mobile">
-            
-                                  </div>
-                                </div>
-                                <div class="col-4 justify-content-between d-flex flex-column">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="profile-circle"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-5">
-                                        <div class="col-12">
-                                            <button class="btn btn-primary button ml-4 button">
-                                                 Save
-                                            </button>
-                                        </div>
-                                        <div class="col-12 mt-3">
-                                            <button class="btn btn-primary button ml-4 button">
-                                                 Reset
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+  <div class="row">
+    <app-side-bar></app-side-bar>
+    <div class="col main-content">
+      <!--Edit Profile -->
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="card" style="width: 45rem">
+            <div class="card-body">
+              <h4 class="text-primary mt-3">Edit Profile</h4>
+              <form [formGroup]="updateProfileForm">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="form-group" formGroupName="name">
+                      <label for="name">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="first"
+                        id="ad_firstname"
+                        placeholder="First name"
+                        [class.is-invalid]="
+                          updateFirstName.touched && updateFirstName.invalid
+                        "
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          updateFirstName.touched && updateFirstName.invalid
+                        "
+                      >
+                        <span *ngIf="updateFirstName.errors.required"
+                          >First name is required</span
+                        >
+                        <span
+                          *ngIf="
+                            !updateFirstName.errors.requires &&
+                            updateFirstName.errors.pattern
+                          "
+                          >Name can only contain alpabetic characters</span
+                        >
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mt-1"
+                        formControlName="middle"
+                        id="ad_middlename"
+                        placeholder="Middle name"
+                        [class.is-invalid]="
+                          updateMiddleName.touched && updateMiddleName.invalid
+                        "
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          updateMiddleName.touched && updateMiddleName.invalid
+                        "
+                      >
+                        <span *ngIf="!updateFirstName.errors.pattern"
+                          >Name can only contain alpabetic characters</span
+                        >
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mt-1"
+                        id="ad_lastname"
+                        formControlName="last"
+                        placeholder="Last name"
+                        [class.is-invalid]="
+                          updateLastName.touched && updateLastName.invalid
+                        "
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="updateLastName.touched && updateLastName.invalid"
+                      >
+                        <span *ngIf="updateLastName.errors.required"
+                          >Last name is required</span
+                        >
+                        <span *ngIf="updateLastName.errors.pattern"
+                          >Name can only contain alpabetic characters</span
+                        >
+                      </div>
                     </div>
+                    <div class="form-group" formGroupName="address">
+                      <label for="address">Address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="no"
+                        id="ad_Door"
+                        placeholder="Door number"
+                        [class.is-invalid]="
+                          updateNo.touched && updateNo.invalid
+                        "
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="updateNo.touched && updateNo.invalid"
+                      >
+                        <span *ngIf="updateNo.errors.required"
+                          >Door number is required</span
+                        >
+                        <span *ngIf="updateFirstName.errors.pattern"
+                          >Door no cant contain special charters like
+                          *,#,etc..</span
+                        >
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mt-1"
+                        formControlName="street"
+                        id="ad_street"
+                        placeholder="Street"
+                        [class.is-invalid]="
+                          updateStreet.touched && updateStreet.invalid
+                        "
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="updateStreet.touched && updateStreet.invalid"
+                      >
+                        <span *ngIf="updateStreet.errors.required"
+                          >Street name is required</span
+                        >
+                        <span *ngIf="updateStreet.errors.pattern"
+                          >Street name can't contain special charters like
+                          *,#,etc..</span
+                        >
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mt-1"
+                        formControlName="city"
+                        id="ad_city"
+                        placeholder="City"
+                        [class.is-invalid]="
+                          updateCity.touched && updateCity.invalid
+                        "
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="updateCity.touched && updateCity.invalid"
+                      >
+                        <span *ngIf="updateCity.errors.required"
+                          >City is required</span
+                        >
+                        <span *ngIf="updateCity.errors.pattern"
+                          >City can only contain alpabatic charaters and numbers
+                          at the end</span
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group" formGroupName="contact">
+                      <label for="contact">Contact</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        formControlName="email"
+                        id="ad_email"
+                        placeholder="email"
+                        [class.is-invalid]="
+                          updateEmail.touched && updateEmail.invalid
+                        "
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="updateEmail.touched && updateEmail.invalid"
+                      >
+                        <span *ngIf="updateEmail.errors.required"
+                          >Email is required</span
+                        >
+                        <span *ngIf="updateEmail.errors.pattern"
+                          >Enter a valid Email</span
+                        >
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mt-1"
+                        formControlName="phone"
+                        id="ad_phone"
+                        placeholder="Mobile"
+                        [class.is-invalid]="
+                          updatePhone.touched && updatePhone.invalid
+                        "
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="updatePhone.touched && updatePhone.invalid"
+                      >
+                        <span *ngIf="updatePhone.errors.required"
+                          >Phone number is required</span
+                        >
+                        <span *ngIf="updatePhone.errors.pattern"
+                          >Enter a valid phone number eg: +94777890901 or
+                          0774567892</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4 justify-content-between d-flex flex-column">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="profile-circle"></div>
+                      </div>
+                    </div>
+                    <div class="row mt-5">
+                      <div class="col-12">
+                        <button
+                          class="btn btn-primary button ml-4 button"
+                          type="submit"
+                          (click)="confirmUpdate(updateModal)"
+                          [disabled]="!updateProfileForm.valid"
+                        >
+                          Save
+                        </button>
+                      </div>
+                      <div class="col-12 mt-3">
+                        <button
+                          class="btn btn-primary button ml-4 button"
+                          type="submit"
+                          (click)="resetForm()"
+                        >
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            
-            
-            
-            </div>
-            <!-- end-of profile edit -->
 
-            <!--Reset password-->
-            <div class="container mt-5">
-                <div class="row d-flex justify-content-center">
-                <div class="card" style="width: 45rem">
-                    <div class="card-body">
-                        <h4 class="text-primary  mt-2">
-                           Reset password 
-                        </h4>
-                        <form>
-                            <div class="row">
-                                <div class="col-8">
-                                  <div class="form-group">
-                                            <label for="password">Current password</label>
-                                            <input type="text" class="form-control" id="C_Password" placeholder="Current password">
-                                            
-                                  </div>
-                                  <div class="form-group" [class.has-error]="password.touched && password.invalid">
-            
-                                    <label for="password">New Password</label>
-                                    <input name="new_password" type="text" class="form-control" id="N_Password" placeholder="New password">
-                                    
-            
-                                  </div>
-                                  <div class="form-group">
-            
-                                  <label for="password">Confirm password</label>
-                                  <input type="text" class="form-control" id="Confirm_Password" placeholder="Confirm password">
-                                  
-            
-                                  </div>
-                                </div>
-                                <div class="col-4 justify-content-between d-flex flex-column mt-5 ">
-                                    
-                                    <div class="row mt-5">
-                                        <div class="col-12">
-                                            <button class="btn btn-primary button ml-4 mt-5 button">
-                                                 Reset
-                                            </button>
-                                        </div>
-                                        <div class="col-12 mt-3">
-                                            <button class="btn btn-primary button ml-4 button">
-                                                 Cancel
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                <!-- update-confirmation modal (template variable called in comfirmUpdate(areYouSure) ) -->
+                <ng-template #updateModal>
+                  <div class="modal-body text-center">
+                    <h4 class="mb-2 text-primary">Are you sure?</h4>
+                    <p class="mb-3">
+                      Now you are requesting to update the record of<br />
+                      <b class="d-inline-block"
+                        >{{ user.name.first }}
+                        {{ user.name.middle }}
+                        {{ user.name.last }}</b
+                      >
+                      <br />
+                      click Yes to proceed and No to revert
+                    </p>
+                    <div class="text-center">
+                      <button
+                        type="button"
+                        class="mx-2 btn btn-default"
+                        (click)="confirm()"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        class="mx-2 btn btn-primary"
+                        (click)="decline()"
+                      >
+                        No
+                      </button>
                     </div>
-                </div>
+                  </div>
+                </ng-template>
+
+                <!-- end-of confiramation modal -->
+                <ngb-alert
+                              *ngIf="userUdpateMessage != null"
+                              [type]="'success'"
+                              style="max-width: 500px;"
+                              (close)="closeUpdateAlert()"
+                              >{{ userUdpateMessage }}</ngb-alert
+                            >
+              </form>
             </div>
+          </div>
         </div>
+        <!-- end-of profile edit -->
+
+        <!--Reset password-->
+        <div class="container mt-5">
+          <div class="row d-flex justify-content-center">
+            <div class="card" style="width: 45rem">
+              <div class="card-body">
+                <h4 class="text-primary mt-2">Reset password</h4>
+                <form [formGroup]="passwordResetForm" (ngSubmit)="onSubmit()">
+                  <ngb-alert
+                    [type]="'success'"
+                    (close)="closeAlert()"
+                    *ngIf="displayAlert"
+                    class="mt-3"
+                  >
+                    {{ validResponseMessage }}
+                  </ngb-alert>
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="form-group">
+                        <label for="password">Current password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="C_Password"
+                          formControlName="old_password"
+                          placeholder="Current password"
+                          [class.is-invalid]="
+                            old_password.touched && old_password.invalid
+                          "
+                        />
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="old_password.touched && old_password.invalid"
+                        >
+                          <span *ngIf="old_password.errors.required"
+                            >Current Password is required</span
+                          >
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">New Password</label>
+                        <input
+                          name="new_password"
+                          type="password"
+                          class="form-control"
+                          formControlName="new_password"
+                          id="N_Password"
+                          placeholder="New password"
+                          [class.is-invalid]="
+                            new_password.touched && new_password.invalid
+                          "
+                        />
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="new_password.touched && new_password.invalid"
+                        >
+                          <span *ngIf="new_password.errors.required"
+                            >New Password is required</span
+                          >
+                          <span *ngIf="new_password.errors.minlength"
+                            >password should contain atleast
+                            {{
+                              new_password.errors.minlength.requiredLength
+                            }}
+                            characters</span
+                          >
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Confirm password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="Confirm_Password"
+                          formControlName="confirm_password"
+                          placeholder="Confirm password"
+                          [class.is-invalid]="
+                            confirm_password.invalid && confirm_password.touched
+                          "
+                        />
+                        <div
+                          class="invalid-feedback"
+                          *ngIf="
+                            confirm_password.invalid && confirm_password.touched
+                          "
+                        >
+                          <span *ngIf="confirm_password.errors.required"
+                            >Confirm Password is required</span
+                          >
+                        </div>
+                      </div>
+                      <span
+                        *ngIf="
+                          new_password.valid &&
+                          confirm_password.valid &&
+                          passwordResetForm.errors?.passwordNotMatch
+                        "
+                        class="text-center invalid-feedback d-block"
+                        >Provide password doesn't match with confirm
+                        password</span
+                      >
+                      <span
+                        *ngIf="passwordResetForm.errors?.inValidReqeust != null"
+                        class="text-center invalid-feedback d-block"
+                        >{{ passwordResetForm.errors.inValidReqeust }}</span
+                      >
+                    </div>
+                    <div
+                      class="col-4 justify-content-between d-flex flex-column mt-5"
+                    >
+                      <div class="row mt-5">
+                        <div class="col-12">
+                          <button
+                            class="btn btn-primary button ml-2 mt-5 button"
+                            type="submit"
+                            [disabled]="!passwordResetForm.valid"
+                          >
+                            Change
+                            <span [class.d-none]="!isLoading"
+                              ><i-feather class="mr-2" name="loader"></i-feather
+                            ></span>
+                          </button>
+                        </div>
+                        <div class="col-12 mt-3">
+                          <button class="btn btn-primary button ml-2 button"
+                          type="button"
+                          class="mx-2 btn btn-primary"
+                          (click)="revert()">
+                            Revert
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
