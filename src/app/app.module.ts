@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { DataTableModule } from 'ornamentum';
 import { UiSwitchModule } from 'ngx-ui-switch';
+import { CategoryService, ChartModule,DataLabelService,LegendService,LineSeriesService, ScrollBarService, TooltipService, ZoomService} from '@syncfusion/ej2-angular-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,6 +65,7 @@ import { UrgencyLevelComponent } from './components/urgency-level/urgency-level.
 import { ScheduledOrdersTableComponent } from './components/scheduled-orders-table/scheduled-orders-table.component';
 import { ViewRouteComponent } from './components/view-route/view-route.component';
 import { ScheduleOrdersExpandedComponent } from './components/schedule-orders-expanded/schedule-orders-expanded.component';
+import { ScheduleStatisticChartComponent } from './components/schedule-statistic-chart/schedule-statistic-chart.component';
 import { OrderDimensionTableComponent } from './components/order-dimension-table/order-dimension-table.component';
 
 //function to get jwt-token from the localstorage
@@ -111,6 +113,7 @@ export function tokenGetter() {
     ViewRouteComponent,
     ScheduleOrdersExpandedComponent,
     ScheduledOrdersTableComponent,
+    ScheduleStatisticChartComponent,
     OrderDimensionTableComponent,
   ],
   imports: [
@@ -123,6 +126,7 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    ChartModule,
     IconsModule,
     UiSwitchModule,
     DataTableModule.forRoot(),
@@ -138,6 +142,15 @@ export function tokenGetter() {
     GaurdService,
     AdminGaurdService,
     StoreKeeperGaurdService,
+
+    //services for dashboard component
+    LineSeriesService,
+    CategoryService,
+    DataLabelService,
+    TooltipService,
+    LegendService,
+    ZoomService,
+    ScrollBarService,
 
     BsModalService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
