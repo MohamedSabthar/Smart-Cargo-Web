@@ -33,7 +33,7 @@ export class GenerateRouteComponent implements OnInit {
     this._storekeeperService.generateRoute({ id: this.clusterId }).subscribe(
       (response) => {
         this.closeModal({
-          status: 'scheduled',
+          status: 'sheduled',
         });
       },
       (err) => {
