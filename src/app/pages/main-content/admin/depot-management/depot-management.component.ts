@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Map } from 'ol/Map';
+// import { Map } from 'ol/Map';
 import { AdminService } from './../../../../services/admin.service';
 import { DepotDetails } from 'src/app/models/depotDetails';
 
