@@ -39,7 +39,7 @@
                            <!-- Vehicle name list -->
                           <ng-template #renderVehicleList>
                             <ul class="list-unstyled" >
-                              <li class="align-items-center py-1" *ngFor="let vehicle of vehicles||vehiclesFilter" (click)="onVehicleSeletected(vehicle)">
+                              <li class="align-items-center py-1" *ngFor="let vehicle of vehiclesFilter || vehicles" (click)="onVehicleSeletected(vehicle)">
                                   <div class="row">
                                       <div class="col-0.5 circle"></div>
                                       <div class="col-5 col-md-8 Vtext">{{vehicle.license_plate}}</div>
@@ -107,7 +107,7 @@
                                             <div class="form-group">
                                                 <label for="">Vehicle Type</label>
                                                 <select class="form-control" id="vehicleType" formControlName="vehicle_type" [ngClass]="{ 'is-invalid': (vehicle_type.touched && vehicle_type.invalid)  }">
-                                                  <option *ngFor="let type of vehiclesType" value='{{type._id}}' [selected]="selectedVehicle.vehicle_type === type._id">{{type.type}}</option>
+                                                  <option *ngFor="let type of vehiclesType" value='{{type._id}}' [selected]="selectedVehicle.vehicle_type._id === type._id">{{type.type}}</option>
                                                 </select>
                                                 <div *ngIf="!vehicle_type.value" class="invalid-feedback">
                                                   Vehicle Type is required
