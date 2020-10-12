@@ -32,7 +32,7 @@ export class VehicleManagementComponent implements OnInit {
   UpdateTypeForm:FormGroup;
 
   searchText: string;
-  vehiclesFilter = null;
+  vehiclesFilter = [];
   selectedVehicle;
   selected;
   selectedValue: any;
@@ -438,7 +438,6 @@ this.getVehicles();
 }
 
   onSearch() {
-    this.vehiclesFilter = null;
     console.log(this.searchText);
     this.vehiclesFilter = this.vehicles.filter((vehicle) => {
       let license_plate: string = `${vehicle.license_plate}`;
