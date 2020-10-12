@@ -46,18 +46,15 @@ export class StoreKeeperService {
 
   getListOfVehiclesTypes(): Observable<any> {
     console.log('api called');
-    return this._httpClient
-      .get<any>(API.getListOfVehiclesTypes())
-      .pipe(
-        catchError((error) => {
-          return throwError(error);
-        })
-      );
+    return this._httpClient.get<any>(API.getListOfVehiclesTypes()).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 
-  getVehicleType(vehicleId): Observable<any>{
-    return this._httpClient.get<any>(API.getVehicleType(vehicleId))
-    .pipe(
+  getVehicleType(vehicleId): Observable<any> {
+    return this._httpClient.get<any>(API.getVehicleType(vehicleId)).pipe(
       catchError((error) => {
         return throwError(error);
       })
@@ -118,7 +115,7 @@ export class StoreKeeperService {
     );
   }
 
-  getClusteredStat(): Observable<any>{
+  getClusteredStat(): Observable<any> {
     return this._httpClient.get<any>(API.getClusteredStat()).pipe(
       catchError((error) => {
         return throwError(error);
@@ -144,8 +141,16 @@ export class StoreKeeperService {
     );
   }
 
-  assignDriver(driverID): Observable<Drivers> {
-    return this._httpClient.put<Drivers>(API.assignDriver(), driverID).pipe(
+  assignDriver(updates): Observable<Drivers> {
+    return this._httpClient.put<Drivers>(API.assignDriver(), updates).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+  generateRoute(id): Observable<any> {
+    return this._httpClient.post<any>(API.generateRoute(), id).pipe(
       catchError((error) => {
         return throwError(error);
       })

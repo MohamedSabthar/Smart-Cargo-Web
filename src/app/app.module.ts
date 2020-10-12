@@ -20,7 +20,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { DataTableModule } from 'ornamentum';
 import { UiSwitchModule } from 'ngx-ui-switch';
-import { CategoryService, ChartModule,DataLabelService,LegendService,LineSeriesService, ScrollBarService, TooltipService, ZoomService} from '@syncfusion/ej2-angular-charts';
+import {
+  CategoryService,
+  ChartModule,
+  DataLabelService,
+  LegendService,
+  LineSeriesService,
+  ScrollBarService,
+  TooltipService,
+  ZoomService,
+} from '@syncfusion/ej2-angular-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,6 +76,7 @@ import { ViewRouteComponent } from './components/view-route/view-route.component
 import { ScheduleOrdersExpandedComponent } from './components/schedule-orders-expanded/schedule-orders-expanded.component';
 import { ScheduleStatisticChartComponent } from './components/schedule-statistic-chart/schedule-statistic-chart.component';
 import { OrderDimensionTableComponent } from './components/order-dimension-table/order-dimension-table.component';
+import { GenerateRouteComponent } from './components/generate-route/generate-route.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -115,6 +125,7 @@ export function tokenGetter() {
     ScheduledOrdersTableComponent,
     ScheduleStatisticChartComponent,
     OrderDimensionTableComponent,
+    GenerateRouteComponent,
   ],
   imports: [
     BrowserModule,
@@ -168,6 +179,7 @@ export function tokenGetter() {
     TrackVehileMapComponent,
     ViewRouteComponent,
     StoreKeeperManagementComponent,
+    GenerateRouteComponent,
   ],
 })
 export class AppModule {}

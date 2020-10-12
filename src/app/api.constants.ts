@@ -1,6 +1,5 @@
 export class API {
-  public static base: string = 'https://smart-cargo.herokuapp.com';
-  // "http://localhost:3000";
+  public static base: string = 'https://smart-cargo.herokuapp.com'; //'http://localhost:3000';
 
   public static login() {
     return `${API.base}/auth/sign-in`;
@@ -128,6 +127,10 @@ export class API {
   }
 
   public static assignDriver() {
-    return `${API.base}/storekeeper/assign-driver`;
+    return `${API.base}/storekeeper/assign-driver-to-cluster`;
+  }
+
+  public static generateRoute() {
+    return `${API.base}/storekeeper/generate-route`;
   }
 }
