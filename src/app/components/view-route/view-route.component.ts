@@ -41,6 +41,7 @@ export class ViewRouteComponent implements OnInit, OnChanges {
   @Input() public drivers: DriverDetails;
   AssignDriverForm: FormGroup;
   selectedDriver: DriverDetails;
+  @Input() public clusterId: string;
 
   ngOnInit(): void {
     //add map
@@ -200,10 +201,13 @@ export class ViewRouteComponent implements OnInit, OnChanges {
   assignDriver(): void {
     if (this.selectedDriver != null)
       this._storekeeperServices
-        .assignDriver({ _id: this.selectedDriver._id })
+        .assignDriver({ driver: this.selectedDriver._id, _id: this.clusterId })
         .subscribe(
           (response) => {
-            this.closeModal({ _id: this.selectedDriver._id });
+            this.closeModal({
+              driver: this.selectedDriver._id,
+              //_id: this.clusterId,
+            });
           },
           (err) => {
             console.log(err);
