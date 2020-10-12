@@ -32,7 +32,7 @@ export class VehicleManagementComponent implements OnInit {
   UpdateTypeForm:FormGroup;
 
   searchText: string;
-  vehiclesFilter = [];
+  vehiclesFilter = null;
   selectedVehicle;
   selected;
   selectedValue: any;
@@ -65,22 +65,22 @@ export class VehicleManagementComponent implements OnInit {
     //validation for update vehicle form
     this.AddVehicleForm = this.fb.group({
       vehicle_type: ['', [Validators.required]],
-      capacity: ['', [Validators.required]],
+      // capacity: ['', [Validators.required]],
       license_plate: ['',[Validators.required]],
-      load: ['', [Validators.required]],
+      // load: ['', [Validators.required]],
 
-      fuel_economy: ['', [Validators.required]],
+      // fuel_economy: ['', [Validators.required]],
     });
 
 
      //validation for update vehicle form
      this.NewVehicleForm = this.fb.group({
       Newvehicle_type: ['', [Validators.required]],
-      Newcapacity: ['', [Validators.required]],
+      // Newcapacity: ['', [Validators.required]],
       Newlicense_plate: ['',[Validators.required]],
-      Newload: ['', [Validators.required]],
+      // Newload: ['', [Validators.required]],
 
-      Newfuel_economy: ['', [Validators.required]],
+      // Newfuel_economy: ['', [Validators.required]],
     });
 
 
@@ -89,7 +89,7 @@ export class VehicleManagementComponent implements OnInit {
      this.NewTypeForm = this.fb.group({
       NewTypevehicle_type: ['', [Validators.required]],
       NewTypecapacity: ['', [Validators.required]],
-      NewTypelicense_plate: ['',[Validators.required]],
+      // NewTypelicense_plate: ['',[Validators.required]],
       NewTypeload: ['', [Validators.required]],
 
       NewTypefuel_economy: ['', [Validators.required]],
@@ -116,14 +116,14 @@ this.getVehicles();
   getVehicles(){
     this._storekeeperService.getListOfVehicles().subscribe(
       (response) => {
-        this.vehiclesWithType = response.vehicles;
+        this.vehicles= response.vehicles;
         
-        for(let x of this.vehiclesWithType){
-          this._storekeeperService.getVehicleType(x.vehicle_type).subscribe( type => {
-            x.type = type.vehicle_types.type;
-            this.vehicles.push(x);
-          });
-        }
+        // for(let x of this.vehiclesWithType){
+        //   this._storekeeperService.getVehicleType(x.vehicle_type).subscribe( type => {
+        //     x.type = type.vehicle_types.type;
+        //     this.vehicles.push(x);
+        //   });
+        // }
       },
       (error) => {
         console.log(error);
@@ -177,9 +177,9 @@ this.getVehicles();
         .newVehicleDetails({
           vehicle_type : this.NewVehicleForm.value.Newvehicle_type,
           license_plate : this.NewVehicleForm.value.Newlicense_plate,
-          load : this.NewVehicleForm.value.Newload,
-          capacity : this.NewVehicleForm.value.Newcapacity,
-          fuel_economy : this.NewVehicleForm.value.Newfuel_economy
+          // load : this.NewVehicleForm.value.Newload,
+          // capacity : this.NewVehicleForm.value.Newcapacity,
+          // fuel_economy : this.NewVehicleForm.value.Newfuel_economy
          })
         .subscribe(
           (response) => {
@@ -323,9 +323,9 @@ this.getVehicles();
     this.AddVehicleForm.patchValue({
       vehicle_type: vehicle.vehicle_type,
       license_plate: vehicle.license_plate,
-      capacity: vehicle.capacity,
-      load: vehicle.load,
-      fuel_economy: vehicle.fuel_economy
+      // capacity: vehicle.capacity,
+      // load: vehicle.load,
+      // fuel_economy: vehicle.fuel_economy
     });
   }
   
@@ -438,6 +438,7 @@ this.getVehicles();
 }
 
   onSearch() {
+    this.vehiclesFilter = null;
     console.log(this.searchText);
     this.vehiclesFilter = this.vehicles.filter((vehicle) => {
       let license_plate: string = `${vehicle.license_plate}`;

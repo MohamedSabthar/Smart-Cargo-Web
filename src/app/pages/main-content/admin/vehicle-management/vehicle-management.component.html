@@ -8,7 +8,7 @@
           <div class="row justify-content-center">
               <!-- vehicle list -->
               <div class="col-12 col-md-12 col-lg-5">
-                  <div class="card">
+                  <div class="card content">
                       <div class="card-body">
                           <h4 class="card-title Vtext">Vehicles</h4>
                           <br>
@@ -39,7 +39,7 @@
                            <!-- Vehicle name list -->
                           <ng-template #renderVehicleList>
                             <ul class="list-unstyled" >
-                              <li class="align-items-center py-1" *ngFor="let vehicle of vehicles||vehiclesFilter" (click)="onVehicleSeletected(vehicle)">
+                              <li class="align-items-center py-1" *ngFor="let vehicle of vehiclesFilter || vehicles" (click)="onVehicleSeletected(vehicle)">
                                   <div class="row">
                                       <div class="col-0.5 circle"></div>
                                       <div class="col-5 col-md-8 Vtext">{{vehicle.license_plate}}</div>
@@ -69,7 +69,7 @@
               <!-- Vehicle type content -->
               <div class="col-12 col-md-12 col-lg-7 mt-3 mt-md-0 ">
                   <!-- Vehicle Register card -->
-                  <div class="card">
+                  <div class="card content">
                       <div class="card-body">
                          <!-- nav angular system  -->
                         <ul ngbNav #nav="ngbNav" class="nav-tabs">
@@ -107,13 +107,13 @@
                                             <div class="form-group">
                                                 <label for="">Vehicle Type</label>
                                                 <select class="form-control" id="vehicleType" formControlName="vehicle_type" [ngClass]="{ 'is-invalid': (vehicle_type.touched && vehicle_type.invalid)  }">
-                                                  <option *ngFor="let type of vehiclesType" value='{{type._id}}' [selected]="selectedVehicle.vehicle_type === type._id">{{type.type}}</option>
+                                                  <option *ngFor="let type of vehiclesType" value='{{type._id}}' [selected]="selectedVehicle.vehicle_type._id == type._id">{{type.type}}</option>
                                                 </select>
                                                 <div *ngIf="!vehicle_type.value" class="invalid-feedback">
                                                   Vehicle Type is required
                                                  </div>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="">Capacity</label>
                                                 <input
                                                   id="Volume"
@@ -158,7 +158,7 @@
                                                 <div *ngIf="!fuel_economy.value" class="invalid-feedback">
                                                   Fuel economy is required
                                                  </div>
-                                            </div>
+                                            </div> -->
 
                                             <ngb-alert
                                       *ngIf="vehicleUdpateMessage != null"
@@ -227,7 +227,7 @@
                                                   Lisence Plate Number is required
                                                  </div>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="">Capacity</label>
                                                 <input
                                                   id="Volume"
@@ -268,7 +268,7 @@
                                                 <div *ngIf="!Newfuel_economy.value" class="invalid-feedback">
                                                   Fuel economy is required
                                                  </div>
-                                            </div>
+                                            </div> -->
 
                                             <ngb-alert
                                             *ngIf="vehicleUdpateMessage != null"
