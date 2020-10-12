@@ -14,23 +14,21 @@
                           <br>
                           <div class="input-group mb-4">
                             <input
-                              id="linces"
-                              formControlName="Newlicense_plate"
-                              type="text"
-                              class="form-control"
-                              placeholder="Linces Plate No"
-                              [ngClass]="{
-                                'is-invalid':
-                                  Newlicense_plate.touched &&
-                                  Newlicense_plate.invalid
-                              }"
-                            />
-                            <div
-                              *ngIf="!Newlicense_plate.value"
-                              class="invalid-feedback"
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="searchText"
+                            placeholder="Search Vehicle by License number"
+                            (keyup)="onSearch()"
+                          />
+                          <div class="input-group-append">
+                            <button
+                              class="btn btn-outline-primary search-bar"
+                              type="button"
+                              (click)="onSearch()"
                             >
-                              Lisence Plate Number is required
-                            </div>
+                              <i-feather class="mr-2" name="search"></i-feather>
+                            </button>
+                          </div>
                           </div>
                           <div
                             *ngIf="
