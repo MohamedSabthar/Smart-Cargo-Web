@@ -201,6 +201,7 @@ console.log(this.selectedUrgency);
     },
         (error) => {
           console.log(error);
+          this.clusterMessage = "Server Error"
         }
       );
   }
