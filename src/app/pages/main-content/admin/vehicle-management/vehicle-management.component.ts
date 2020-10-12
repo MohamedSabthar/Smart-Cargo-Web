@@ -65,22 +65,22 @@ export class VehicleManagementComponent implements OnInit {
     //validation for update vehicle form
     this.AddVehicleForm = this.fb.group({
       vehicle_type: ['', [Validators.required]],
-     // capacity: ['', [Validators.required]],
+      capacity: ['', [Validators.required]],
       license_plate: ['',[Validators.required]],
-    //  load: ['', [Validators.required]],
+      load: ['', [Validators.required]],
 
-    //  fuel_economy: ['', [Validators.required]],
+      fuel_economy: ['', [Validators.required]],
     });
 
 
      //validation for update vehicle form
      this.NewVehicleForm = this.fb.group({
       Newvehicle_type: ['', [Validators.required]],
-      // Newcapacity: ['', [Validators.required]],
+      Newcapacity: ['', [Validators.required]],
       Newlicense_plate: ['',[Validators.required]],
-      // Newload: ['', [Validators.required]],
+      Newload: ['', [Validators.required]],
 
-      // Newfuel_economy: ['', [Validators.required]],
+      Newfuel_economy: ['', [Validators.required]],
     });
 
 
@@ -89,6 +89,7 @@ export class VehicleManagementComponent implements OnInit {
      this.NewTypeForm = this.fb.group({
       NewTypevehicle_type: ['', [Validators.required]],
       NewTypecapacity: ['', [Validators.required]],
+      NewTypelicense_plate: ['',[Validators.required]],
       NewTypeload: ['', [Validators.required]],
 
       NewTypefuel_economy: ['', [Validators.required]],
@@ -97,6 +98,7 @@ export class VehicleManagementComponent implements OnInit {
     this.UpdateTypeForm = this.fb.group({
       UpdateTypevehicle_type: ['', [Validators.required]],
       UpdateTypecapacity: ['', [Validators.required]],
+      UpdateTypelicense_plate: ['',[Validators.required]],
       UpdateTypeload: ['', [Validators.required]],
 
       UpdateTypefuel_economy: ['', [Validators.required]],
@@ -114,17 +116,14 @@ this.getVehicles();
   getVehicles(){
     this._storekeeperService.getListOfVehicles().subscribe(
       (response) => {
-        // this.vehiclesWithType = response.vehicles;
-        this.vehicles = response.vehicles;
-        // console.log('details of veh',this.vehiclesWithType);
+        this.vehiclesWithType = response.vehicles;
         
-        // for(let x of this.vehiclesWithType){
-        //   console.log('hehe')
-        //   this._storekeeperService.getVehicleType(x.vehicle_type).subscribe( type => {
-        //     x.type = type.vehicle_types.type;
-        //     this.vehicles.push(x);
-        //   });
-        // }
+        for(let x of this.vehiclesWithType){
+          this._storekeeperService.getVehicleType(x.vehicle_type).subscribe( type => {
+            x.type = type.vehicle_types.type;
+            this.vehicles.push(x);
+          });
+        }
       },
       (error) => {
         console.log(error);
@@ -178,9 +177,9 @@ this.getVehicles();
         .newVehicleDetails({
           vehicle_type : this.NewVehicleForm.value.Newvehicle_type,
           license_plate : this.NewVehicleForm.value.Newlicense_plate,
-          // load : this.NewVehicleForm.value.Newload,
-          // capacity : this.NewVehicleForm.value.Newcapacity,
-          // fuel_economy : this.NewVehicleForm.value.Newfuel_economy
+          load : this.NewVehicleForm.value.Newload,
+          capacity : this.NewVehicleForm.value.Newcapacity,
+          fuel_economy : this.NewVehicleForm.value.Newfuel_economy
          })
         .subscribe(
           (response) => {
@@ -200,7 +199,6 @@ this.getVehicles();
     confirmNewType(): void {
      
       if(this.NewTypeForm.valid){
-        console.log("hiiiiit");
       this._adminService.registerVehicleType({
         type: this.NewTypeForm.value.NewTypevehicle_type,
         capacity: { volume: this.NewTypeForm.value.NewTypecapacity , max_load: this.NewTypeForm.value.NewTypeload} ,
@@ -325,6 +323,9 @@ this.getVehicles();
     this.AddVehicleForm.patchValue({
       vehicle_type: vehicle.vehicle_type,
       license_plate: vehicle.license_plate,
+      capacity: vehicle.capacity,
+      load: vehicle.load,
+      fuel_economy: vehicle.fuel_economy
     });
   }
   
@@ -357,15 +358,15 @@ this.getVehicles();
     return this.AddVehicleForm.get('vehicle_type');
   }
 
-  // get capacity() {
-  //   return this.AddVehicleForm.get('capacity');
-  // }
-  // get load() {
-  //   return this.AddVehicleForm.get('load');
-  // }
-  // get fuel_economy() {
-  //   return this.AddVehicleForm.get('fuel_economy');
-  // }
+  get capacity() {
+    return this.AddVehicleForm.get('capacity');
+  }
+  get load() {
+    return this.AddVehicleForm.get('load');
+  }
+  get fuel_economy() {
+    return this.AddVehicleForm.get('fuel_economy');
+  }
   get license_plate() {
     return this.AddVehicleForm.get('license_plate');
   }
@@ -374,15 +375,15 @@ this.getVehicles();
     return this.NewVehicleForm.get('Newvehicle_type');
   }
 
-  // get Newcapacity() {
-  //   return this.NewVehicleForm.get('Newcapacity');
-  // }
-  // get Newload() {
-  //   return this.NewVehicleForm.get('Newload');
-  // }
-  // get Newfuel_economy() {
-  //   return this.NewVehicleForm.get('Newfuel_economy');
-  // }
+  get Newcapacity() {
+    return this.NewVehicleForm.get('Newcapacity');
+  }
+  get Newload() {
+    return this.NewVehicleForm.get('Newload');
+  }
+  get Newfuel_economy() {
+    return this.NewVehicleForm.get('Newfuel_economy');
+  }
   get Newlicense_plate() {
     return this.NewVehicleForm.get('Newlicense_plate');
   }
