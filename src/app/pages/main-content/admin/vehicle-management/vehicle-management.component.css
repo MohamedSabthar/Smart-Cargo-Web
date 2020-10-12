@@ -1,13 +1,17 @@
 .Vtext {
     display: inline;
-    color: #4d5c84;
-    font-weight: 400;
-    font-size: 1.6rem;
+    color: var(--primary);
+    font-weight: bolder;
+    font-size: 1.0rem;
   }
+
+  
 
 .trash_icon {
     color: var(--danger);
     size: 18px;
+    align-self: center;
+    margin-left: 100%;
 }
 
 .correct_icon {
@@ -35,6 +39,8 @@
     border-radius: 50%;
 }
 
+
+
 .text {
     display: inline;
     color: #4d5c84;
@@ -44,6 +50,16 @@
 .button {
     width: 80px;
 }
+
 li{
+    align-self: center;
+    padding-left:15px ;
+}
+
+li:hover{
     cursor: pointer;
+    border: solid 1px;
+    border-color: var(--primary-lite);
+    border-radius: 0.25rem;
+    
 }

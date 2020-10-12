@@ -1,5 +1,6 @@
 export class API {
-  public static base: string = 'https://smart-cargo.herokuapp.com'; //'http://localhost:3000';
+  public static base: string = 'https://smart-cargo.herokuapp.com';
+  //"http://localhost:3000";
 
   public static login() {
     return `${API.base}/auth/sign-in`;
@@ -58,6 +59,10 @@ export class API {
 
   public static getVehicleType(vehicleId) {
     return `${API.base}/storekeeper/vehicle-types/${vehicleId}`;
+  }
+
+  public static registerVehicleType() {
+    return `${API.base}/admin/register-vehicle-type`;
   }
 
   public static updateVehicleDetailsType(vehicleTypeId) {
@@ -124,6 +129,22 @@ export class API {
 
   public static updatePassword(userId) {
     return `${API.base}/storekeeper/password-change/${userId}`;
+  }
+
+  public static registerDepot() {
+    return `${API.base}/admin/register-depot`;
+  }
+
+  public static getDepotDetails() {
+    return `${API.base}/admin/depot`;
+  }
+
+  public static updateDepot(userId) {
+    return `${API.base}/admin/update-depot/${userId}`;
+  }
+
+  public static makeCluster() {
+    return `${API.base}/storekeeper/make-cluster`;
   }
 
   public static assignDriver() {

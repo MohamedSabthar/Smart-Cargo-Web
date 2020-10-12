@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StoreKeeperService } from 'src/app/services/store-keeper.service';
+import { ClusterLoaderComponent } from '../cluster-loader/cluster-loader.component';
 
 declare var ol: any;
 @Component({
@@ -9,12 +11,15 @@ declare var ol: any;
 })
 export class UrgencyLevelComponent implements OnInit {
   valueChange = false;
+  selectedUrgency = [];
   map: any;
   orders: any;
   ordersHigh: any;
   ordersMedium: any;
   ordersLow: any;
-  constructor(private _storekeeperservice: StoreKeeperService) { }
+  showLoader:boolean = false;
+  clusterMessage;
+  constructor(private _storekeeperservice: StoreKeeperService,private modalService: NgbModal) { }
   openLayers: { high, meduim, low } = { high: null, meduim: null, low: null };
 
 
@@ -61,15 +66,24 @@ export class UrgencyLevelComponent implements OnInit {
     if (this.valueChange) {
 var markers = [];
 let orderList;
-if (emergancyLvl == "high")
-orderList = this.orders.high
+if (emergancyLvl == "high"){
+  orderList = this.orders.high;
+  this.selectedUrgency.push(1);
+}
 
-else if (emergancyLvl == "meduim")
-orderList = this.orders.medium ;
+
+else if (emergancyLvl == "meduim"){
+  orderList = this.orders.medium ;
+  this.selectedUrgency.push(2);
+}
 
 
-else if (emergancyLvl == "low")
-orderList = this.orders.low;
+
+else if (emergancyLvl == "low"){
+  orderList = this.orders.low;
+  this.selectedUrgency.push(3);
+}
+
 
       if(orderList)
       for (let order of orderList ) {
@@ -116,15 +130,23 @@ orderList = this.orders.low;
   }
 
   removeMarker(emergancyLvl) {
-    if (emergancyLvl == "high")
-    this.map.removeLayer(this.openLayers.high)
+    if (emergancyLvl == "high"){
+      this.map.removeLayer(this.openLayers.high);
+      this.selectedUrgency.splice(this.selectedUrgency.indexOf(1), 1);
+    }
+    
 
-  else if (emergancyLvl == "meduim")
-  this.map.removeLayer(this.openLayers.meduim)
+  else if (emergancyLvl == "meduim"){
+    this.map.removeLayer(this.openLayers.meduim);
+    this.selectedUrgency.splice(this.selectedUrgency.indexOf(2), 1);
+  }
+  
 
-
-  else if (emergancyLvl == "low")
-  this.map.removeLayer(this.openLayers.low)
+  else if (emergancyLvl == "low"){
+    this.map.removeLayer(this.openLayers.low);
+    this.selectedUrgency.splice(this.selectedUrgency.indexOf(3), 1);
+  }
+  
     
   }
 
@@ -135,11 +157,59 @@ orderList = this.orders.low;
     else
       this.removeMarker(emergancyLvl);
 
-
+console.log(this.selectedUrgency);
 
 
 
 
   }
+
+  closeUpdateAlert(){
+    this.clusterMessage = null;
+  }
+
+  // makeCluster(){
+  //   this.modalService.open(content, { centered: true });
+  //   // const modalRef = this.modalService.open(ClusterLoaderComponent);
+    
+  //   // modalRef.result.then((result) => {
+  //   //   console.log(result);
+  //   // }).catch((error) => {
+  //   //   console.log(error);
+  //   // });
+  //     // modalRef.componentInstance.showLoader = this.showLoader;
+  //   // this.showLoader = true;
+  //   // this._storekeeperservice.makeCluster({emergancyLevels:this.selectedUrgency}).subscribe((response) =>{
+  //   //   // this.showLoader = false;
+      
+      
+  //   // },
+  //   //     (error) => {
+  //   //       console.log(error);
+  //   //     }
+  //   //   );
+  // }
+
+  openVerticallyCentered(content) {
+    this.showLoader = true;
+    this.modalService.open(content, { centered: true });
+    this.modalService.hasOpenModals.bind(this.showLoader);
+       this._storekeeperservice.makeCluster({emergancyLevels:this.selectedUrgency}).subscribe((response) =>{
+      this.showLoader = false;
+      this.clusterMessage = "Grouping successfully done"
+      
+    },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  
+  openLoading() {
+    
+  }
+
+ 
 
 }

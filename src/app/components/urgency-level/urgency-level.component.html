@@ -13,7 +13,7 @@
                     checkedLabel="Selected urgency level-High"
                     uncheckedLabel="Urgency level-High"
                     ></ui-switch>
-                    <p>value {{valueChange}}</p>
+                    
                 </div>
                 <div class="col">
                     <ui-switch
@@ -23,7 +23,7 @@
                     checkedLabel="Selected urgency level-Medium"
                     uncheckedLabel="Urgency level-Medium"
                     ></ui-switch>
-                    <p>value {{valueChange}}</p>
+                   
                 </div>
                 <div class="col">
                     <ui-switch
@@ -33,16 +33,37 @@
                     checkedLabel="Selected urgency level-Low"
                     uncheckedLabel="Urgency level-Low"
                     ></ui-switch>
-                    <p>value {{valueChange}}</p>
+                    
                 </div>
             </div>
           </div>  
           <hr>
           
           <div call="col-12 col-md-6" id="map" style="height: 400px;width: 100%;">
+            
+            <div class="d-flex flex-row-reverse">
+                <button type="button" (click)="openVerticallyCentered(content)" class="btn btn-primary w-25 my-4 mr-4">
+                  make Grouping
+                </button>
+              </div>
       </div>
     </div>
 </div>
 
-
+<ng-template #content let-modal>
+      <div class="modal-body" >
+          <div *ngIf="showLoader">
+            <p >Grouping is in progress</p>
+            <img src="/assets/img/loader.gif" />
+            <p>Please wait...</p>
+          </div>
+        <ngb-alert
+            *ngIf="clusterMessage != null && !showLoader"
+            [type]="'success'"
+            style="max-width: 500px"
+            (close)="closeUpdateAlert()"
+            >{{ clusterMessage }}</ngb-alert
+          >
+      </div>
+  </ng-template>
 

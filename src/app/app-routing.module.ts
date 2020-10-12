@@ -53,7 +53,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: StoreKeeperDashboardComponent },
+      { path: 'add-order-dimention', component:AddOrderDimentionComponent},
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
+      { path: 'track-vehicle', component:TrackOrderComponent},
       {path:'settings',canActivate:[GaurdService],component:ProfileComponent},
     ],
   },

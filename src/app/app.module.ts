@@ -47,7 +47,11 @@ import { StoreKeeperDashboardComponent } from './pages/main-content/store-keeper
 import { ScheduleOrdersComponent } from './pages/main-content/admin/schedule-orders/schedule-orders.component';
 
 //import ng-bootstrap
-import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbModule,
+  NgbModal,
+  NgbActiveModal,
+} from '@ng-bootstrap/ng-bootstrap';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TrackOrderComponent } from './pages/main-content/admin/track-order/track-order.component';
 import { TimeLineComponent } from './components/time-line/time-line.component';
@@ -77,6 +81,7 @@ import { ScheduleOrdersExpandedComponent } from './components/schedule-orders-ex
 import { ScheduleStatisticChartComponent } from './components/schedule-statistic-chart/schedule-statistic-chart.component';
 import { OrderDimensionTableComponent } from './components/order-dimension-table/order-dimension-table.component';
 import { GenerateRouteComponent } from './components/generate-route/generate-route.component';
+import { ClusterLoaderComponent } from './components/cluster-loader/cluster-loader.component';
 
 //function to get jwt-token from the localstorage
 export function tokenGetter() {
@@ -126,6 +131,7 @@ export function tokenGetter() {
     ScheduleStatisticChartComponent,
     OrderDimensionTableComponent,
     GenerateRouteComponent,
+    ClusterLoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -162,6 +168,7 @@ export function tokenGetter() {
     LegendService,
     ZoomService,
     ScrollBarService,
+    NgbActiveModal,
 
     BsModalService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

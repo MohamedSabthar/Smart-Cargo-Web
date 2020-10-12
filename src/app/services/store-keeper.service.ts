@@ -133,6 +133,13 @@ export class StoreKeeperService {
       );
   }
 
+  makeCluster(emergancyLevels):Observable<any>{
+    return this._httpClient.post<any>(API.makeCluster(),emergancyLevels).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
   getAvailableDrivers(): Observable<Drivers> {
     return this._httpClient.get<Drivers>(API.getAvailableDrivers()).pipe(
       catchError((error) => {
