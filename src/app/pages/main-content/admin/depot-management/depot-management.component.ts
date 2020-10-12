@@ -1,8 +1,9 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Map } from 'ol/Map';
 import { AdminService } from './../../../../services/admin.service';
 import { DepotDetails } from 'src/app/models/depotDetails';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 declare var ol: any;
 declare var OpenLayers: any;
@@ -13,7 +14,7 @@ declare var OpenLayers: any;
   styleUrls: ['./depot-management.component.css'],
 })
 export class DepotManagementComponent implements OnInit {
-  constructor(private _fb: FormBuilder, private adminService: AdminService) {}
+  constructor(private _fb: FormBuilder, private adminService: AdminService, private _modalService: BsModalService) {}
 
   latitude: number = 6.928659;
   longitude: number = 79.861626;
@@ -23,7 +24,9 @@ export class DepotManagementComponent implements OnInit {
   depotId: string;
   buttonN : string;
   userMessage : String;
+  userMapMessage : String;
   layer : any;
+  modalRef: BsModalRef;
 
   map: any;
 
@@ -48,6 +51,38 @@ export class DepotManagementComponent implements OnInit {
         this.lat = lat;
         this.lng = lang;
         this.depotId = _id;
+
+        //marker condition in get function 
+        let marker = new ol.Feature({
+          geometry: new ol.geom.Point(
+            ol.proj.fromLonLat([this.lng , this.lat])
+          ),
+          color: 'red',
+        });
+        if(this.layer != null){
+          this.map.removeLayer(this.layer);
+        }
+         //set marker style
+         marker.setStyle(
+          new ol.style.Style({
+            image: new ol.style.Icon({
+              color: '#FF6961',
+              crossOrigin: 'anonymous',
+              src: 'assets/img/dot.png',
+            }),
+          })
+        );
+    
+        //add marker to vector layer
+         this.layer = new ol.layer.Vector({
+          source: new ol.source.Vector({
+            features: [
+             marker
+            ],
+          }),
+        });
+        this.map.addLayer(this.layer);
+        
       }
     });
   }
@@ -113,6 +148,63 @@ export class DepotManagementComponent implements OnInit {
     });
   }
   
+  confirmRegister(template: TemplateRef<any>) {
+    // this will trigger the modal
+    this.modalRef = this._modalService.show(template, {
+      class: 'modal-md modal-dialog-centered',
+    });
+  }
+
+  // triggers when No button cliked in confirmation modal
+  decline(): void {
+    // reset the data in update form if declined
+    this.adminService.getDepotDetails().subscribe((res) => {
+      const [depotDetails] = res;
+      if (depotDetails) {
+        const { address, location, _id } = depotDetails;
+        this.manageDepot.patchValue({
+          address,
+        });
+        const { lat, lang } = location;
+        this.lat = lat;
+        this.lng = lang;
+        this.depotId = _id;
+
+        //marker condition in get function 
+        let marker = new ol.Feature({
+          geometry: new ol.geom.Point(
+            ol.proj.fromLonLat([this.lng , this.lat])
+          ),
+          color: 'red',
+        });
+        if(this.layer != null){
+          this.map.removeLayer(this.layer);
+        }
+         //set marker style
+         marker.setStyle(
+          new ol.style.Style({
+            image: new ol.style.Icon({
+              color: '#FF6961',
+              crossOrigin: 'anonymous',
+              src: 'assets/img/dot.png',
+            }),
+          })
+        );
+    
+        //add marker to vector layer
+         this.layer = new ol.layer.Vector({
+          source: new ol.source.Vector({
+            features: [
+             marker
+            ],
+          }),
+        });
+        this.map.addLayer(this.layer);
+        
+      }
+    });
+    this.modalRef.hide();
+  }
 
   onSubmit() {
     if (this.lat && this.lng && this.manageDepot.value.address) {
@@ -125,6 +217,7 @@ export class DepotManagementComponent implements OnInit {
       if (this.depotId) {
         this.adminService.updateDepot(this.depotId, payload)
           .subscribe(({message}) => this.userMessage= message);
+          this.modalRef.hide();
       } else {
         this.adminService
         .registerDepot(payload)
@@ -135,12 +228,13 @@ export class DepotManagementComponent implements OnInit {
       }
       
     } else {
-      this.userMessage ='Please click on the map to select the location';
+      this.userMapMessage ='Please click on the map to select the location';
     }
   }
 
     // closses the update-successful alert message
   	closeUpdateAlert() {
-    	this.userMessage = null;
+      this.userMessage = null;
+      this.userMapMessage = null;
  	 }
 }
