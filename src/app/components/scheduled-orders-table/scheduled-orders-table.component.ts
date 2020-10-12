@@ -74,7 +74,7 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
       const modalRef = this._modalComponentService.open(
         GenerateRouteComponent,
         {
-          size: 'xl lg md sm',
+          size: 'modal-md modal-dialog-centered',
         }
       );
       modalRef.componentInstance.clusterId = clickEventArgs.row.item._id;

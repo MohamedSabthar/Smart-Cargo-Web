@@ -1,3 +1,4 @@
+<div *ngIf="loading==''">
 <div class="modal-body text-center">
   <h4 class="mb-2 text-primary">Preparing to Generate Route</h4>
   <p class="mb-3">Click confirm to proceed or Cancel to Revert</p>
@@ -11,3 +12,5 @@
     Cancel
   </button>
 </div>
+</div>
+<div *ngIf="loading!=''" class="modal-body text-center">{{loading}}</div>
