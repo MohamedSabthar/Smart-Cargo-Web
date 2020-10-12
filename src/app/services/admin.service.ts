@@ -7,12 +7,14 @@ import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Storekeepers } from '../models/storekeeper.response';
 import { ScheduleDetails } from '../models/scheduleDetails';
+import { DepotDetails } from './../models/depotDetails';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) {}
 
   getListOfStorekeepers(): Observable<Storekeepers> {
     return this._httpClient.get<Storekeepers>(API.getListOfStorekeepers()).pipe(
@@ -41,13 +43,14 @@ export class AdminService {
       );
   }
 
-  newVehicleDetails(vehicleDetails): Observable<any>{
-    return this._httpClient.post<any>(API.newVehicleDetails(),vehicleDetails)
-    .pipe(
-      catchError((error) => {
-        return throwError(error);
-      })
-    )
+  newVehicleDetails(vehicleDetails): Observable<any> {
+    return this._httpClient
+      .post<any>(API.newVehicleDetails(), vehicleDetails)
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
   }
 
   deleteVehicle(vehicleId): Observable<any> {
@@ -114,7 +117,10 @@ export class AdminService {
 
   updateStorekeeperDetails(storekeeperDetails, storekeeperId): Observable<any> {
     return this._httpClient
-      .post<any>(API.updateStorekeeperDetails(storekeeperId), storekeeperDetails)
+      .post<any>(
+        API.updateStorekeeperDetails(storekeeperId),
+        storekeeperDetails
+      )
       .pipe(
         catchError((error) => {
           return throwError(error);
@@ -123,30 +129,60 @@ export class AdminService {
   }
 
   deleteStorekeeper(storekeeperId): Observable<any> {
-    return this._httpClient.delete<any>(API.deleteStorekeeper(storekeeperId)).pipe(
-      catchError((error) => {
-        return throwError(error);
-      })
-    );
+    return this._httpClient
+      .delete<any>(API.deleteStorekeeper(storekeeperId))
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
   }
 
   registerStorekeeper(storekeeperDetails): Observable<any> {
-    return this._httpClient.post<any>(API.registerStorekeeper(), storekeeperDetails).pipe(
+    return this._httpClient
+      .post<any>(API.registerStorekeeper(), storekeeperDetails)
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
+  storekeeperScheduleHistory(storekeeperId): Observable<any> {
+    return this._httpClient
+      .get<any>(API.storekeeperScheduleHistory(storekeeperId))
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
+
+  registerDepot(depotDetails: DepotDetails): Observable<any> {
+    return this._httpClient.post<any>(API.registerDepot(), depotDetails).pipe(
       catchError((error) => {
         return throwError(error);
       })
     );
   }
 
-  storekeeperScheduleHistory(storekeeperId): Observable<any> {
-    return this._httpClient.get<any>(API.storekeeperScheduleHistory(storekeeperId)).pipe(
-      catchError((error) => {
-        return throwError(error);
-      }
-      ));
-
+  updateDepot(depotId, depotDetails: DepotDetails): Observable<any> {
+    return this._httpClient
+      .post<any>(API.updateDepot(depotId), depotDetails)
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
   }
 
- 
-
+  getDepotDetails(): Observable<any> {
+    return this._httpClient
+      .get<any>(API.getDepotDetails())
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      );
+  }
 }

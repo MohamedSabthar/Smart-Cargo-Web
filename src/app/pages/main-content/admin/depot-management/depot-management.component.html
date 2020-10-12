@@ -1,43 +1,52 @@
 <div class="container-fluid">
-    <div class="row">
-      <app-side-bar></app-side-bar>
-      <!-- Content of Depot Management -->
-      <div class="col main-content">
-            <div class="row justify-content-center">
-                <div class="card xcard">
-                    <div class="card-body">
-                        <form [formGroup]="mangaeDepot">
-                            <div class="row">
-                                <div class="col-8 col-md-9">
-                                    <h4 style="color: #4d5c84;">Your depot details</h4>
+  <div class="row">
+    <app-side-bar></app-side-bar>
+    <!-- Content of Depot Management -->
+    <div class="col main-content">
+      <div class="row justify-content-center">
+        <div class="card xcard">
+          <div class="card-body">
+            <form [formGroup]="manageDepot">
+                <!-- message alert -->
+                <ngb-alert
+                    *ngIf="userMessage != null"
+                    [type]="'success'"
+                    style="max-width: 500px;"
+                    (close)="closeUpdateAlert()"
+                    >{{ userMessage }}</ngb-alert
+                  >
+              <div class="row">
+                <div class="col-8 col-md-9">
+                  <h4 style="color: #4d5c84">Your depot details</h4>
+                  <label>Depot Address</label>
+                  <input
+                    id="Depot_address"
+                    type="text"
+                    class="form-control"
+                    formControlName="address"
+                    placeholder="Warehouse Address"
+                  />
 
-                                        <label >Depot Address</label>
-                                        <input
-                                          id="Depot_address"
-                                          type="text"
-                                          class="form-control"
-                                          formControlName="address"
-                                          placeholder="Warehouse Address"
-                                        />
-
-                                    <label for="">Selection on map</label>
-                                    <!--Google map-->
-                                    <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 400px">
-                                        <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0" allowfullscreen></iframe>
-                                    </div>
-                                    <!--Google Maps-->
-
-                                </div>
-                                <div class="col-2 col-md-3 align-items-center">
-                                    <div class="big_circle align"></div>
-
-                                    <button type="submit" class="btn btn-primary  button k-margin">Save</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                  <label for="">Selection on map</label>
+                  <div class="modal-body">
+                    <div id="map" class="map"></div>
+                  </div>
                 </div>
-            </div>
+                <div class="col-2 col-md-3 align-items-center">
+                  <button
+                    [disabled]="manageDepot.invalid"
+                    (click)="onSubmit()"
+                    type="submit"
+                    class="btn btn-primary button k-margin"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

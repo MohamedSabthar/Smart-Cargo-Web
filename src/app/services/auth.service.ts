@@ -30,6 +30,7 @@ export class AuthService {
   public logout() {
     //remove the JWT token from the storage and navigate back to login
     localStorage.removeItem('token');
+    localStorage.removeItem('name');
     this._router.navigate(['/']);
   }
 
