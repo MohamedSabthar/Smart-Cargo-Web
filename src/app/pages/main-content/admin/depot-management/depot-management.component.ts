@@ -1,11 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-<<<<<<< HEAD
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Map } from 'ol/Map';
-=======
-import { Component, OnInit } from '@angular/core';
-// import { Map } from 'ol/Map';
->>>>>>> 81717c1dcc06258b24c85a9d117c7005d7363f42
 import { AdminService } from './../../../../services/admin.service';
 import { DepotDetails } from 'src/app/models/depotDetails';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
