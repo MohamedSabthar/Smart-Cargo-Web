@@ -4,8 +4,8 @@
       <img src="assets/img/SmartCargoLogo.png" alt="" width="80" height="80" />
     </div>
     <div class="mx-3 col-6 align-self-center profile-text">
-      <h5>C.Ronaldo</h5>
-      <span>Admin</span>
+      <h5>{{this.name}}</h5>
+      <span>{{isAdmin() ? 'Admin' : 'Storekeeper'}}</span>
     </div>
   </div>
 
@@ -67,7 +67,7 @@
     <li class="nav-item">
       <a
         class="nav-link"
-        [routerLink]="['/admin/add-order-dimention']"
+        [routerLink]="isAdmin() ? ['/admin/add-order-dimention'] : ['/store-keeper/add-order-dimention']"
         [routerLinkActive]="'active'"
       >
         <i-feather class="mr-2" name="plus-square"></i-feather> Add Order
@@ -77,7 +77,7 @@
     <li class="nav-item">
       <a
         class="nav-link"
-        [routerLink]="['/admin/track-vehicle']"
+        [routerLink]="isAdmin() ? ['/admin/track-vehicle'] : ['/store-keeper/track-vehicle']"
         [routerLinkActive]="'active'"
       >
         <i-feather class="mr-2" name="navigation"></i-feather> Track Delivery

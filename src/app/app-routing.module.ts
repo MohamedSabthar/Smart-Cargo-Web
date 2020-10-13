@@ -22,8 +22,6 @@ import { VehicleManagementComponent } from './pages/main-content/admin/vehicle-m
 import { StoreKeeperManagementComponent } from './pages/main-content/admin/store-keeper-management/store-keeper-management.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
-
-
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'forgot-password', component: ForgotPasswordPageComponent },
@@ -37,13 +35,20 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
       { path: 'driver-management', component: DriverManagementComponent },
-      { path: 'vehicle-management', component:  VehicleManagementComponent },
+      { path: 'vehicle-management', component: VehicleManagementComponent },
       { path: 'depot-management', component: DepotManagementComponent },
-      { path: 'store-keeper-management', component: StoreKeeperManagementComponent },
-      { path: 'track-vehicle', component:TrackOrderComponent},
-      { path: 'add-order-dimention', component:AddOrderDimentionComponent},
+      {
+        path: 'store-keeper-management',
+        component: StoreKeeperManagementComponent,
+      },
+      { path: 'track-vehicle', component: TrackOrderComponent },
+      { path: 'add-order-dimention', component: AddOrderDimentionComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
-      {path:'settings',canActivate:[GaurdService],component:ProfileComponent},
+      {
+        path: 'settings',
+        canActivate: [GaurdService],
+        component: ProfileComponent,
+      },
     ],
   },
   {
@@ -52,13 +57,19 @@ const routes: Routes = [
     canActivate: [GaurdService, StoreKeeperGaurdService],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: StoreKeeperDashboardComponent },
+      { path: 'dashboard', component: AddOrderDimentionComponent },
+      { path: 'add-order-dimention', component: AddOrderDimentionComponent },
       { path: 'schedule-orders', component: ScheduleOrdersComponent },
-      {path:'settings',canActivate:[GaurdService],component:ProfileComponent},
+      { path: 'track-vehicle', component: TrackOrderComponent },
+      {
+        path: 'settings',
+        canActivate: [GaurdService],
+        component: ProfileComponent,
+      },
     ],
   },
-  {path:'reset-password/:token',component:RestPasswordPageComponent},
-  { path: '**', component: NotFoundPageComponent }
+  { path: 'reset-password/:token', component: RestPasswordPageComponent },
+  { path: '**', component: NotFoundPageComponent },
 ];
 
 @NgModule({

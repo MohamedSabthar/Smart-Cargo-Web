@@ -9,11 +9,13 @@ import {
   Input,
   OnChanges,
   TemplateRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { DataTableRowClickEventArgs } from 'ornamentum';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Console } from 'console';
+import { GenerateRouteComponent } from '../generate-route/generate-route.component';
 
 @Component({
   selector: 'app-scheduled-orders-table',
@@ -35,9 +37,7 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this._storeKeeperService.getDeopt().subscribe((depot) => {
       this.depot = depot;
-      console.log('hh');
       console.log(this.depot);
-      console.log('hit');
     });
   }
 
@@ -55,16 +55,30 @@ export class ScheduledOrdersTableComponent implements OnInit, OnChanges {
   }
 
   onRowClick(clickEventArgs: DataTableRowClickEventArgs<any>): void {
-    this.selectedRoute = clickEventArgs.row.item.route;
-    const modalRef = this._modalComponentService.open(ViewRouteComponent, {
-      size: 'xl lg md sm',
-    });
-    modalRef.componentInstance.orders = this.selectedRoute;
-    modalRef.componentInstance.depotDetails = this.depot;
-    modalRef.result.then((res) => {
-      console.log(res);
-      console.log('hit');
-    });
+    if (
+      clickEventArgs.row.item.route != null &&
+      clickEventArgs.row.item.route.length != 0
+    ) {
+      console.log(clickEventArgs.row.item.route.length);
+      this.selectedRoute = clickEventArgs.row.item.route;
+      const modalRef = this._modalComponentService.open(ViewRouteComponent, {
+        size: 'xl lg md sm',
+      });
+      modalRef.componentInstance.orders = this.selectedRoute;
+      modalRef.componentInstance.clusterId = clickEventArgs.row.item._id;
+      modalRef.componentInstance.depotDetails = this.depot;
+      modalRef.result.then((res) => {
+        console.log(res);
+      });
+    } else {
+      const modalRef = this._modalComponentService.open(
+        GenerateRouteComponent,
+        {
+          size: 'modal-md modal-dialog-centered',
+        }
+      );
+      modalRef.componentInstance.clusterId = clickEventArgs.row.item._id;
+    }
   }
 
   triggerModal(clickEventArgs: DataTableRowClickEventArgs<any>): void {

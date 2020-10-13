@@ -5,7 +5,9 @@
     font-size: 1.0rem;
   }
 
-  
+  .content{
+      height: 500px;
+  }
 
 .trash_icon {
     color: var(--danger);
