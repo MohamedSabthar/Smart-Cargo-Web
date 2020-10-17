@@ -15,6 +15,13 @@
                     (close)="closeUpdateAlert()"
                     >{{ userMessage }}</ngb-alert
                   >
+                  <ngb-alert
+                    *ngIf="userMapMessage != null"
+                    [type]="'danger'"
+                    style="max-width: 500px;"
+                    (close)="closeUpdateAlert()"
+                    >{{ userMapMessage }}</ngb-alert
+                  >
               <div class="row">
                 <div class="col-8 col-md-9">
                   <h4 style="color: #4d5c84">Your depot details</h4>
@@ -35,14 +42,42 @@
                 <div class="col-2 col-md-3 align-items-center">
                   <button
                     [disabled]="manageDepot.invalid"
-                    (click)="onSubmit()"
+                    (click)="this.depotId ? confirmRegister(confirmRegistermodal) : onSubmit()"
                     type="submit"
                     class="btn btn-primary button k-margin"
-                  >
-                    Save
+                  >{{this.depotId ? "update" : "save"}}
                   </button>
                 </div>
               </div>
+
+              <!-- Confirmation model called in confirmRegister(confirmRegister) -->
+              <ng-template #confirmRegistermodal>
+                <div class="modal-body text-center">
+                  <h4 class="mb-2 text-primary">
+                    Are you sure to update Depot 
+                  </h4>
+                  <p class="mb-3">
+                    Click confirm to proceed or Cancel to Revert
+                  </p>
+                </div>
+                <div class="text-center mb-2">
+                  <button
+                    type="button"
+                    class="mx-2 btn btn-default"
+                    (click)="onSubmit()"
+                  >
+                    Confirm
+                  </button>
+
+                  <button
+                    type="button"
+                    class="mx-2 btn btn-primary"
+                    (click)="decline()"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </ng-template>
             </form>
           </div>
         </div>
